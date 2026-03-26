@@ -100,6 +100,10 @@ header {
 }
 #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
+/* Sync badge pulsing while loading */
+#sync-status.loading { animation:syncPulse 1.4s ease-in-out infinite; }
+@keyframes syncPulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+
 /* .layout and .sidebar defined in SIDEBAR TOGGLE block above */
 
 /* Collapsible form header */
@@ -267,8 +271,17 @@ header {
   transition:background .2s, border-color .2s, color .2s, left .35s cubic-bezier(.4,0,.2,1);
   box-shadow:3px 0 8px rgba(0,0,0,.35);
 }
-.sidebar-toggle-btn:hover { background:var(--surface); border-color:var(--accent); color:var(--accent); }
+.sidebar-toggle-btn:hover { background:var(--surface2); border-color:var(--accent); color:var(--accent); width:24px; }
 .sidebar-toggle-btn .stb-icon { transition:transform .35s; display:inline-block; line-height:1; }
+/* Highlight the tab when collapsed so it's easy to find */
+.layout.sidebar-collapsed .sidebar-toggle-btn {
+  left:0px;
+  background:var(--accent); color:#000 !important;
+  border-color:var(--accent); border-left:none;
+  box-shadow:4px 0 16px rgba(232,255,71,.35);
+  width:22px; height:60px;
+}
+.layout.sidebar-collapsed .sidebar-toggle-btn:hover { width:26px; }
 /* layout needs position:relative for absolute btn */
 .layout { position:relative; }
 
@@ -315,80 +328,100 @@ header {
   .day-card-side { display:none !important; }
   .day-nav-arrow { width:30px; height:30px; font-size:13px; }
   .day-card-main { width:92vw; max-width:560px; }
+
+  /* Sidebar becomes a drawer on tablet too */
+  .layout {
+    grid-template-columns:1fr !important;
+    height:calc(100vh - 57px);
+  }
+  .layout.sidebar-collapsed { grid-template-columns:1fr !important; }
+
+  .sidebar {
+    position:fixed !important; left:0; top:57px; bottom:0;
+    width:320px; z-index:450;
+    transform:translateX(-100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    background:var(--bg);
+    border-right:1px solid var(--border) !important;
+    box-shadow:4px 0 28px rgba(0,0,0,.5);
+  }
+  .sidebar.mobile-open { transform:translateX(0); }
+  .sidebar-overlay { display:block; pointer-events:none; }
+  .sidebar-overlay.open { pointer-events:all; }
+  .sidebar-toggle-btn { display:none !important; }
+  .sidebar-fab { display:flex; }
+  .calendar-area { grid-column:1; }
+  .calendar-wrapper { min-width:0; }
 }
 
 /* ── RESPONSIVE — MOBILE (≤600px) ───────────────────────────────────── */
 @media (max-width:600px) {
   /* Header */
-  header { padding:10px 14px; gap:8px; }
-  .logo { font-size:16px; }
+  header { padding:10px 14px; gap:6px; }
+  .logo { font-size:15px; }
   #sync-status { display:none !important; }
-  .hdr-right { gap:6px; }
-  .year-badge { font-size:12px; padding:3px 9px; }
-  .year-arrow { width:24px; height:24px; }
-  .export-btn { padding:5px 10px; font-size:11px; }
+  .hdr-right { gap:5px; }
+  .year-badge { font-size:12px; padding:3px 8px; }
+  .year-arrow { width:22px; height:22px; font-size:10px; }
 
-  /* Hide desktop quick-access btns in header, keep only hamburger */
-  .hdr-quick { display:none !important; }
+  /* Layout */
+  .layout { height:calc(100vh - 49px); }
+  .sidebar { top:49px !important; width:min(300px, 85vw) !important; }
 
-  /* Layout: sidebar becomes a fixed drawer */
-  .layout {
-    grid-template-columns:1fr !important;
-    height:calc(100vh - 49px);
+  /* Calendar */
+  .calendar-wrapper { padding:10px 8px; }
+  .months-grid { grid-template-columns:1fr !important; gap:8px; }
+  .month-title { font-size:11px; }
+  .day-cell { font-size:9px; }
+  .range-label { font-size:8px; padding:1px 3px; }
+
+  /* FAB positioning — avoid overlap with toast */
+  .sidebar-fab {
+    bottom:24px; left:14px;
+    width:44px; height:44px; font-size:18px;
   }
-  .layout.sidebar-collapsed { grid-template-columns:1fr !important; }
 
-  .sidebar {
-    position:fixed !important; left:0; top:49px; bottom:0;
-    width:300px; z-index:450;
-    transform:translateX(-100%);
-    transition:transform .35s cubic-bezier(.4,0,.2,1);
-    background:var(--bg);
-    border-right:1px solid var(--border) !important;
-    box-shadow:4px 0 24px rgba(0,0,0,.5);
-  }
-  .sidebar.mobile-open { transform:translateX(0); }
-  .sidebar-overlay { display:block; pointer-events:none; }
-  .sidebar-overlay.open { pointer-events:all; }
-
-  /* Hide desktop toggle tab on mobile */
-  .sidebar-toggle-btn { display:none; }
-
-  /* Show FAB */
-  .sidebar-fab { display:flex; }
-
-  /* Calendar area fills full width */
-  .calendar-area { grid-column:1; }
-  .calendar-wrapper { padding:12px; min-width:0; }
-  .months-grid { grid-template-columns:1fr !important; gap:10px; }
-
-  /* Day modal fullscreen */
+  /* Day modal — bottom sheet */
   .day-modal-backdrop { align-items:flex-end; }
   .day-carousel { flex-direction:column; gap:0; width:100%; }
   .day-card-side { display:none !important; }
   .day-nav-arrow { display:none !important; }
   .day-card-main {
     width:100vw; max-width:100vw;
-    border-radius:16px 16px 0 0;
-    height:88vh; max-height:88vh;
+    border-radius:18px 18px 0 0;
+    height:90vh; max-height:90vh;
   }
+  /* Swipe handle */
+  .day-card-main::before {
+    content:''; display:block; width:36px; height:4px;
+    background:var(--border); border-radius:2px;
+    margin:10px auto 0; flex-shrink:0;
+  }
+  .day-card-header { padding:10px 16px 10px; }
+  .day-card-daynum { font-size:28px; }
+  .day-card-form { padding:10px 14px; }
+  .task-form-row { grid-template-columns:72px 72px 1fr; gap:5px; }
 
-  /* Week modal */
-  .week-modal { width:100vw; max-width:100vw; height:92vh; border-radius:16px 16px 0 0; }
+  /* Week modal — bottom sheet */
+  .week-modal { width:100vw; max-width:100vw; height:88vh; border-radius:18px 18px 0 0; }
   .week-modal-backdrop { align-items:flex-end; }
-  .week-day-col { min-width:100px; }
+  .week-day-col { min-width:88px; }
+  .week-day-num { font-size:18px; }
 
-  /* Day table responsive */
+  /* Day table — hide less important cols */
   .day-table th.col-resp,
   .day-table th.col-apoyos,
   .day-table td.col-resp,
   .day-table td.col-apoyos { display:none; }
+  .day-table th { font-size:9px; padding:6px 7px; }
+  .day-table td { padding:7px 8px; }
 
-  /* Legend */
-  .legend { padding:8px 10px; gap:7px; }
-
-  /* Instructions hide on mobile */
+  /* Legend & instructions */
+  .legend { padding:8px 10px; gap:6px; font-size:10px; }
   .instructions { display:none; }
+
+  /* Hamburger menu opens upward on small screens */
+  .hamburger-menu { bottom:calc(100% + 8px); top:auto; }
 }
 
 /* ── WEEK MODAL ───────────────────────────────────────────────────────────── */
@@ -639,8 +672,8 @@ header {
     </div>
     <div class="cards-list" id="cards-list">
       <div class="empty-state" id="empty-msg">
-        <div class="icon">📋</div>
-        Creá tu primera tarjeta<br>y arrastrala al calendario
+        <div class="icon" id="empty-icon">⏳</div>
+        <span id="empty-text">Conectando con Firebase...</span>
       </div>
     </div>
   </div>
@@ -1144,7 +1177,19 @@ function toggleHideCard(id) {
 function renderCards() {
   const list=document.getElementById('cards-list');
   list.querySelectorAll('.task-card').forEach(e=>e.remove());
-  document.getElementById('empty-msg').style.display=cards.length?'none':'block';
+  const emptyMsg = document.getElementById('empty-msg');
+  emptyMsg.style.display = cards.length ? 'none' : 'block';
+  if (!cards.length) {
+    const icon = document.getElementById('empty-icon');
+    const text = document.getElementById('empty-text');
+    if (_fbReady) {
+      if (icon) icon.textContent = '📋';
+      if (text) text.innerHTML = 'Creá tu primera tarjeta<br>y arrastrala al calendario';
+    } else {
+      if (icon) icon.textContent = '⏳';
+      if (text) text.textContent = 'Conectando con Firebase...';
+    }
+  }
   const badge = document.getElementById('cards-count-badge');
   badge.textContent = cards.length ? cards.length : '';
   badge.style.display = cards.length ? 'inline' : 'none';
@@ -1806,83 +1851,140 @@ const firebaseConfig = {
   appId:             "1:632727291712:web:6498a436e6110c05399ca5"
 };
 let db = null, dataRef = null;
-// Timestamp-based echo suppression: store the writeId we just sent
-// so we can skip the immediate echo, but NOT skip real remote updates
 let _lastWriteId = null;
+let _fbReady = false; // true once first Firebase response (data or error) arrives
 
-function setSyncStatus(status) {
-  const dot  = document.getElementById('sync-dot');
-  const text = document.getElementById('sync-text');
+// ── Sync status indicator ──────────────────────────────────────────────────────
+function setSyncStatus(status, detail) {
+  const dot    = document.getElementById('sync-dot');
+  const text   = document.getElementById('sync-text');
+  const badge  = document.getElementById('sync-status');
   if (!dot) return;
   const map = {
+    loading: { bg: '#fbbf24', label: 'Conectando...' },
     online:  { bg: '#4ade80', label: 'En linea · Tiempo real' },
-    offline: { bg: '#ff6b6b', label: 'Sin conexion' },
-    syncing: { bg: '#fbbf24', label: 'Sincronizando...' },
-    error:   { bg: '#ff6b6b', label: 'Error de conexion' },
+    offline: { bg: '#888',    label: 'Sin conexion — local' },
+    syncing: { bg: '#fbbf24', label: 'Guardando...' },
+    error:   { bg: '#ff6b6b', label: detail || 'Error de conexion' },
   };
   const s = map[status] || map.offline;
   dot.style.background = s.bg;
   text.textContent     = s.label;
+  if (badge) badge.classList.toggle('loading', status === 'loading' || status === 'syncing');
 }
+setSyncStatus('loading');
+
+// ── Apply data from a plain object (used by both Firebase and import) ──────────
+function applyRemoteData(data) {
+  const rawCards = Array.isArray(data.cards) ? data.cards
+    : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : []);
+  cards      = rawCards.map(c => sanitizeCard(c));
+  placements = Array.isArray(data.placements) ? data.placements
+    : (data.placements ? Object.values(data.placements) : []);
+  idCounter  = parseInt(data.idCounter) || 0;
+
+  const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
+  dayTasks = {};
+  Object.keys(rawTasks).forEach(k => {
+    const list = Array.isArray(rawTasks[k]) ? rawTasks[k]
+      : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
+    if (list.length > 0) dayTasks[k] = list.map(t => ({
+      id: t.id || 0, name: t.name || '', desde: t.desde || '',
+      hasta: t.hasta || '', duration: t.duration || '',
+      desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
+    }));
+  });
+
+  try { localStorage.setItem('planboard_session', JSON.stringify({ cards, placements, idCounter, dayTasks })); } catch(e) {}
+  renderCards(); renderCalendar(); renderLegend();
+  if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
+  if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
+}
+
+// ── Fallback: load from localStorage and show offline state ───────────────────
+function fallbackToLocal(reason) {
+  if (_fbReady) return; // Firebase already delivered data, don't overwrite
+  _fbReady = true;
+  console.warn('Firebase fallback:', reason);
+  const hadLocal = loadSession();
+  renderCards(); renderCalendar(); renderLegend();
+  setSyncStatus('offline');
+  if (!hadLocal) showToast('⚠ Sin conexión a Firebase — trabajando sin datos guardados');
+  else           showToast('⚠ Sin conexión a Firebase — mostrando datos locales');
+}
+
+// ── 8-second timeout: if Firebase hasn't responded, fall back to localStorage ─
+const _fbTimeout = setTimeout(() => fallbackToLocal('timeout after 8s'), 8000);
 
 try {
   firebase.initializeApp(firebaseConfig);
   db = firebase.database();
   dataRef = db.ref('planboard/state');
 
+  // Connection state indicator (doesn't block data loading)
   db.ref('.info/connected').on('value', snap => {
-    setSyncStatus(snap.val() === true ? 'online' : 'offline');
+    if (_fbReady) {
+      setSyncStatus(snap.val() === true ? 'online' : 'offline');
+    }
   });
 
-  // Remote changes: only skip if the event carries our own writeId (echo suppression)
-  let _fbFirstLoad = true;
-  dataRef.on('value', snap => {
-    let data = null;
-    try { data = snap ? snap.val() : null; } catch(e) { data = null; }
+  let _fbFirstEvent = true;
 
-    // First load: if Firebase is empty, try to restore from localStorage
-    if (_fbFirstLoad) {
-      _fbFirstLoad = false;
+  // Success callback
+  const onData = snap => {
+    clearTimeout(_fbTimeout);
+    let data = null;
+    try { data = snap ? snap.val() : null; } catch(e) {}
+
+    if (_fbFirstEvent) {
+      _fbFirstEvent = false;
+      _fbReady = true;
       if (!data) {
-        loadSession();
+        // Firebase is empty — use localStorage if available
+        const hadLocal = loadSession();
         renderCards(); renderCalendar(); renderLegend();
+        setSyncStatus('online');
+        if (!hadLocal) showToast('🆕 Base de datos vacía — podés cargar una sesión guardada');
         return;
       }
     }
 
     if (!data) return;
 
-    // Skip our own echo
+    // Echo suppression: skip events caused by our own writes
     if (data._writeId && data._writeId === _lastWriteId) {
       _lastWriteId = null;
       return;
     }
     _lastWriteId = null;
 
+    setSyncStatus('online');
     try {
-      const rawCards = Array.isArray(data.cards) ? data.cards
-        : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : []);
-      cards      = rawCards.map(c => sanitizeCard(c));
-      placements = Array.isArray(data.placements) ? data.placements
-        : (data.placements ? Object.values(data.placements) : []);
-      idCounter  = parseInt(data.idCounter) || 0;
-      // Sanitize dayTasks: Firebase may serialize inner arrays as numeric-keyed objects
-      const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
-      dayTasks = {};
-      Object.keys(rawTasks).forEach(k => {
-        const list = Array.isArray(rawTasks[k]) ? rawTasks[k]
-          : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
-        if (list.length > 0) dayTasks[k] = list;
-      });
-      try { localStorage.setItem('planboard_session', JSON.stringify({ cards, placements, idCounter, dayTasks })); } catch(e) {}
-      renderCards(); renderCalendar(); renderLegend();
-      if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
-      if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
-    } catch(renderErr) { console.warn('Error rendering Firebase data:', renderErr); }
-  });
+      applyRemoteData(data);
+    } catch(renderErr) {
+      console.warn('Error rendering Firebase data:', renderErr);
+    }
+  };
+
+  // Error callback — Firebase access denied or network error
+  const onError = err => {
+    clearTimeout(_fbTimeout);
+    console.warn('Firebase read error:', err.code, err.message);
+    const msg = err.code === 'PERMISSION_DENIED'
+      ? 'Acceso denegado — revisá las reglas de Firebase'
+      : 'Error Firebase: ' + err.code;
+    setSyncStatus('error', msg);
+    showToast('⚠ ' + msg);
+    fallbackToLocal(err.code);
+  };
+
+  dataRef.on('value', onData, onError);
+
 } catch(fbInitErr) {
+  clearTimeout(_fbTimeout);
   console.warn('Firebase no pudo inicializarse:', fbInitErr);
-  setSyncStatus('error');
+  setSyncStatus('error', 'Firebase no disponible');
+  fallbackToLocal('init error: ' + fbInitErr.message);
 }
 
 function saveSession() {
@@ -2053,8 +2155,8 @@ function persist() {
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-// Render empty state immediately; Firebase will populate on first 'value' event.
-// localStorage is only used as fallback if Firebase has no data (snap.val() === null).
+// Show skeleton immediately. Firebase listener or the 8-second timeout will
+// populate with real data. Do NOT load localStorage here — that's the fallback's job.
 renderCards();
 renderCalendar();
 let weekModal = { open: false, monday: null };
