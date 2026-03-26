@@ -23,7 +23,8 @@
   --r: 10px;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; min-height:100vh; overflow-x:hidden; }
+body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; min-height:100vh; overflow-x:hidden; -webkit-tap-highlight-color:transparent; }
+button, label { touch-action:manipulation; }
 * { scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
 *::-webkit-scrollbar { width:4px; height:4px; }
 *::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
@@ -99,9 +100,7 @@ header {
 }
 #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-.layout { display:grid; grid-template-columns:320px 1fr; height:calc(100vh - 57px); }
-
-.sidebar { border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
+/* .layout and .sidebar defined in SIDEBAR TOGGLE block above */
 
 /* Collapsible form header */
 .sidebar-header { flex-shrink:0; border-bottom:1px solid var(--border); overflow:hidden; transition:max-height .3s ease; }
@@ -174,7 +173,7 @@ header {
 .color-btn:hover { opacity:.85; transform:scale(1.1); }
 
 .calendar-area { overflow:auto; background:var(--bg); }
-.calendar-wrapper { padding:18px 22px; min-width:860px; }
+.calendar-wrapper { padding:18px 22px; min-width:0; }
 .calendar-nav { display:flex; align-items:center; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
 .calendar-nav h2 { font-family:'Syne',sans-serif; font-weight:800; font-size:20px; flex:1; }
 .clear-btn { background:transparent; border:1px solid var(--border); color:var(--muted); padding:5px 13px; border-radius:6px; cursor:pointer; font-family:'DM Mono',monospace; font-size:11px; transition:border-color .2s,color .2s; }
@@ -252,7 +251,145 @@ header {
 .instructions { font-size:10px; color:var(--muted); margin-top:10px; display:flex; gap:18px; flex-wrap:wrap; }
 .instructions span { display:flex; align-items:center; gap:5px; }
 
+/* ── SIDEBAR TOGGLE ─────────────────────────────────────────────────── */
+.sidebar-toggle-btn {
+  /* Positioned relative to .layout grid; sits on top of the sidebar/calendar seam */
+  position:absolute;
+  left:calc(var(--sidebar-w, 320px) - 1px);
+  top:50%;
+  transform:translateY(-50%);
+  z-index:200; width:20px; height:52px;
+  background:var(--surface2); border:1px solid var(--border);
+  border-left:none;
+  border-radius:0 8px 8px 0; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted); font-size:10px;
+  transition:background .2s, border-color .2s, color .2s, left .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:3px 0 8px rgba(0,0,0,.35);
+}
+.sidebar-toggle-btn:hover { background:var(--surface); border-color:var(--accent); color:var(--accent); }
+.sidebar-toggle-btn .stb-icon { transition:transform .35s; display:inline-block; line-height:1; }
+/* layout needs position:relative for absolute btn */
+.layout { position:relative; }
+
+/* Layout transitions */
+.layout {
+  display:grid;
+  grid-template-columns:320px 1fr;
+  height:calc(100vh - 57px);
+  transition:grid-template-columns .35s cubic-bezier(.4,0,.2,1);
+}
+.layout.sidebar-collapsed { grid-template-columns:0px 1fr; }
+.sidebar {
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column; overflow:hidden;
+  position:relative;
+  transition:width .35s cubic-bezier(.4,0,.2,1);
+  min-width:0;
+}
+.layout.sidebar-collapsed .sidebar { border-right:none; }
+
+/* ── MOBILE SIDEBAR OVERLAY ──────────────────────────────────────────── */
+.sidebar-overlay {
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,.55);
+  z-index:400; opacity:0; transition:opacity .3s;
+}
+.sidebar-overlay.open { opacity:1; }
+
+/* Mobile FAB to open sidebar */
+.sidebar-fab {
+  display:none; position:fixed; bottom:20px; left:16px; z-index:390;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--accent); color:#000; border:none;
+  font-size:20px; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,.4);
+  align-items:center; justify-content:center;
+  transition:transform .2s, box-shadow .2s;
+}
+.sidebar-fab:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(0,0,0,.5); }
+
 @media (max-width:1100px) { .months-grid { grid-template-columns:repeat(2,1fr); } }
+
+/* ── RESPONSIVE — TABLET (≤860px) ───────────────────────────────────── */
+@media (max-width:860px) {
+  .months-grid { grid-template-columns:repeat(2,1fr) !important; }
+  .day-card-side { display:none !important; }
+  .day-nav-arrow { width:30px; height:30px; font-size:13px; }
+  .day-card-main { width:92vw; max-width:560px; }
+}
+
+/* ── RESPONSIVE — MOBILE (≤600px) ───────────────────────────────────── */
+@media (max-width:600px) {
+  /* Header */
+  header { padding:10px 14px; gap:8px; }
+  .logo { font-size:16px; }
+  #sync-status { display:none !important; }
+  .hdr-right { gap:6px; }
+  .year-badge { font-size:12px; padding:3px 9px; }
+  .year-arrow { width:24px; height:24px; }
+  .export-btn { padding:5px 10px; font-size:11px; }
+
+  /* Hide desktop quick-access btns in header, keep only hamburger */
+  .hdr-quick { display:none !important; }
+
+  /* Layout: sidebar becomes a fixed drawer */
+  .layout {
+    grid-template-columns:1fr !important;
+    height:calc(100vh - 49px);
+  }
+  .layout.sidebar-collapsed { grid-template-columns:1fr !important; }
+
+  .sidebar {
+    position:fixed !important; left:0; top:49px; bottom:0;
+    width:300px; z-index:450;
+    transform:translateX(-100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    background:var(--bg);
+    border-right:1px solid var(--border) !important;
+    box-shadow:4px 0 24px rgba(0,0,0,.5);
+  }
+  .sidebar.mobile-open { transform:translateX(0); }
+  .sidebar-overlay { display:block; pointer-events:none; }
+  .sidebar-overlay.open { pointer-events:all; }
+
+  /* Hide desktop toggle tab on mobile */
+  .sidebar-toggle-btn { display:none; }
+
+  /* Show FAB */
+  .sidebar-fab { display:flex; }
+
+  /* Calendar area fills full width */
+  .calendar-area { grid-column:1; }
+  .calendar-wrapper { padding:12px; min-width:0; }
+  .months-grid { grid-template-columns:1fr !important; gap:10px; }
+
+  /* Day modal fullscreen */
+  .day-modal-backdrop { align-items:flex-end; }
+  .day-carousel { flex-direction:column; gap:0; width:100%; }
+  .day-card-side { display:none !important; }
+  .day-nav-arrow { display:none !important; }
+  .day-card-main {
+    width:100vw; max-width:100vw;
+    border-radius:16px 16px 0 0;
+    height:88vh; max-height:88vh;
+  }
+
+  /* Week modal */
+  .week-modal { width:100vw; max-width:100vw; height:92vh; border-radius:16px 16px 0 0; }
+  .week-modal-backdrop { align-items:flex-end; }
+  .week-day-col { min-width:100px; }
+
+  /* Day table responsive */
+  .day-table th.col-resp,
+  .day-table th.col-apoyos,
+  .day-table td.col-resp,
+  .day-table td.col-apoyos { display:none; }
+
+  /* Legend */
+  .legend { padding:8px 10px; gap:7px; }
+
+  /* Instructions hide on mobile */
+  .instructions { display:none; }
+}
 
 /* ── WEEK MODAL ───────────────────────────────────────────────────────────── */
 .week-modal-backdrop {
@@ -452,8 +589,17 @@ header {
   </div>
 </div>
 
-<div class="layout">
-  <div class="sidebar">
+<!-- Mobile sidebar overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeMobileSidebar()"></div>
+<!-- Mobile FAB to open sidebar -->
+<button class="sidebar-fab" id="sidebar-fab" onclick="openMobileSidebar()" title="Abrir panel">☰</button>
+
+<div class="layout" id="main-layout">
+  <!-- Desktop sidebar toggle tab — floats at the seam between sidebar and calendar -->
+  <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" onclick="toggleSidebar()" title="Minimizar panel">
+    <span class="stb-icon">◀</span>
+  </button>
+  <div class="sidebar" id="main-sidebar">
     <div class="sidebar-header expanded" id="sidebar-header">
       <div class="form-toggle" onclick="toggleForm()">
         <h2 id="form-title">Nueva Tarjeta</h2>
@@ -620,6 +766,45 @@ let cards = [], placements = [], idCounter = 0, dragCard = null, tempPhases = []
 let calDrag = { active: false, startY: null, startM: null, startD: null };
 let dayTasks = {}; // key: "YYYY-MM-DD" → [{id, name, time, duration, desc}]
 let dayModal = { open: false, y: null, m: null, d: null, editMode: false };
+
+// ── SIDEBAR TOGGLE (DESKTOP) ─────────────────────────────────────────────────
+let sidebarOpen = true;
+
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  const layout = document.getElementById('main-layout');
+  const btn    = document.getElementById('sidebar-toggle-btn');
+  const icon   = btn.querySelector('.stb-icon');
+  if (sidebarOpen) {
+    layout.classList.remove('sidebar-collapsed');
+    btn.style.left = 'calc(320px - 1px)';
+    icon.style.transform = '';
+    btn.title = 'Minimizar panel';
+  } else {
+    layout.classList.add('sidebar-collapsed');
+    btn.style.left = '-1px';
+    icon.style.transform = 'rotate(180deg)';
+    btn.title = 'Expandir panel';
+  }
+}
+
+// ── SIDEBAR MOBILE DRAWER ─────────────────────────────────────────────────────
+function openMobileSidebar() {
+  document.getElementById('main-sidebar').classList.add('mobile-open');
+  const ov = document.getElementById('sidebar-overlay');
+  ov.style.display = 'block';
+  requestAnimationFrame(() => ov.classList.add('open'));
+  document.getElementById('sidebar-fab').style.display = 'none';
+}
+function closeMobileSidebar() {
+  document.getElementById('main-sidebar').classList.remove('mobile-open');
+  const ov = document.getElementById('sidebar-overlay');
+  ov.classList.remove('open');
+  // Show FAB again only if mobile
+  if (window.innerWidth <= 600) {
+    document.getElementById('sidebar-fab').style.display = 'flex';
+  }
+}
 
 // ── HAMBURGER MENU ────────────────────────────────────────────────────────────
 function toggleHamburger() {
@@ -1378,9 +1563,11 @@ async function exportAs(format){
     isPrint         ? 'Generando PDF para imprimir...' :
                       'Generando JPG...';
   overlay.style.display='flex';
-  const sidebar=document.querySelector('.sidebar'), layout=document.querySelector('.layout'), calArea=document.querySelector('.calendar-area');
+  const sidebar=document.querySelector('.sidebar'), layout=document.getElementById('main-layout'), calArea=document.querySelector('.calendar-area');
   const origCols=layout.style.gridTemplateColumns;
   layout.style.gridTemplateColumns='0px 1fr'; sidebar.style.display='none';
+  const fab = document.getElementById('sidebar-fab'); if(fab) fab.style.display='none';
+  const stb = document.getElementById('sidebar-toggle-btn'); if(stb) stb.style.display='none';
   calArea.style.overflow='visible'; calArea.style.height='auto';
 
   // Hide months with no placements
@@ -1527,6 +1714,8 @@ async function exportAs(format){
     hiddenMonths.forEach(b=>b.style.display='');
     layout.style.gridTemplateColumns=origCols; sidebar.style.display='';
     calArea.style.overflow=''; calArea.style.height=''; overlay.style.display='none';
+    const fab2 = document.getElementById('sidebar-fab'); if(fab2 && window.innerWidth<=600) fab2.style.display='flex';
+    const stb2 = document.getElementById('sidebar-toggle-btn'); if(stb2) stb2.style.display='';
   }
 }
 
