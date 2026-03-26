@@ -1677,7 +1677,14 @@ try {
       placements = Array.isArray(data.placements) ? data.placements
         : (data.placements ? Object.values(data.placements) : []);
       idCounter  = parseInt(data.idCounter) || 0;
-      dayTasks   = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
+      // Sanitize dayTasks: Firebase may serialize inner arrays as numeric-keyed objects
+      const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
+      dayTasks = {};
+      Object.keys(rawTasks).forEach(k => {
+        const list = Array.isArray(rawTasks[k]) ? rawTasks[k]
+          : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
+        if (list.length > 0) dayTasks[k] = list;
+      });
       try { localStorage.setItem('planboard_session', JSON.stringify({ cards, placements, idCounter, dayTasks })); } catch(e) {}
       renderCards(); renderCalendar(); renderLegend();
       if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
@@ -1772,15 +1779,30 @@ function importSession() {
           ? data.placements
           : (data.placements ? Object.values(data.placements) : []);
         idCounter  = parseInt(data.idCounter) || 0;
-        dayTasks   = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
+
+        // Sanitize dayTasks: Firebase serializes inner arrays as numeric-keyed objects
+        const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
+        dayTasks = {};
+        Object.keys(rawTasks).forEach(k => {
+          const list = Array.isArray(rawTasks[k])
+            ? rawTasks[k]
+            : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
+          if (list.length > 0) dayTasks[k] = list.map(t => ({
+            id: t.id || 0, name: t.name || '', desde: t.desde || '',
+            hasta: t.hasta || '', duration: t.duration || '',
+            desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
+          }));
+        });
 
         // Recalculate max idCounter so new items don't collide
-        const maxId = Math.max(0, ...cards.map(c=>c.id), ...placements.map(p=>p.id));
+        const allTaskIds = Object.values(dayTasks).flat().map(t => t.id || 0);
+        const maxId = Math.max(0, ...cards.map(c=>c.id), ...placements.map(p=>p.id), ...allTaskIds);
         if (maxId > idCounter) idCounter = maxId;
 
         try { persist(); } catch(pe) { console.warn('persist error after import:', pe); }
         renderCards(); renderCalendar(); renderLegend();
-        showToast('Sesion importada — ' + cards.length + ' tarjeta' + (cards.length!==1?'s':''));
+        const taskCount = Object.values(dayTasks).reduce((s,a) => s + a.length, 0);
+        showToast('Sesion importada — ' + cards.length + ' tarjeta' + (cards.length!==1?'s':'') + (taskCount ? ', ' + taskCount + ' tarea' + (taskCount!==1?'s':'') : ''));
       } catch(err) {
         console.error('Import error:', err);
         alert('No se pudo cargar el archivo: ' + err.message);
@@ -1802,16 +1824,41 @@ function showToast(msg) {
 function persist() {
   saveSession();
   if (!dataRef) return;
-  // Tag our write with a unique ID so the listener can skip our own echo
+
+  // Sanitize before writing — Firebase 8 compat throws
+  // "Cannot read properties of null (reading 'isEmpty')" when the payload
+  // contains undefined values or Firebase-style object-arrays.
+  const cleanCards = cards.map(c => sanitizeCard(c));
+
+  const cleanPlacements = placements.map(p => ({
+    id: p.id || 0, cardId: p.cardId || 0, name: p.name || '', days: p.days || 0,
+    startY: p.startY || 0, startM: p.startM || 0, startD: p.startD || 0,
+    endY: p.endY || 0, endM: p.endM || 0, endD: p.endD || 0,
+  }));
+
+  const cleanTasks = {};
+  Object.keys(dayTasks).forEach(k => {
+    const list = Array.isArray(dayTasks[k])
+      ? dayTasks[k]
+      : (dayTasks[k] && typeof dayTasks[k] === 'object' ? Object.values(dayTasks[k]) : []);
+    if (list.length > 0) {
+      cleanTasks[k] = list.map(t => ({
+        id: t.id || 0, name: t.name || '', desde: t.desde || '',
+        hasta: t.hasta || '', duration: t.duration || '',
+        desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
+      }));
+    }
+  });
+
   const writeId = Date.now() + '-' + Math.random().toString(36).slice(2, 7);
   _lastWriteId = writeId;
   setSyncStatus('syncing');
-  dataRef.set({ cards, placements, idCounter, dayTasks, _writeId: writeId })
+  dataRef.set({ cards: cleanCards, placements: cleanPlacements, idCounter, dayTasks: cleanTasks, _writeId: writeId })
     .then(() => setSyncStatus('online'))
     .catch(err => {
       _lastWriteId = null;
       console.warn('Firebase write failed:', err);
-      showToast('⚠ Sin conexion — guardado localmente');
+      showToast('\u26a0 Sin conexion \u2014 guardado localmente');
       setSyncStatus('offline');
     });
 }
