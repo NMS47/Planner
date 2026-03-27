@@ -7,9 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- Firebase compat -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.1/firebase-app.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.1/firebase-database.min.js"></script>
+
 <style>
 :root {
   --bg: #0f0f11;
@@ -103,6 +101,7 @@ header {
 /* Sync badge pulsing while loading */
 #sync-status.loading { animation:syncPulse 1.4s ease-in-out infinite; }
 @keyframes syncPulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+/* hide on mobile - already handled by display:none in media query */
 
 /* .layout and .sidebar defined in SIDEBAR TOGGLE block above */
 
@@ -581,7 +580,7 @@ header {
   <div class="logo">PLAN<span>•</span>BOARD</div>
   <div id="sync-status" style="font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;gap:5px">
     <span id="sync-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block"></span>
-    <span id="sync-text">Conectando...</span>
+    <span id="sync-text">Cargando...</span>
   </div>
   <div class="hdr-right">
     <div class="year-nav">
@@ -606,8 +605,8 @@ header {
         <button class="hm-item hm-gcal" onclick="exportICS();closeHamburger()">📅 Google Calendar (.ics)</button>
         <div class="hm-divider"></div>
         <div class="hm-section-label">Sesión</div>
-        <button class="hm-item" onclick="exportSession();closeHamburger()">💾 Guardar sesión</button>
-        <button class="hm-item" onclick="importSession();closeHamburger()">📂 Cargar sesión</button>
+        <button class="hm-item" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
+        <button class="hm-item" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
       </div>
     </div>
   </div>
@@ -673,7 +672,16 @@ header {
     <div class="cards-list" id="cards-list">
       <div class="empty-state" id="empty-msg">
         <div class="icon" id="empty-icon">⏳</div>
-        <span id="empty-text">Conectando con Firebase...</span>
+        <span id="empty-text">Cargando datos...</span>
+        <button
+          id="empty-load-btn"
+          onclick="importSession()"
+          style="display:none;margin-top:12px;background:var(--accent);color:#000;border:none;
+                 padding:7px 16px;border-radius:6px;font-family:'Syne',sans-serif;font-weight:700;
+                 font-size:11px;cursor:pointer;transition:opacity .2s"
+          onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+          📂 Cargar sesión .json
+        </button>
       </div>
     </div>
   </div>
@@ -1178,16 +1186,23 @@ function renderCards() {
   const list=document.getElementById('cards-list');
   list.querySelectorAll('.task-card').forEach(e=>e.remove());
   const emptyMsg = document.getElementById('empty-msg');
-  emptyMsg.style.display = cards.length ? 'none' : 'block';
-  if (!cards.length) {
+  const loadBtn  = document.getElementById('empty-load-btn');
+  if (cards.length) {
+    emptyMsg.style.display = 'none';
+    if (loadBtn) loadBtn.style.display = 'none';
+  } else {
+    emptyMsg.style.display = 'block';
     const icon = document.getElementById('empty-icon');
     const text = document.getElementById('empty-text');
-    if (_fbReady) {
-      if (icon) icon.textContent = '📋';
-      if (text) text.innerHTML = 'Creá tu primera tarjeta<br>y arrastrala al calendario';
+    if (true) { // data source ready (formerly _fbReady)
+      // Only reset to default msg if we're NOT showing the empty-db banner
+      if (loadBtn && loadBtn.style.display === 'none') {
+        if (icon) icon.textContent = '📋';
+        if (text) text.innerHTML = 'Creá tu primera tarjeta<br>y arrastrala al calendario';
+      }
     } else {
       if (icon) icon.textContent = '⏳';
-      if (text) text.textContent = 'Conectando con Firebase...';
+      if (text) text.textContent = 'Cargando datos...';
     }
   }
   const badge = document.getElementById('cards-count-badge');
@@ -1840,42 +1855,33 @@ function exportICS() {
   showToast('✓ Archivo .ics descargado — importalo en Google Calendar');
 }
 
-// ── FIREBASE SYNC ─────────────────────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey:            "AIzaSyBXJr1GawWGUllhJuskEaSnYzT5FDft-78",
-  authDomain:        "calendario-div-ec-capac-anf.firebaseapp.com",
-  projectId:         "calendario-div-ec-capac-anf",
-  databaseURL:       "https://calendario-div-ec-capac-anf-default-rtdb.firebaseio.com",
-  storageBucket:     "calendario-div-ec-capac-anf.firebasestorage.app",
-  messagingSenderId: "632727291712",
-  appId:             "1:632727291712:web:6498a436e6110c05399ca5"
-};
-let db = null, dataRef = null;
-let _lastWriteId = null;
-let _fbReady = false; // true once first Firebase response (data or error) arrives
+// ── DATA SOURCE — GitHub JSON ─────────────────────────────────────────────────
+// Edit this URL to point to your raw JSON file on GitHub.
+// Example: https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/planboard-data.json
+const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/NMS47/Planner/main/planboard-data.json';
 
-// ── Sync status indicator ──────────────────────────────────────────────────────
+// ── Status badge ──────────────────────────────────────────────────────────────
 function setSyncStatus(status, detail) {
-  const dot    = document.getElementById('sync-dot');
-  const text   = document.getElementById('sync-text');
-  const badge  = document.getElementById('sync-status');
+  const dot   = document.getElementById('sync-dot');
+  const text  = document.getElementById('sync-text');
+  const badge = document.getElementById('sync-status');
   if (!dot) return;
   const map = {
-    loading: { bg: '#fbbf24', label: 'Conectando...' },
-    online:  { bg: '#4ade80', label: 'En linea · Tiempo real' },
-    offline: { bg: '#888',    label: 'Sin conexion — local' },
-    syncing: { bg: '#fbbf24', label: 'Guardando...' },
-    error:   { bg: '#ff6b6b', label: detail || 'Error de conexion' },
+    loading:  { bg: '#fbbf24', label: 'Cargando...' },
+    github:   { bg: '#4ade80', label: 'Datos desde GitHub' },
+    local:    { bg: '#60a5fa', label: 'Datos locales' },
+    empty:    { bg: '#888',    label: 'Sin datos' },
+    error:    { bg: '#ff6b6b', label: detail || 'Error al cargar' },
   };
-  const s = map[status] || map.offline;
+  const s = map[status] || map.empty;
   dot.style.background = s.bg;
   text.textContent     = s.label;
-  if (badge) badge.classList.toggle('loading', status === 'loading' || status === 'syncing');
+  if (badge) badge.classList.toggle('loading', status === 'loading');
 }
 setSyncStatus('loading');
 
-// ── Apply data from a plain object (used by both Firebase and import) ──────────
-function applyRemoteData(data) {
+// ── Apply a plain data object to the app state ────────────────────────────────
+function applyData(data) {
   const rawCards = Array.isArray(data.cards) ? data.cards
     : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : []);
   cards      = rawCards.map(c => sanitizeCard(c));
@@ -1895,115 +1901,62 @@ function applyRemoteData(data) {
     }));
   });
 
-  try { localStorage.setItem('planboard_session', JSON.stringify({ cards, placements, idCounter, dayTasks })); } catch(e) {}
+  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
   renderCards(); renderCalendar(); renderLegend();
   if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
   if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
 }
 
-// ── Fallback: load from localStorage and show offline state ───────────────────
-function fallbackToLocal(reason) {
-  if (_fbReady) return; // Firebase already delivered data, don't overwrite
-  _fbReady = true;
-  console.warn('Firebase fallback:', reason);
-  const hadLocal = loadSession();
-  renderCards(); renderCalendar(); renderLegend();
-  setSyncStatus('offline');
-  if (!hadLocal) showToast('⚠ Sin conexión a Firebase — trabajando sin datos guardados');
-  else           showToast('⚠ Sin conexión a Firebase — mostrando datos locales');
+// ── Load from localStorage cache ──────────────────────────────────────────────
+function loadLocalCache() {
+  try {
+    const raw = localStorage.getItem('planboard_cache')
+             || localStorage.getItem('planboard_session'); // legacy key
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    applyData(data);
+    return cards.length > 0 || placements.length > 0;
+  } catch(e) { return false; }
 }
 
-// ── 8-second timeout: if Firebase hasn't responded, fall back to localStorage ─
-const _fbTimeout = setTimeout(() => fallbackToLocal('timeout after 8s'), 8000);
+// ── Fetch JSON from GitHub and boot the app ───────────────────────────────────
+(async function bootApp() {
+  // Skip fetch if URL is still the placeholder
+  const isPlaceholder = GITHUB_JSON_URL.includes('TU-USUARIO');
 
-try {
-  firebase.initializeApp(firebaseConfig);
-  db = firebase.database();
-  dataRef = db.ref('planboard/state');
-
-  // Connection state indicator (doesn't block data loading)
-  db.ref('.info/connected').on('value', snap => {
-    if (_fbReady) {
-      setSyncStatus(snap.val() === true ? 'online' : 'offline');
-    }
-  });
-
-  let _fbFirstEvent = true;
-
-  // Success callback
-  const onData = snap => {
-    clearTimeout(_fbTimeout);
-    let data = null;
-    try { data = snap ? snap.val() : null; } catch(e) {}
-
-    if (_fbFirstEvent) {
-      _fbFirstEvent = false;
-      _fbReady = true;
-      if (!data) {
-        // Firebase is empty — use localStorage if available
-        const hadLocal = loadSession();
-        renderCards(); renderCalendar(); renderLegend();
-        setSyncStatus('online');
-        if (!hadLocal) showToast('🆕 Base de datos vacía — podés cargar una sesión guardada');
-        return;
-      }
-    }
-
-    if (!data) return;
-
-    // Echo suppression: skip events caused by our own writes
-    if (data._writeId && data._writeId === _lastWriteId) {
-      _lastWriteId = null;
-      return;
-    }
-    _lastWriteId = null;
-
-    setSyncStatus('online');
+  if (!isPlaceholder) {
     try {
-      applyRemoteData(data);
-    } catch(renderErr) {
-      console.warn('Error rendering Firebase data:', renderErr);
+      const resp = await fetch(GITHUB_JSON_URL + '?_=' + Date.now(), { cache: 'no-cache' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      applyData(data);
+      setSyncStatus('github');
+      return;
+    } catch(err) {
+      console.warn('No se pudo cargar el JSON de GitHub:', err.message);
+      // Fall through to local cache
     }
-  };
+  }
 
-  // Error callback — Firebase access denied or network error
-  const onError = err => {
-    clearTimeout(_fbTimeout);
-    console.warn('Firebase read error:', err.code, err.message);
-    const msg = err.code === 'PERMISSION_DENIED'
-      ? 'Acceso denegado — revisá las reglas de Firebase'
-      : 'Error Firebase: ' + err.code;
-    setSyncStatus('error', msg);
-    showToast('⚠ ' + msg);
-    fallbackToLocal(err.code);
-  };
-
-  dataRef.on('value', onData, onError);
-
-} catch(fbInitErr) {
-  clearTimeout(_fbTimeout);
-  console.warn('Firebase no pudo inicializarse:', fbInitErr);
-  setSyncStatus('error', 'Firebase no disponible');
-  fallbackToLocal('init error: ' + fbInitErr.message);
-}
+  // Try local cache
+  const hadCache = loadLocalCache();
+  if (hadCache) {
+    setSyncStatus('local');
+    if (!isPlaceholder) showToast('⚠ Sin conexión a GitHub — mostrando caché local');
+  } else {
+    setSyncStatus('empty');
+    renderCards(); renderCalendar(); renderLegend();
+    showBannerEmpty();
+  }
+})();
 
 function saveSession() {
-  try { localStorage.setItem('planboard_session', JSON.stringify({ cards, placements, idCounter, dayTasks })); } catch(e) {}
+  // Saves to localStorage as working cache
+  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
 }
 
 function loadSession() {
-  try {
-    const raw = localStorage.getItem('planboard_session');
-    if (!raw) return false;
-    const data = JSON.parse(raw);
-    const rawCards = Array.isArray(data.cards) ? data.cards
-      : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : []);
-    cards      = rawCards.map(c => sanitizeCard(c));
-    placements = data.placements || [];
-    idCounter  = parseInt(data.idCounter) || 0;
-    dayTasks   = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
-    return cards.length > 0 || placements.length > 0;
-  } catch(e) { console.warn('loadSession error:', e); return false; }
+  return loadLocalCache();
 }
 
 function exportSession() {
@@ -2011,9 +1964,10 @@ function exportSession() {
   const blob = new Blob([data], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'planboard-sesion.json';
+  a.download = 'planboard-data.json';
   a.click();
   URL.revokeObjectURL(a.href);
+  showToast('✓ planboard-data.json descargado — subilo a GitHub para publicar los cambios');
 }
 
 function sanitizeCard(c) {
@@ -2093,6 +2047,7 @@ function importSession() {
         try { persist(); } catch(pe) { console.warn('persist error after import:', pe); }
         renderCards(); renderCalendar(); renderLegend();
         const taskCount = Object.values(dayTasks).reduce((s,a) => s + a.length, 0);
+        setSyncStatus('local');
         showToast('Sesion importada — ' + cards.length + ' tarjeta' + (cards.length!==1?'s':'') + (taskCount ? ', ' + taskCount + ' tarea' + (taskCount!==1?'s':'') : ''));
       } catch(err) {
         console.error('Import error:', err);
@@ -2105,58 +2060,33 @@ function importSession() {
   input.click();
 }
 
-function showToast(msg) {
+function showToast(msg, duration) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  setTimeout(() => t.classList.remove('show'), duration || 2800);
+}
+
+function showBannerEmpty() {
+  const el = document.getElementById('empty-msg');
+  if (!el) return;
+  el.style.display = 'block';
+  document.getElementById('empty-icon').textContent = '📭';
+  document.getElementById('empty-text').innerHTML =
+    'Base de datos vacía<br>' +
+    '<span style="font-size:10px;color:var(--muted);line-height:1.6">Cargá una sesión guardada (.json)<br>para sincronizar con todos</span>';
+  const loadBtn = document.getElementById('empty-load-btn');
+  if (loadBtn) loadBtn.style.display = 'inline-block';
 }
 
 function persist() {
-  saveSession();
-  if (!dataRef) return;
-
-  // Sanitize before writing — Firebase 8 compat throws
-  // "Cannot read properties of null (reading 'isEmpty')" when the payload
-  // contains undefined values or Firebase-style object-arrays.
-  const cleanCards = cards.map(c => sanitizeCard(c));
-
-  const cleanPlacements = placements.map(p => ({
-    id: p.id || 0, cardId: p.cardId || 0, name: p.name || '', days: p.days || 0,
-    startY: p.startY || 0, startM: p.startM || 0, startD: p.startD || 0,
-    endY: p.endY || 0, endM: p.endM || 0, endD: p.endD || 0,
-  }));
-
-  const cleanTasks = {};
-  Object.keys(dayTasks).forEach(k => {
-    const list = Array.isArray(dayTasks[k])
-      ? dayTasks[k]
-      : (dayTasks[k] && typeof dayTasks[k] === 'object' ? Object.values(dayTasks[k]) : []);
-    if (list.length > 0) {
-      cleanTasks[k] = list.map(t => ({
-        id: t.id || 0, name: t.name || '', desde: t.desde || '',
-        hasta: t.hasta || '', duration: t.duration || '',
-        desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
-      }));
-    }
-  });
-
-  const writeId = Date.now() + '-' + Math.random().toString(36).slice(2, 7);
-  _lastWriteId = writeId;
-  setSyncStatus('syncing');
-  dataRef.set({ cards: cleanCards, placements: cleanPlacements, idCounter, dayTasks: cleanTasks, _writeId: writeId })
-    .then(() => setSyncStatus('online'))
-    .catch(err => {
-      _lastWriteId = null;
-      console.warn('Firebase write failed:', err);
-      showToast('\u26a0 Sin conexion \u2014 guardado localmente');
-      setSyncStatus('offline');
-    });
+  saveSession(); // saves to localStorage cache only
 }
 
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
-// Show skeleton immediately. Firebase listener or the 8-second timeout will
-// populate with real data. Do NOT load localStorage here — that's the fallback's job.
+// Render empty skeleton immediately; bootApp() (async) will populate with
+// data from GitHub JSON or fall back to localStorage cache.
 renderCards();
 renderCalendar();
 let weekModal = { open: false, monday: null };
@@ -2542,5 +2472,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') shiftDay(1);
 });
 </script>
+
 </body>
 </html>
