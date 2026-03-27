@@ -294,7 +294,7 @@
       "endD": 27
     }
   ],
-  "idCounter": 115,
+  "idCounter": 178,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -303,14 +303,16 @@
         "desde": "0700",
         "hasta": "0800",
         "duration": "1h",
-        "desc": ""
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
       },
       {
         "id": 56,
         "name": "Estudios Medicos",
         "desde": "0800",
-        "hasta": "1300",
-        "duration": "5h",
+        "hasta": "1100",
+        "duration": "3h",
         "desc": "",
         "responsable": "Gutierrez",
         "apoyos": "Enfermero, escribiente"
@@ -321,15 +323,19 @@
         "desde": "1300",
         "hasta": "1430",
         "duration": "1h 30m",
-        "desc": ""
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
       },
       {
         "id": 59,
         "name": "Examen Intelectual",
         "desde": "1430",
-        "hasta": "2000",
-        "duration": "5h 30m",
-        "desc": ""
+        "hasta": "1800",
+        "duration": "3h 30m",
+        "desc": "",
+        "responsable": "GIORDANO",
+        "apoyos": ""
       },
       {
         "id": 60,
@@ -337,7 +343,9 @@
         "desde": "2000",
         "hasta": "2100",
         "duration": "1h",
-        "desc": ""
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
       },
       {
         "id": 61,
@@ -345,19 +353,31 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": ""
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 116,
+        "name": "COE",
+        "desde": "1100",
+        "hasta": "1300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "VIVI",
+        "apoyos": ""
       }
     ],
     "2026-04-07": [
       {
         "id": 62,
         "name": "PAFB",
-        "desde": "0700",
+        "desde": "0730",
         "hasta": "1000",
-        "duration": "3h",
+        "duration": "2h 30m",
         "desc": "",
         "responsable": "Demo",
-        "apoyos": "Borro, Salva, Muñoz, Ferez, Giordano"
+        "apoyos": "Salvadores, Muñoz, Demo, Soria, Biaggini, Fuga"
       },
       {
         "id": 64,
@@ -367,17 +387,17 @@
         "duration": "1h",
         "desc": "",
         "responsable": "Giordano",
-        "apoyos": ""
+        "apoyos": "ss"
       },
       {
         "id": 65,
         "name": "Ex Natacion",
-        "desde": "1400",
+        "desde": "1500",
         "hasta": "1800",
-        "duration": "4h",
+        "duration": "3h",
         "desc": "500 crol, pecho, apnea estatica, dinamica, flotacion",
         "responsable": "Demo",
-        "apoyos": "Soria, Villafan, Fernandez, Zapana, Fugas"
+        "apoyos": "Salvadores, Muñoz, Demo, Soria, Biaggini, Fuga"
       },
       {
         "id": 66,
@@ -413,8 +433,8 @@
         "id": 69,
         "name": "Sueño",
         "desde": "0000",
-        "hasta": "0700",
-        "duration": "7h",
+        "hasta": "0630",
+        "duration": "6h 30m",
         "desc": "",
         "responsable": "Subof Sem",
         "apoyos": ""
@@ -425,8 +445,8 @@
         "id": 70,
         "name": "Sueño",
         "desde": "0000",
-        "hasta": "0700",
-        "duration": "7h",
+        "hasta": "0630",
+        "duration": "6h 30m",
         "desc": "",
         "responsable": "SubOf Sem",
         "apoyos": ""
@@ -439,7 +459,7 @@
         "duration": "6h",
         "desc": "Cuerda, Granada, Marcha",
         "responsable": "Soria-Biaggini",
-        "apoyos": ""
+        "apoyos": "Zapana, Villafan, Romero"
       },
       {
         "id": 74,
@@ -477,9 +497,9 @@
         "desde": "1800",
         "hasta": "2200",
         "duration": "4h",
-        "desc": "",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA ROGRESIVA",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "Zapana. Villa, Romero"
       },
       {
         "id": 78,
@@ -511,7 +531,7 @@
         "duration": "3h",
         "desc": "",
         "responsable": "J Etapa",
-        "apoyos": "TODOS"
+        "apoyos": "25 (Solicitar 5 anf 10 601)"
       },
       {
         "id": 81,
@@ -527,11 +547,11 @@
         "id": 82,
         "name": "AYN",
         "desde": "1000",
-        "hasta": "2000",
-        "duration": "10h",
-        "desc": "",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA ROGRESIVA",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "Ferez, Villafan, Fernandez"
       },
       {
         "id": 83,
@@ -552,6 +572,26 @@
         "desc": "",
         "responsable": "",
         "apoyos": ""
+      },
+      {
+        "id": 117,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 118,
+        "name": "AYN",
+        "desde": "1500",
+        "hasta": "2000",
+        "duration": "5h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA ROGRESIVA",
+        "responsable": "Demo",
+        "apoyos": "Ferez, Villafan, Fernandez"
       }
     ],
     "2026-04-10": [
@@ -567,13 +607,13 @@
       },
       {
         "id": 86,
-        "name": "Poligonal",
+        "name": "Marcha",
         "desde": "0500",
         "hasta": "0900",
         "duration": "4h",
-        "desc": "",
+        "desc": "PASAJE DE PISTA DE COMBATE INDIVIDUAL, DE COMBATE.MARCHA DE 12KM EN 3HS (PAFO) INDIVIDUAL CON EQUIPO DE 10KG(EQUIPO NECESARIO PARA PROXIMAS ACTIVIDADES) FUSIL, CORREAJE GORRO DE MONTE, EQUIPO DE HIDRATACION NECESARIO",
         "responsable": "Biaggini/Soria",
-        "apoyos": ""
+        "apoyos": "Romero, Fuga, Baini"
       },
       {
         "id": 87,
@@ -581,9 +621,9 @@
         "desde": "0900",
         "hasta": "1300",
         "duration": "4h",
-        "desc": "",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA ROGRESIVA",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "Romero, Fuga, Baini"
       },
       {
         "id": 88,
@@ -607,13 +647,13 @@
       },
       {
         "id": 90,
-        "name": "AYN",
+        "name": "AFM",
         "desde": "1800",
         "hasta": "2100",
         "duration": "3h",
-        "desc": "",
+        "desc": "TROTE DE 10 KM A TRAVES DEL CAMPO A RITMO DE 5/5:30 EL KM. EJERCICIOS DE FUERZA CON PROPIO PESO. ESTIRAMIENTO MUSCULAR",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "Romero, Ferez"
       },
       {
         "id": 91,
@@ -622,15 +662,25 @@
         "hasta": "2200",
         "duration": "1h",
         "desc": "Pesaje, novedades sanitarias",
-        "responsable": "Subof Sem SS",
+        "responsable": "Enfermero, Subof Sem",
         "apoyos": ""
       },
       {
         "id": 92,
-        "name": "Cena-Orden Interno",
+        "name": "Cena",
         "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 119,
+        "name": "Descanso",
+        "desde": "2200",
         "hasta": "2359",
-        "duration": "2h 59m",
+        "duration": "1h 59m",
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
@@ -659,13 +709,13 @@
       },
       {
         "id": 95,
-        "name": "AYN",
+        "name": "AYN, AFM",
         "desde": "0600",
         "hasta": "1100",
         "duration": "5h",
-        "desc": "",
+        "desc": "TROTE DE 5KM A RITMO DE 4/5MIN NATACION CROL, REMOLQUE, ARRASTRE, FLOTACION LIBRE Y CON EQUIPO DE COMBATE MARCHA/TROTE DE MEDIO COMBATE DE 1HS CON DESCANSOS PROGRAMADOS FLOTACION",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "2 instr 601, villafan"
       },
       {
         "id": 96,
@@ -675,7 +725,7 @@
         "duration": "2h",
         "desc": "",
         "responsable": "Muñoz",
-        "apoyos": ""
+        "apoyos": "Salva"
       },
       {
         "id": 97,
@@ -695,7 +745,7 @@
         "duration": "2h",
         "desc": "Pelicula, caso historio, etc",
         "responsable": "Muñoz",
-        "apoyos": ""
+        "apoyos": "Ferez"
       },
       {
         "id": 99,
@@ -708,22 +758,12 @@
         "apoyos": ""
       },
       {
-        "id": 100,
-        "name": "Test reaccion",
-        "desde": "1700",
-        "hasta": "1800",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "Vivi",
-        "apoyos": ""
-      },
-      {
         "id": 101,
-        "name": "Prep Eq",
-        "desde": "1800",
+        "name": "Recuperacion Fisica",
+        "desde": "1700",
         "hasta": "2000",
-        "duration": "2h",
-        "desc": "Armado Mochila, planto cartografia",
+        "duration": "3h",
+        "desc": "Actividades sin desgaste fisico con estresores cognitivos",
         "responsable": "SS",
         "apoyos": ""
       },
@@ -738,22 +778,12 @@
         "apoyos": ""
       },
       {
-        "id": 103,
-        "name": "OI",
-        "desde": "2100",
-        "hasta": "2200",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
         "id": 104,
         "name": "Sueño",
-        "desde": "2300",
+        "desde": "2100",
         "hasta": "2359",
-        "duration": "59m",
-        "desc": "Solo 1 hora",
+        "duration": "2h 59m",
+        "desc": "Solo 3 hora",
         "responsable": "SS",
         "apoyos": ""
       }
@@ -775,13 +805,13 @@
         "desde": "0100",
         "hasta": "0600",
         "duration": "5h",
-        "desc": "",
+        "desc": "MARCHA DE 12KM EN 4HS (PAFO) POR PATRULLA CON ELEMENTOS Y CON EQUIPO INDIVIDUAL DE 10KG(EQUIPO NECESARIO PARA PROXIMAS ACTIVIDADES) FUSIL, CORREAJE GORRO DE MONTE, EQUIPO DE HIDRATACION NECESARIO",
         "responsable": "Biaggini",
-        "apoyos": ""
+        "apoyos": "Fugas, Romero, Fernandez"
       },
       {
         "id": 107,
-        "name": "Entrega armamento",
+        "name": "Entrega armamento/ Desayuno",
         "desde": "0600",
         "hasta": "0700",
         "duration": "1h",
@@ -793,41 +823,31 @@
         "id": 108,
         "name": "AYN",
         "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "",
+        "hasta": "1200",
+        "duration": "5h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, APNEA. AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA PROGRESIVA",
         "responsable": "Demo",
-        "apoyos": ""
-      },
-      {
-        "id": 109,
-        "name": "Almuerzo",
-        "desde": "1300",
-        "hasta": "1400",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
+        "apoyos": "Ferez, Villafan, 1 Ca Bzo 601"
       },
       {
         "id": 110,
         "name": "Clase de apoyo",
-        "desde": "1400",
+        "desde": "1200",
         "hasta": "1700",
-        "duration": "3h",
-        "desc": "",
+        "duration": "5h",
+        "desc": "Almuerzo incluido",
         "responsable": "Muñoz",
         "apoyos": ""
       },
       {
         "id": 111,
-        "name": "AYN",
+        "name": "AYN, AFM",
         "desde": "1700",
         "hasta": "1900",
         "duration": "2h",
-        "desc": "",
+        "desc": "TROTE DE 10 KM A TRAVES DEL CAMPO A RITMO DE 5/5:30 EL KM. EJERCICIOS DE FUERZA CON PROPIO PESO. ESTIRAMIENTO MUSCULAR.\nNATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS. APNEA. FLOTACION LIBRE CON BUSQUEDA DE OBJETOS EN PROFUNDIDAD EN FORMA INDIVIDUAL, POR PAREJA Y GRUPAL.",
         "responsable": "Demo",
-        "apoyos": ""
+        "apoyos": "Salva, Muñoz"
       },
       {
         "id": 112,
@@ -840,20 +860,10 @@
         "apoyos": ""
       },
       {
-        "id": 113,
-        "name": "Test Atencion",
-        "desde": "2000",
-        "hasta": "2200",
-        "duration": "2h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
         "id": 114,
         "name": "Cena",
-        "desde": "2200",
-        "hasta": "2300",
+        "desde": "2000",
+        "hasta": "2100",
         "duration": "1h",
         "desc": "",
         "responsable": "SS",
@@ -861,10 +871,602 @@
       },
       {
         "id": 115,
+        "name": "Preparacion de Equipo",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 120,
         "name": "Sueño",
         "desde": "2300",
         "hasta": "2359",
         "duration": "59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-13": [
+      {
+        "id": 121,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 122,
+        "name": "Desayuno",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 123,
+        "name": "AYN, AFM",
+        "desde": "0700",
+        "hasta": "1100",
+        "duration": "4h",
+        "desc": "TROTE DE 10KM A RITMO DE 5/6MIN NATACION CROL, REMOLQUE, ARRASTRE, FLOTACION LIBRE Y CON EQUIPO DE COMBATE TROTE DE MEDIO COMBATE DE 1HS CON DESCANSOS PROGRAMADOS FLOTACION",
+        "responsable": "Demo",
+        "apoyos": "Romero, Ferez"
+      },
+      {
+        "id": 124,
+        "name": "Marcha",
+        "desde": "1100",
+        "hasta": "1300",
+        "duration": "2h",
+        "desc": "MARCHA DE 60 MINUTOS, A RITMO LENTO Y CON PERIODO DE DESCANSO Y ACONDICIONAMIENTO DE EQUIPO; DE MEDIO COMBATE CON MOCHILA DE ASALTO Y SISTEMA DE HIDRATACION. TIEMPO DE ALISTAMIENTO ORDENADO",
+        "responsable": "Demo",
+        "apoyos": "Soria, Biaggini"
+      },
+      {
+        "id": 125,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 126,
+        "name": "Clase de Apoyo",
+        "desde": "1400",
+        "hasta": "1700",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "Muñoz",
+        "apoyos": ""
+      },
+      {
+        "id": 127,
+        "name": "AFM",
+        "desde": "1700",
+        "hasta": "1900",
+        "duration": "2h",
+        "desc": "EJERCICIOS DE FURZA EN GYM",
+        "responsable": "Demo",
+        "apoyos": "Muñoz, Villafan"
+      },
+      {
+        "id": 128,
+        "name": "Sanidad",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "Enfermero",
+        "apoyos": ""
+      },
+      {
+        "id": 129,
+        "name": "Cena",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 130,
+        "name": "Sueño",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-14": [
+      {
+        "id": 131,
+        "name": "Preparacion de equipo",
+        "desde": "0000",
+        "hasta": "0100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 132,
+        "name": "AYN",
+        "desde": "0100",
+        "hasta": "0300",
+        "duration": "2h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA PROGRESIVA",
+        "responsable": "Demo",
+        "apoyos": "Fernandez, Fugas, Zapana"
+      },
+      {
+        "id": 133,
+        "name": "Marrcha",
+        "desde": "0300",
+        "hasta": "0600",
+        "duration": "3h",
+        "desc": "MARCHA DE 9KM EN 3HS (PAFO) POR PATRULLA CON ELEMENTOS Y CON EQUIPO INDIVIDUAL DE 10KG(EQUIPO NECESARIO PARA PROXIMAS ACTIVIDADES) FUSIL, CORREAJE GORRO DE MONTE, EQUIPO DE HIDRATACION NECESARIO",
+        "responsable": "Soria",
+        "apoyos": "Baggini, Zapana, Fernandez"
+      },
+      {
+        "id": 134,
+        "name": "Desayuno",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 135,
+        "name": "Sueño",
+        "desde": "0700",
+        "hasta": "1000",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 136,
+        "name": "Test",
+        "desde": "1000",
+        "hasta": "1100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "Vivi",
+        "apoyos": ""
+      },
+      {
+        "id": 137,
+        "name": "Preparacion",
+        "desde": "1100",
+        "hasta": "1200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 138,
+        "name": "Almuerzo y Descanso",
+        "desde": "1200",
+        "hasta": "1400",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 139,
+        "name": "AYN",
+        "desde": "1400",
+        "hasta": "1600",
+        "duration": "2h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA PROGRESIVA",
+        "responsable": "Demo",
+        "apoyos": "2 Insr 601"
+      },
+      {
+        "id": 140,
+        "name": "Marcha",
+        "desde": "1600",
+        "hasta": "1800",
+        "duration": "2h",
+        "desc": "Marcha 5km sin detencion, con equipo completo",
+        "responsable": "Soria",
+        "apoyos": "Ferez"
+      },
+      {
+        "id": 141,
+        "name": "AFM",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "TROTE DE 8 KM A TRAVES DEL CAMPO A RITMO DE 5:30 EL KM, CON PERIODOS DE DESCANSO CADA 10 MINUTOS, EJERCICIOS DE FUREZA CON PROPIO PESO Y ESTIRAMIENTO MUSCULAR.",
+        "responsable": "Demo",
+        "apoyos": "2 Inst 601"
+      },
+      {
+        "id": 142,
+        "name": "Sanidad",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "Enfermero",
+        "apoyos": ""
+      },
+      {
+        "id": 143,
+        "name": "Cena",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 144,
+        "name": "Preparacion",
+        "desde": "2200",
+        "hasta": "2300",
+        "duration": "1h",
+        "desc": "Mnatener despierto",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 145,
+        "name": "Sueño",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-15": [
+      {
+        "id": 146,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0500",
+        "duration": "5h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 147,
+        "name": "Desayuno y preparacion",
+        "desde": "0500",
+        "hasta": "0600",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 148,
+        "name": "AYN",
+        "desde": "0600",
+        "hasta": "0900",
+        "duration": "3h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA PROGRESIVA",
+        "responsable": "Demo",
+        "apoyos": "Villafan, Romero, Muñoz"
+      },
+      {
+        "id": 149,
+        "name": "AFM",
+        "desde": "0900",
+        "hasta": "1100",
+        "duration": "2h",
+        "desc": "Formacion funcional, incremento de fuerza, coordinacion en gym",
+        "responsable": "Demo",
+        "apoyos": "Villafan, romero, muñoz"
+      },
+      {
+        "id": 150,
+        "name": "Marcha",
+        "desde": "1400",
+        "hasta": "1700",
+        "duration": "3h",
+        "desc": "MARCHA DE 80 MINUTOS, TRANSPORTANDO ELEMENTOS POR PATRULLAS A RITMO LENTO Y CON PERIODO DE DESCANSO Y ACONDICIONAMIENTO DE EQUIPO; DE MEDIO COMBATE CON MOCHILA DE ASALTO Y SISTEMA DE HIDRATACION",
+        "responsable": "Soria",
+        "apoyos": "Biagini, Salva, Fuga"
+      },
+      {
+        "id": 151,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 152,
+        "name": "Test",
+        "desde": "1100",
+        "hasta": "1300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "Vivi",
+        "apoyos": ""
+      },
+      {
+        "id": 153,
+        "name": "AYN",
+        "desde": "1700",
+        "hasta": "1900",
+        "duration": "2h",
+        "desc": "NATACION CONTINUA CON INCREMENTO DE DISTANCIA Y REDUCCION DE DESCANSOS, AGREGANDO EN FORMA PROGRESIVA UNIFORMES. FLOTACION LIBRE CON AGREGADO DE UNIFORMES EN FORMA PROGRESIVA",
+        "responsable": "Demo",
+        "apoyos": "Biaggini, Salva, Fuga"
+      },
+      {
+        "id": 154,
+        "name": "Sanidad",
+        "desde": "1900",
+        "hasta": "2000",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "Enfermero",
+        "apoyos": ""
+      },
+      {
+        "id": 155,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 156,
+        "name": "Preparacion",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 157,
+        "name": "Sueño",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-17": [
+      {
+        "id": 158,
+        "name": "Desayuno y preparacion de equipo",
+        "desde": "0430",
+        "hasta": "0600",
+        "duration": "1h 30m",
+        "desc": "armado de mochila, retirar armamento, preparacion de botes",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 169,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0430",
+        "duration": "4h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 170,
+        "name": "Poligonal-isla",
+        "desde": "0600",
+        "hasta": "1300",
+        "duration": "7h",
+        "desc": "5 km con equipo, por patrulla.",
+        "responsable": "Biaggini",
+        "apoyos": "3 Ca Bzo 601"
+      },
+      {
+        "id": 171,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 172,
+        "name": "Conclave",
+        "desde": "1400",
+        "hasta": "1700",
+        "duration": "3h",
+        "desc": "Cursantes hacen mantenimiento",
+        "responsable": "J Cur",
+        "apoyos": ""
+      },
+      {
+        "id": 173,
+        "name": "Formacion lectura conclave",
+        "desde": "1700",
+        "hasta": "1730",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "J Cur",
+        "apoyos": ""
+      },
+      {
+        "id": 174,
+        "name": "Mant y descanso",
+        "desde": "1730",
+        "hasta": "2000",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 175,
+        "name": "Descanso",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 176,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-16": [
+      {
+        "id": 160,
+        "name": "Desayuno y preparacion de equipo",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "1h",
+        "desc": "Retirar neoprene",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 161,
+        "name": "Salto de arrojo en cuba",
+        "desde": "0700",
+        "hasta": "1000",
+        "duration": "3h",
+        "desc": "3 mts",
+        "responsable": "Demo",
+        "apoyos": "Salva, Romero, Fernandez"
+      },
+      {
+        "id": 162,
+        "name": "Salto de arrojo btp",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "6 mts, 3 Botes",
+        "responsable": "Demo",
+        "apoyos": "Salva, Fuga, Soria, Baini, Muñoz, Ferez"
+      },
+      {
+        "id": 163,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 164,
+        "name": "Salto de arrojo de puente",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Natacion en rio, trote. (5 Botes 1 guardian)",
+        "responsable": "Demo",
+        "apoyos": "Salva, Fuga, Soria, Baini, Muñoz, Ferez. 3 operadores Transbordo"
+      },
+      {
+        "id": 165,
+        "name": "Mant",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Botes y neopren",
+        "responsable": "SS",
+        "apoyos": "Fugas, fernandez"
+      },
+      {
+        "id": 166,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 167,
+        "name": "Preparacion de equipo",
+        "desde": "2100",
+        "hasta": "2230",
+        "duration": "1h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 168,
+        "name": "Descanso",
+        "desde": "2230",
+        "hasta": "2359",
+        "duration": "1h 29m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-18": [
+      {
+        "id": 177,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0700",
+        "duration": "7h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 178,
+        "name": "Franco",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
