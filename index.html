@@ -715,6 +715,8 @@ header {
       <div class="week-modal-nav">
         <button class="day-nav-arrow" onclick="shiftWeek(-1)">◀</button>
         <button class="day-nav-arrow" onclick="shiftWeek(1)">▶</button>
+        <button class="export-btn" onclick="exportWeek('jpg')" title="Descargar JPG" style="padding:4px 10px;font-size:11px">⬇ JPG</button>
+        <button class="export-btn print-btn" onclick="exportWeek('print')" title="PDF blanco para imprimir" style="padding:4px 10px;font-size:11px">🖨 Imprimir</button>
         <button class="day-modal-close" onclick="closeWeekModal()">✕</button>
       </div>
     </div>
@@ -1649,7 +1651,7 @@ async function exportAs(format){
   const root = document.documentElement;
   const savedVars = {};
   if (isPrint) {
-    const light = {'--bg':'#ffffff','--surface':'#f7f7f7','--surface2':'#ebebeb','--border':'#d0d0d0','--text':'#111111','--muted':'#777777'};
+    const light = {'--bg':'#ffffff','--surface':'#f7f7f7','--surface2':'#ebebeb','--border':'#d0d0d0','--text':'#111111','--muted':'#777777', 'week-task-time':'#111111'};
     Object.entries(light).forEach(([k,v])=>{ savedVars[k]=root.style.getPropertyValue(k); root.style.setProperty(k,v); });
     document.querySelectorAll('.range-label').forEach(el=>el.style.color='rgba(0,0,0,0.8)');
     document.querySelectorAll('.week-num').forEach(el=>{ el.style.color='#555'; el.style.opacity='1'; });
@@ -1776,6 +1778,95 @@ async function exportAs(format){
     calArea.style.overflow=''; calArea.style.height=''; overlay.style.display='none';
     const fab2 = document.getElementById('sidebar-fab'); if(fab2 && window.innerWidth<=600) fab2.style.display='flex';
     const stb2 = document.getElementById('sidebar-toggle-btn'); if(stb2) stb2.style.display='';
+  }
+}
+
+//Export week
+async function exportWeek(format) {
+  const isPrint = format === 'print';
+  const wm = document.querySelector('.week-modal');
+  if (!wm) return;
+
+  // Show overlay
+  const overlay = document.getElementById('export-overlay');
+  document.getElementById('export-msg').textContent = isPrint ? 'Generando PDF...' : 'Generando JPG...';
+  overlay.style.display = 'flex';
+
+  // Apply light theme for print
+  const root = document.documentElement;
+  const savedVars = {};
+  if (isPrint) {
+    const light = { '--bg':'#ffffff', '--surface':'#f7f7f7', '--surface2':'#ebebeb',
+                    '--border':'#d0d0d0', '--text':'#111111', '--muted':'#777777' };
+    Object.entries(light).forEach(([k,v]) => {
+  savedVars[k] = root.style.getPropertyValue(k);
+  root.style.setProperty(k, v);
+});
+  // Darken time labels for print
+  document.querySelectorAll('.week-task-time').forEach(el => el.dataset._origColor = el.style.color);
+  document.querySelectorAll('.week-task-time').forEach(el => el.style.color = '#111111');
+    }
+
+  // Temporarily make the modal static so html2canvas can capture it fully
+  const origPosition   = wm.style.position;
+  const origHeight     = wm.style.height;
+  const origMaxHeight  = wm.style.maxHeight;
+  const origOverflow   = wm.style.overflow;
+  const body           = document.getElementById('wm-body');
+  const origBodyOF     = body.style.overflowY;
+  const origBodyH      = body.style.height;
+
+  wm.style.position  = 'relative';
+  wm.style.height    = 'auto';
+  wm.style.maxHeight = 'none';
+  wm.style.overflow  = 'visible';
+  body.style.overflowY = 'visible';
+  body.style.height    = 'auto';
+
+  await new Promise(r => setTimeout(r, 200));
+
+  try {
+    const bgColor = isPrint ? '#ffffff' : '#1a1a1f';
+    const canvas  = await html2canvas(wm, { backgroundColor: bgColor, scale: 2,
+                                            useCORS: true, logging: false });
+    if (!isPrint) {
+      // JPG download
+      const a = document.createElement('a');
+      a.download = `semana-${document.getElementById('wm-title').textContent.replace(/\s+/g,'-')}.jpg`;
+      a.href = canvas.toDataURL('image/jpeg', 0.95);
+      a.click();
+    } else {
+      // PDF — landscape A4
+      const { jsPDF } = window.jspdf;
+      const imgData = canvas.toDataURL('image/jpeg', 0.97);
+      const pxW = canvas.width, pxH = canvas.height;
+      const pageW = 297, pageH = 210; // A4 landscape mm
+      const imgH  = pageW * (pxH / pxW);
+      const pdf   = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
+      pdf.addImage(imgData, 'JPEG', 0, Math.max(0,(pageH-imgH)/2), pageW, Math.min(imgH, pageH));
+      const fname = `semana-${document.getElementById('wm-title').textContent.replace(/\s+/g,'-')}.pdf`;
+      pdf.save(fname);
+    }
+  } catch(err) {
+    alert('Error al exportar: ' + err.message);
+  } finally {
+    // Restore modal styles
+    wm.style.position  = origPosition;
+    wm.style.height    = origHeight;
+    wm.style.maxHeight = origMaxHeight;
+    wm.style.overflow  = origOverflow;
+    body.style.overflowY = origBodyOF;
+    body.style.height    = origBodyH;
+
+    // Restore theme
+    if (isPrint) {
+  Object.entries(savedVars).forEach(([k,v]) => root.style.setProperty(k, v));
+  document.querySelectorAll('.week-task-time').forEach(el => {
+    el.style.color = el.dataset._origColor || '';
+    delete el.dataset._origColor;
+  });
+}
+    overlay.style.display = 'none';
   }
 }
 
