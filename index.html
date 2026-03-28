@@ -81,6 +81,27 @@ header {
 .hm-item:hover { background:var(--surface2); color:var(--accent); }
 .hm-gcal:hover { color:#4ade80; }
 
+/* ── READ-ONLY MODE ─────────────────────────────────────────────────── */
+body.readonly .sidebar-header { display:none; }
+body.readonly #cards-list .card-actions { display:none !important; }
+body.readonly #cards-list .task-card { cursor:default; }
+body.readonly #cards-list .task-card:hover { transform:none; }
+body.readonly .clear-btn { display:none; }
+body.readonly .hdr-quick { display:none !important; }
+body.readonly .hamburger-menu .hm-item[data-edit] { display:none; }
+body.readonly #dm-edit-btn { display:none; }
+body.readonly .day-card-form { display:none !important; }
+body.readonly .sidebar-toggle-btn { display:none; }
+body.readonly .sidebar-fab { display:none; }
+
+/* Editor unlock button — invisible until hovered */
+#editor-unlock {
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+  width:60px; height:6px; background:transparent; border:none;
+  cursor:pointer; z-index:9000; opacity:0;
+  transition:opacity .3s;
+}
+#editor-unlock:hover { opacity:.15; background:var(--accent); border-radius:3px 3px 0 0; }
 /* ── HIDDEN CARDS ────────────────────────────────────────────────────── */
 .task-card.card-hidden { opacity:.35; }
 .task-card.card-hidden:hover { opacity:.6; }
@@ -464,6 +485,7 @@ header {
 .week-task-time { font-family:'DM Mono',monospace; font-size:9px; color:var(--accent); }
 .week-task-name { font-family:'Syne',sans-serif; font-weight:700; font-size:10px; }
 .week-task-people { font-size:9px; color:var(--muted); }
+.week-task-desc { font-size:9px; color:var(--muted); line-height:1.5; font-style:italic; margin-top:1px; }
 .week-day-empty { padding:12px 10px; font-size:10px; color:var(--muted); text-align:center; }
 
 .day-modal-backdrop {
@@ -605,8 +627,8 @@ header {
         <button class="hm-item hm-gcal" onclick="exportICS();closeHamburger()">📅 Google Calendar (.ics)</button>
         <div class="hm-divider"></div>
         <div class="hm-section-label">Sesión</div>
-        <button class="hm-item" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
-        <button class="hm-item" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
+        <button class="hm-item" data-edit="" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
+        <button class="hm-item"data-edit="" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
       </div>
     </div>
   </div>
@@ -2151,6 +2173,32 @@ function importSession() {
   input.click();
 }
 
+// ── EDITOR MODE ───────────────────────────────────────────────────────────────
+let _editorMode = false;
+
+function toggleEditorMode() {
+  _editorMode = !_editorMode;
+  document.body.classList.toggle('readonly', !_editorMode);
+  if (_editorMode) {
+    showToast('🔓 Modo editor activado');
+    // Re-open sidebar on desktop
+    if (window.innerWidth > 600 && !sidebarOpen) toggleSidebar();
+    else if (window.innerWidth > 600) {
+      document.getElementById('main-sidebar').style.display = '';
+    }
+  } else {
+    showToast('🔒 Modo lectura');
+    if (window.innerWidth > 600 && sidebarOpen) toggleSidebar();
+  }
+}
+
+// Start in read-only mode
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('readonly');
+  // Collapse sidebar on load in read-only
+  if (typeof sidebarOpen !== 'undefined' && sidebarOpen) toggleSidebar();
+});
+
 function showToast(msg, duration) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -2262,6 +2310,7 @@ function renderWeekModal() {
         row.innerHTML = `
           <div class="week-task-time">${t.desde || ''}${t.hasta ? '–'+t.hasta : ''}</div>
           <div class="week-task-name">${esc(t.name)}</div>
+          ${t.desc ? `<div class="week-task-desc">${esc(t.desc)}</div>` : ''}
           ${(t.responsable||t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
         taskArea.appendChild(row);
       });
@@ -2563,6 +2612,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') shiftDay(1);
 });
 </script>
-
+<button id="editor-unlock" onclick="toggleEditorMode()" title=""></button>
 </body>
 </html>
