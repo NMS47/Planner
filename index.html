@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Div Ec Capac Anf</title>
+<title>Planificador 2026</title>
 <link rel="icon" type="image/png" href="logo_div_ec.png">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -538,6 +538,46 @@ body.readonly #sync-status { display:none !important; }
 .day-modal-edit-btn { background:var(--surface2); border:1px solid var(--border); color:var(--muted); padding:5px 12px; border-radius:6px; cursor:pointer; font-family:'DM Mono',monospace; font-size:11px; transition:all .2s; }
 .day-modal-edit-btn:hover, .day-modal-edit-btn.active { background:var(--accent); color:#000; border-color:var(--accent); }
 
+/* ── CARD CATEGORIES── */
+.card-group { display:flex; flex-direction:column; }
+.card-group-header {
+  display:flex; align-items:center; gap:6px;
+  padding:6px 10px 5px; cursor:pointer; user-select:none;
+  border-radius:6px; margin:2px 0; transition:background .15s;
+}
+.card-group-header:hover { background:var(--surface2); }
+.card-group-name {
+  font-family:'Syne',sans-serif; font-weight:700; font-size:10px;
+  text-transform:uppercase; letter-spacing:1.5px; color:var(--muted);
+  flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.card-group-count {
+  font-size:9px; color:var(--muted); background:var(--border);
+  padding:1px 5px; border-radius:8px; font-family:'DM Mono',monospace;
+}
+.card-group-arrow { color:var(--muted); font-size:10px; transition:transform .25s; flex-shrink:0; }
+.card-group.collapsed .card-group-arrow { transform:rotate(-90deg); }
+.card-group.collapsed .card-group-body { display:none; }
+.card-group-body { display:flex; flex-direction:column; gap:6px; padding:0 0 6px 0; }
+.card-group-add {
+  background:none; border:1px dashed var(--border); border-radius:5px;
+  color:var(--muted); cursor:pointer; width:100%; padding:4px;
+  font-family:'DM Mono',monospace; font-size:10px;
+  transition:color .15s, border-color .15s; margin-top:2px;
+}
+.card-group-add:hover { color:var(--accent); border-color:var(--accent); }
+.card-group-del {
+  background:none; border:none; color:var(--muted); cursor:pointer;
+  font-size:10px; padding:2px 4px; border-radius:3px; transition:color .15s; flex-shrink:0;
+}
+.card-group-del:hover { color:var(--accent2); }
+#input-category {
+  width:100%; background:var(--surface2); border:1px solid var(--border);
+  border-radius:6px; padding:7px 10px; color:var(--text);
+  font-family:'DM Mono',monospace; font-size:12px; outline:none; transition:border-color .2s;
+}
+#input-category:focus { border-color:var(--accent); }
+
 /* Projects strip */
 .day-card-projects { padding:10px 20px; border-bottom:1px solid var(--border); display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0; }
 .day-proj-chip { display:flex; align-items:center; gap:5px; font-size:10px; padding:3px 9px; border-radius:20px; border:1px solid; font-family:'Syne',sans-serif; font-weight:600; }
@@ -673,6 +713,11 @@ body.readonly #sync-status { display:none !important; }
             <label>Días</label>
             <input type="number" id="input-days" placeholder="14" min="1" max="365" />
           </div>
+          <div class="form-group">
+            <label>Categoría / Grupo</label>
+            <input type="text" id="input-category" list="category-suggestions" placeholder="Ej: Proyectos, Personal...">
+            <datalist id="category-suggestions"></datalist>
+          </div>
         </div>
 
         <div class="phases-section">
@@ -715,7 +760,7 @@ body.readonly #sync-status { display:none !important; }
   <div class="calendar-area">
     <div class="calendar-wrapper">
       <div class="calendar-nav">
-        <h2 id="cal-title">Programación 2026</h2>
+        <h2 id="cal-title">Calendario 2026</h2>
         <button class="clear-btn" onclick="clearAll()">Limpiar todo</button>
       </div>
       <div class="months-grid" id="months-grid"></div>
@@ -2481,35 +2526,76 @@ function renderDayTasks() {
   });
 }
 
-
+// Variable para guardar qué grupos están colapsados
+let collapsedGroups = new Set();
 
 function renderSideCards() {
-  const render = (containerId, dateId, delta) => {
-    const dt = new Date(dayModal.y, dayModal.m, dayModal.d + delta);
-    const y2 = dt.getFullYear(), m2 = dt.getMonth(), d2 = dt.getDate();
-    document.getElementById(dateId).textContent =
-      `${DAY_NAMES[dt.getDay()]} ${d2} ${MONTHS[m2]}`;
+  const container = document.getElementById('cards-list');
+  if (!container) return;
+  container.innerHTML = '';
 
-    const cont = document.getElementById(containerId);
-    cont.innerHTML = '';
-    const k = dateKey(y2, m2, d2);
-    const fills = (window._lastFmap || {})[k] || [];
-    fills.forEach(f => {
-      const el = document.createElement('div');
-      el.className = 'side-project';
-      el.innerHTML = `<div class="side-dot" style="background:${f.card.baseColor}"></div>${esc(f.card.name)}`;
-      cont.appendChild(el);
+  if (tasks.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">📭</div>No hay tarjetas creadas.<br>Usa el formulario superior.</div>`;
+    updateCardsCount();
+    return;
+  }
+
+  // Agrupamos tareas por la propiedad 'category' (o "Sin Categoría" si no tienen)
+  const groups = {};
+  tasks.forEach(t => {
+    const cat = (t.category || 'Sin Categoría').trim();
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(t);
+  });
+
+  // Ordenamos los nombres de los grupos
+  const sortedNames = Object.keys(groups).sort((a, b) => {
+    if (a === 'Sin Categoría') return 1;
+    if (b === 'Sin Categoría') return -1;
+    return a.localeCompare(b);
+  });
+
+  sortedNames.forEach(name => {
+    const groupTasks = groups[name];
+    const isCollapsed = collapsedGroups.has(name);
+    
+    const groupEl = document.createElement('div');
+    groupEl.className = `card-group ${isCollapsed ? 'collapsed' : ''}`;
+    
+    groupEl.innerHTML = `
+      <div class="card-group-header" onclick="toggleGroup('${name}')">
+        <span class="card-group-arrow">▼</span>
+        <span class="card-group-name">${name}</span>
+        <span class="card-group-count">${groupTasks.length}</span>
+      </div>
+      <div class="card-group-body"></div>
+    `;
+
+    const body = groupEl.querySelector('.card-group-body');
+    groupTasks.forEach(task => {
+      // Reutiliza tu lógica existente de creación de tarjetas aquí
+      const card = createCardElement(task); 
+      body.appendChild(card);
     });
-    const tasks = dayTasks[k] || [];
-    tasks.slice(0,3).forEach(t => {
-      const el = document.createElement('div');
-      el.className = 'side-task';
-      el.textContent = `${t.desde || t.time || ''}${(t.desde||t.time) ? ' ' : ''}${t.name}`;
-      cont.appendChild(el);
-    });
-  };
-  render('side-prev-content', 'side-prev-date', -1);
-  render('side-next-content', 'side-next-date',  1);
+
+    container.appendChild(groupEl);
+  });
+
+  updateCardsCount();
+  updateCategorySuggestions();
+}
+
+function toggleGroup(name) {
+  if (collapsedGroups.has(name)) collapsedGroups.delete(name);
+  else collapsedGroups.add(name);
+  renderSideCards();
+}
+
+function updateCategorySuggestions() {
+  const dl = document.getElementById('category-suggestions');
+  if (!dl) return;
+  const cats = [...new Set(tasks.map(t => t.category).filter(Boolean))];
+  dl.innerHTML = cats.map(c => `<option value="${c}">`).join('');
 }
 
 function parseMilitary(s) {
