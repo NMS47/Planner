@@ -82,28 +82,50 @@ header {
 .hm-item:hover { background:var(--surface2); color:var(--accent); }
 .hm-gcal:hover { color:#4ade80; }
 
-/* ── READ-ONLY MODE ─────────────────────────────────────────────────── */
-body.readonly .sidebar-header { display:none; }
-body.readonly #cards-list .card-actions { display:none !important; }
-body.readonly #cards-list .task-card { cursor:default; }
-body.readonly #cards-list .task-card:hover { transform:none; }
-body.readonly .clear-btn { display:none; }
-body.readonly .hdr-quick { display:none !important; }
-body.readonly .hamburger-menu .hm-item[data-edit] { display:none; }
-body.readonly #dm-edit-btn { display:none; }
-body.readonly .day-card-form { display:none !important; }
-body.readonly .sidebar-toggle-btn { display:none; }
-body.readonly .sidebar-fab { display:none; }
-body.readonly #sync-status { display:none !important; }
-
-/* Editor unlock button — invisible until hovered */
-#editor-unlock {
-  position:fixed; bottom:0; left:50%; transform:translateX(-50%);
-  width:60px; height:6px; background:transparent; border:none;
-  cursor:pointer; z-index:9000; opacity:0;
-  transition:opacity .3s;
+/* ── CARD CATEGORIES ────────────────────────────────────────────────── */
+.card-group { display:flex; flex-direction:column; }
+.card-group-header {
+  display:flex; align-items:center; gap:6px;
+  padding:6px 10px 5px; cursor:pointer; user-select:none;
+  border-radius:6px; margin:2px 0; transition:background .15s;
 }
-#editor-unlock:hover { opacity:.15; background:var(--accent); border-radius:3px 3px 0 0; }
+.card-group-header:hover { background:var(--surface2); }
+.card-group-name {
+  font-family:'Syne',sans-serif; font-weight:700; font-size:10px;
+  text-transform:uppercase; letter-spacing:1.5px; color:var(--muted);
+  flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.card-group-count {
+  font-size:9px; color:var(--muted); background:var(--border);
+  padding:1px 5px; border-radius:8px; font-family:'DM Mono',monospace;
+}
+.card-group-arrow { color:var(--muted); font-size:10px; transition:transform .25s; flex-shrink:0; }
+.card-group.collapsed .card-group-arrow { transform:rotate(-90deg); }
+.card-group.collapsed .card-group-body { display:none; }
+.card-group-body { display:flex; flex-direction:column; gap:6px; padding:0 0 6px 0; }
+.card-group-add {
+  background:none; border:1px dashed var(--border); border-radius:5px;
+  color:var(--muted); cursor:pointer; width:100%; padding:4px;
+  font-family:'DM Mono',monospace; font-size:10px;
+  transition:color .15s, border-color .15s; margin-top:2px;
+}
+.card-group-add:hover { color:var(--accent); border-color:var(--accent); }
+.card-group-del {
+  background:none; border:none; color:var(--muted); cursor:pointer;
+  font-size:10px; padding:2px 4px; border-radius:3px; transition:color .15s; flex-shrink:0;
+}
+.card-group-del:hover { color:var(--accent2); }
+#input-category {
+  width:100%; background:var(--surface2); border:1px solid var(--border);
+  border-radius:6px; padding:7px 10px; color:var(--text);
+  font-family:'DM Mono',monospace; font-size:12px; outline:none; transition:border-color .2s;
+}
+#input-category:focus { border-color:var(--accent); }
+#input-category::placeholder { color:var(--muted); }
+/* hide edit controls in read-only */
+body.readonly .card-group-add,
+body.readonly .card-group-del { display:none; }
+
 /* ── HIDDEN CARDS ────────────────────────────────────────────────────── */
 .task-card.card-hidden { opacity:.35; }
 .task-card.card-hidden:hover { opacity:.6; }
@@ -487,7 +509,6 @@ body.readonly #sync-status { display:none !important; }
 .week-task-time { font-family:'DM Mono',monospace; font-size:9px; color:var(--accent); }
 .week-task-name { font-family:'Syne',sans-serif; font-weight:700; font-size:10px; }
 .week-task-people { font-size:9px; color:var(--muted); }
-.week-task-desc { font-size:9px; color:var(--muted); line-height:1.5; font-style:italic; margin-top:1px; }
 .week-day-empty { padding:12px 10px; font-size:10px; color:var(--muted); text-align:center; }
 
 .day-modal-backdrop {
@@ -537,46 +558,6 @@ body.readonly #sync-status { display:none !important; }
 .day-modal-close:hover { color:var(--accent2); border-color:var(--accent2); }
 .day-modal-edit-btn { background:var(--surface2); border:1px solid var(--border); color:var(--muted); padding:5px 12px; border-radius:6px; cursor:pointer; font-family:'DM Mono',monospace; font-size:11px; transition:all .2s; }
 .day-modal-edit-btn:hover, .day-modal-edit-btn.active { background:var(--accent); color:#000; border-color:var(--accent); }
-
-/* ── CARD CATEGORIES── */
-.card-group { display:flex; flex-direction:column; }
-.card-group-header {
-  display:flex; align-items:center; gap:6px;
-  padding:6px 10px 5px; cursor:pointer; user-select:none;
-  border-radius:6px; margin:2px 0; transition:background .15s;
-}
-.card-group-header:hover { background:var(--surface2); }
-.card-group-name {
-  font-family:'Syne',sans-serif; font-weight:700; font-size:10px;
-  text-transform:uppercase; letter-spacing:1.5px; color:var(--muted);
-  flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-.card-group-count {
-  font-size:9px; color:var(--muted); background:var(--border);
-  padding:1px 5px; border-radius:8px; font-family:'DM Mono',monospace;
-}
-.card-group-arrow { color:var(--muted); font-size:10px; transition:transform .25s; flex-shrink:0; }
-.card-group.collapsed .card-group-arrow { transform:rotate(-90deg); }
-.card-group.collapsed .card-group-body { display:none; }
-.card-group-body { display:flex; flex-direction:column; gap:6px; padding:0 0 6px 0; }
-.card-group-add {
-  background:none; border:1px dashed var(--border); border-radius:5px;
-  color:var(--muted); cursor:pointer; width:100%; padding:4px;
-  font-family:'DM Mono',monospace; font-size:10px;
-  transition:color .15s, border-color .15s; margin-top:2px;
-}
-.card-group-add:hover { color:var(--accent); border-color:var(--accent); }
-.card-group-del {
-  background:none; border:none; color:var(--muted); cursor:pointer;
-  font-size:10px; padding:2px 4px; border-radius:3px; transition:color .15s; flex-shrink:0;
-}
-.card-group-del:hover { color:var(--accent2); }
-#input-category {
-  width:100%; background:var(--surface2); border:1px solid var(--border);
-  border-radius:6px; padding:7px 10px; color:var(--text);
-  font-family:'DM Mono',monospace; font-size:12px; outline:none; transition:border-color .2s;
-}
-#input-category:focus { border-color:var(--accent); }
 
 /* Projects strip */
 .day-card-projects { padding:10px 20px; border-bottom:1px solid var(--border); display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0; }
@@ -641,7 +622,7 @@ body.readonly #sync-status { display:none !important; }
 <body>
 
 <header>
-  <div class="logo">Div Ec<span>•</span>Capac Anf 🔱
+   <div class="logo">Div Ec<span>•</span>Capac Anf 🔱
     <div style="font-family:'DM Mono',monospace;font-weight:300;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:1px">Lo más difícil siempre</div>
   </div>
   <div id="sync-status" style="font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;gap:5px">
@@ -671,8 +652,8 @@ body.readonly #sync-status { display:none !important; }
         <button class="hm-item hm-gcal" onclick="exportICS();closeHamburger()">📅 Google Calendar (.ics)</button>
         <div class="hm-divider"></div>
         <div class="hm-section-label">Sesión</div>
-        <button class="hm-item" data-edit="" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
-        <button class="hm-item"data-edit="" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
+        <button class="hm-item" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
+        <button class="hm-item" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
       </div>
     </div>
   </div>
@@ -713,11 +694,11 @@ body.readonly #sync-status { display:none !important; }
             <label>Días</label>
             <input type="number" id="input-days" placeholder="14" min="1" max="365" />
           </div>
-          <div class="form-group">
-            <label>Categoría / Grupo</label>
-            <input type="text" id="input-category" list="category-suggestions" placeholder="Ej: Proyectos, Personal...">
-            <datalist id="category-suggestions"></datalist>
-          </div>
+        </div>
+        <div class="form-group">
+          <label>Categoría <span style="color:var(--muted);font-size:9px">(opcional)</span></label>
+          <input type="text" id="input-category" placeholder="ej. Marketing, Dev..." list="category-datalist" />
+          <datalist id="category-datalist"></datalist>
         </div>
 
         <div class="phases-section">
@@ -786,8 +767,6 @@ body.readonly #sync-status { display:none !important; }
       <div class="week-modal-nav">
         <button class="day-nav-arrow" onclick="shiftWeek(-1)">◀</button>
         <button class="day-nav-arrow" onclick="shiftWeek(1)">▶</button>
-        <button class="export-btn" onclick="exportWeek('jpg')" title="Descargar JPG" style="padding:4px 10px;font-size:11px">⬇ JPG</button>
-        <button class="export-btn print-btn" onclick="exportWeek('print')" title="PDF blanco para imprimir" style="padding:4px 10px;font-size:11px">🖨 Imprimir</button>
         <button class="day-modal-close" onclick="closeWeekModal()">✕</button>
       </div>
     </div>
@@ -1139,13 +1118,16 @@ function createCard() {
     if (sum>days) { alert(`Las fases suman ${sum}d pero la tarjeta tiene ${days}d.`); return; }
   }
 
+  const category = (document.getElementById('input-category').value || '').trim();
+
   if (editingCardId !== null) {
     // UPDATE existing card
     const card = cards.find(c=>c.id===editingCardId);
     if (card) {
       const tones = generateTones(card.baseColor, rawPh.length||1);
-      card.name  = name;
-      card.days  = days;
+      card.name     = name;
+      card.days     = days;
+      card.category = category;
       card.phases = rawPh.map((p,i)=>({name:p.name.trim(), days:parseInt(p.days), color:tones[i]}));
       // Update placements that reference this card
       placements.forEach(p=>{ if(p.cardId===card.id){ p.name=name; p.days=days; const end=addDays(p.startY,p.startM,p.startD,days-1); p.endY=end.getFullYear();p.endM=end.getMonth();p.endD=end.getDate(); }});
@@ -1159,7 +1141,7 @@ function createCard() {
   const baseColor = nextColor();
   const tones = generateTones(baseColor, rawPh.length||1);
   const phases = rawPh.map((p,i)=>({name:p.name.trim(), days:parseInt(p.days), color:tones[i]}));
-  const newCard = {id:++idCounter, name, days, baseColor, phases};
+  const newCard = {id:++idCounter, name, days, baseColor, phases, category};
   cards.push(newCard);
 
   // If we have a pending placement from cal-drag, apply it
@@ -1180,6 +1162,7 @@ function createCard() {
 function resetForm() {
   document.getElementById('input-name').value='';
   document.getElementById('input-days').value='';
+  document.getElementById('input-category').value='';
   tempPhases=[];
   renderPhaseInputs();
   document.getElementById('input-name').focus();
@@ -1194,8 +1177,9 @@ function toggleForm() {
 function startEdit(id) {
   const card = cards.find(c=>c.id===id); if(!card) return;
   editingCardId = id;
-  document.getElementById('input-name').value = card.name;
-  document.getElementById('input-days').value = card.days;
+  document.getElementById('input-name').value     = card.name;
+  document.getElementById('input-days').value     = card.days;
+  document.getElementById('input-category').value = card.category || '';
   tempPhases = card.phases.map(p=>({name:p.name, days:p.days}));
   renderPhaseInputs();
   // Change button label and show cancel
@@ -1254,10 +1238,46 @@ function toggleHideCard(id) {
   showToast(card.hidden ? '🙈 Tarjeta oculta en el calendario' : '👁 Tarjeta visible en el calendario');
 }
 
-// ── RENDER CARDS ──────────────────────────────────────────────────────────────
+// ── RENDER CARDS (grouped by category) ───────────────────────────────────────
+let collapsedGroups = new Set(); // persists across re-renders
+
+function buildCardEl(card) {
+  const ph = card.phases;
+  const totalCovered = ph.length ? ph.reduce((s,p)=>s+p.days,0) : card.days;
+  let bar = ph.length
+    ? ph.map(p=>`<div class="phase-preview-seg" style="width:${(p.days/totalCovered*100).toFixed(1)}%;background:${p.color}"></div>`).join('')
+    : `<div class="phase-preview-seg" style="width:100%;background:${card.baseColor}"></div>`;
+  let phList = ph.length
+    ? `<div class="phase-list">${ph.map(p=>`<div class="phase-item"><div class="phase-swatch" style="background:${p.color}"></div>${esc(p.name)} · ${p.days}d</div>`).join('')}</div>`
+    : '';
+  const el = document.createElement('div');
+  el.className = 'task-card'+(editingCardId===card.id?' editing':'')+(card.hidden?' card-hidden':'');
+  el.dataset.id = card.id;
+  el.style.setProperty('--card-color', card.baseColor);
+  el.draggable = true;
+  el.innerHTML = `
+    <div class="card-name">${esc(card.name)}</div>
+    <div class="card-meta">${card.days} día${card.days>1?'s':''}</div>
+    <div class="phase-preview">${bar}</div>
+    ${phList}
+    <div class="card-actions">
+      <label class="card-btn color-btn" title="Cambiar color" style="background:${card.baseColor};border-color:${card.baseColor}">
+        <input type="color" value="${card.baseColor.startsWith('#') ? card.baseColor : rgbToHex(card.baseColor)}" style="opacity:0;position:absolute;width:0;height:0" onchange="changeColor(${card.id}, this.value)">
+      </label>
+      <button class="card-btn hide-btn" title="Ocultar/Mostrar en calendario" onclick="toggleHideCard(${card.id})">👁</button>
+      <button class="card-btn" title="Editar" onclick="startEdit(${card.id})">✎</button>
+      <button class="card-btn" onclick="deleteCard(${card.id})">✕</button>
+    </div>`;
+  el.addEventListener('dragstart', e=>onDragStart(e,card));
+  el.addEventListener('dragend', onDragEnd);
+  return el;
+}
+
 function renderCards() {
-  const list=document.getElementById('cards-list');
-  list.querySelectorAll('.task-card').forEach(e=>e.remove());
+  const list = document.getElementById('cards-list');
+  // Remove all previous card groups and cards
+  list.querySelectorAll('.card-group, .task-card').forEach(e=>e.remove());
+
   const emptyMsg = document.getElementById('empty-msg');
   const loadBtn  = document.getElementById('empty-load-btn');
   if (cards.length) {
@@ -1267,8 +1287,7 @@ function renderCards() {
     emptyMsg.style.display = 'block';
     const icon = document.getElementById('empty-icon');
     const text = document.getElementById('empty-text');
-    if (true) { // data source ready (formerly _fbReady)
-      // Only reset to default msg if we're NOT showing the empty-db banner
+    if (true) {
       if (loadBtn && loadBtn.style.display === 'none') {
         if (icon) icon.textContent = '📋';
         if (text) text.innerHTML = 'Creá tu primera tarjeta<br>y arrastrala al calendario';
@@ -1282,1426 +1301,13 @@ function renderCards() {
   badge.textContent = cards.length ? cards.length : '';
   badge.style.display = cards.length ? 'inline' : 'none';
 
-  cards.forEach(card=>{
-    const ph=card.phases;
-    const totalCovered = ph.length ? ph.reduce((s,p)=>s+p.days,0) : card.days;
-
-    let bar='';
-    if (ph.length) {
-      bar = ph.map(p=>`<div class="phase-preview-seg" style="width:${(p.days/totalCovered*100).toFixed(1)}%;background:${p.color}"></div>`).join('');
-    } else {
-      bar = `<div class="phase-preview-seg" style="width:100%;background:${card.baseColor}"></div>`;
-    }
-
-    let phList = ph.length ? `<div class="phase-list">${ph.map(p=>`<div class="phase-item"><div class="phase-swatch" style="background:${p.color}"></div>${esc(p.name)} · ${p.days}d</div>`).join('')}</div>` : '';
-
-    const el=document.createElement('div');
-    el.className='task-card'+(editingCardId===card.id?' editing':'')+(card.hidden?' card-hidden':''); el.dataset.id=card.id;
-    el.style.setProperty('--card-color',card.baseColor);
-    el.draggable=true;
-    el.innerHTML=`
-      <div class="card-name">${esc(card.name)}</div>
-      <div class="card-meta">${card.days} día${card.days>1?'s':''}</div>
-      <div class="phase-preview">${bar}</div>
-      ${phList}
-      <div class="card-actions">
-        <label class="card-btn color-btn" title="Cambiar color" style="background:${card.baseColor};border-color:${card.baseColor}">
-          <input type="color" value="${card.baseColor.startsWith('#') ? card.baseColor : rgbToHex(card.baseColor)}" style="opacity:0;position:absolute;width:0;height:0" onchange="changeColor(${card.id}, this.value)">
-        </label>
-        <button class="card-btn hide-btn" title="Ocultar/Mostrar en calendario" onclick="toggleHideCard(${card.id})">👁</button>
-        <button class="card-btn" title="Editar" onclick="startEdit(${card.id})">✎</button>
-        <button class="card-btn" onclick="deleteCard(${card.id})">✕</button>
-      </div>`;
-    el.addEventListener('dragstart',e=>onDragStart(e,card));
-    el.addEventListener('dragend',onDragEnd);
-    list.appendChild(el);
-  });
-}
-
-// ── CALENDAR ──────────────────────────────────────────────────────────────────
-function renderCalendar() {
-  const grid=document.getElementById('months-grid');
-  grid.innerHTML='';
-
-  // Build filled map — each key maps to an array of fills (supports overlap)
-  const fmap={};
-  placements.forEach(p=>{
-    const card=cards.find(c=>c.id===p.cardId); if(!card) return;
-    if (card.hidden) return; // skip hidden cards
-    const ph=card.phases;
-
-    // Build per-day color + phase info
-    const dayInfo=[];
-    if (ph.length) {
-      ph.forEach((phase,pi)=>{
-        for(let d=0;d<phase.days;d++) dayInfo.push({color:phase.color,phIdx:pi,phName:phase.name,phDays:phase.days,isBoundary:d===0&&pi>0});
-      });
-      // Extend remaining days with last phase color
-      const last=dayInfo[dayInfo.length-1];
-      while(dayInfo.length<p.days) dayInfo.push({...last,isBoundary:false});
-    }
-
-    const start=new Date(p.startY,p.startM,p.startD);
-    for(let i=0;i<p.days;i++){
-      const dt=new Date(start); dt.setDate(dt.getDate()+i);
-      const k=dateKey(dt.getFullYear(),dt.getMonth(),dt.getDate());
-      const info=dayInfo[i]||null;
-      const entry={color:info?info.color:card.baseColor, placement:p, card, info, isStart:i===0, isEnd:i===p.days-1};
-      if(!fmap[k]) fmap[k]=[];
-      fmap[k].push(entry);
-    }
-  });
-  window._lastFmap = fmap; // expose for day modal
-
-  for(let m=0;m<12;m++){
-    const block=document.createElement('div');
-    block.className='month-block';
-    block.id=`month-${m}`;
-    const total=daysInMonth(YEAR,m), fd=firstDay(YEAR,m);
-    block.innerHTML=`
-      <div class="month-title">${MONTHS[m]} <span>${total} días</span></div>
-      <div class="weekdays"><div class="weekday weekday-wn">S</div>${DAYS_LABEL.map(d=>`<div class="weekday">${d}</div>`).join('')}</div>
-      <div class="days-grid" id="dg-${m}"></div>`;
-    grid.appendChild(block);
-    const dg=block.querySelector(`#dg-${m}`);
-
-    // Week number helper (ISO week)
-    const getWeekNum = (y,mo,dy) => {
-      const d = new Date(Date.UTC(y,mo,dy));
-      d.setUTCDate(d.getUTCDate()+4-(d.getUTCDay()||7));
-      const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-      return Math.ceil((((d-yearStart)/86400000)+1)/7);
-    };
-
-    // Inject week number at start of first row
-    const wn0 = document.createElement('div');
-    wn0.className = 'week-num';
-    wn0.textContent = getWeekNum(YEAR, m, 1 - fd > 0 ? 1 - fd + (fd>0?1:0) : 1);
-    // Actually compute week of the Monday that starts the first displayed row
-    const firstDisplayedDate = new Date(YEAR, m, 1 - fd);
-    wn0.textContent = getWeekNum(firstDisplayedDate.getFullYear(), firstDisplayedDate.getMonth(), firstDisplayedDate.getDate());
-    wn0.dataset.weekMon = firstDisplayedDate.toISOString().slice(0,10);
-    wn0.addEventListener('click', () => openWeekModal(firstDisplayedDate));
-    dg.appendChild(wn0);
-
-    // Empty cells for offset (fd = how many blank Mon-Sun slots before day 1)
-    for(let i=0;i<fd;i++){const e=document.createElement('div');e.className='day-cell empty';dg.appendChild(e);}
-
-    let currentRow = 0; // track which grid row we're on (0-based)
-
-    for(let d=1;d<=total;d++){
-      const colIndex = (fd + d - 1) % 7; // 0=Mon … 6=Sun
-
-      // At start of a new row (after the first), inject week number
-      if (colIndex === 0 && d > 1) {
-        currentRow++;
-        const wn = document.createElement('div');
-        wn.className = 'week-num';
-        wn.textContent = getWeekNum(YEAR, m, d);
-        const monDate = new Date(YEAR, m, d);
-        wn.dataset.weekMon = monDate.toISOString().slice(0,10);
-        wn.addEventListener('click', () => openWeekModal(monDate));
-        dg.appendChild(wn);
-      }
-
-      const k=dateKey(YEAR,m,d), fills=fmap[k];
-      const cell=document.createElement('div');
-      cell.className='day-cell';
-
-      if(fills && fills.length){
-        cell.classList.add('filled');
-        const first=fills[0];
-        if(fills.length===1){
-          if(fills[0].isStart) cell.classList.add('range-start');
-          if(fills[0].isEnd)   cell.classList.add('range-end');
-        }
-        // (with multiple fills, skip rounded corners — stripes look better without them)
-        if(first.info?.isBoundary) cell.classList.add('phase-boundary');
-
-        if(fills.length===1){
-          // Single project — plain background as before
-          cell.style.background = first.color;
-        } else {
-          // Multiple projects — horizontal stripes via linear-gradient
-          const pct = 100 / fills.length;
-          const stops = fills.map((f,i) =>
-            `${f.color} ${(i*pct).toFixed(1)}% ${((i+1)*pct).toFixed(1)}%`
-          ).join(', ');
-          cell.style.background = `linear-gradient(to bottom, ${stops})`;
-        }
-
-        // Tooltip shows all overlapping projects
-        cell.addEventListener('mouseenter', e => showTT(e, fills[0], fills));
-        cell.addEventListener('mousemove',  e => moveTT(e));
-        cell.addEventListener('mouseleave', hideTT);
-        // Click opens day modal
-        cell.addEventListener('click', () => { hideTT(); openDayModal(new Date(YEAR,m,d)); });
-      }
-
-      cell.addEventListener('dragover',e=>{e.preventDefault();if(!cell.classList.contains('empty'))cell.classList.add('drag-over');});
-      cell.addEventListener('dragleave',()=>cell.classList.remove('drag-over'));
-      cell.addEventListener('drop',e=>{cell.classList.remove('drag-over');onDrop(e,YEAR,m,d);});
-
-      // Calendar drag-to-create (only on empty cells)
-      if (!fills) {
-        cell.addEventListener('mousedown', e => {
-          if (e.button !== 0) return;
-          e.preventDefault();
-          calDrag.active = true;
-          calDrag.startY = YEAR; calDrag.startM = m; calDrag.startD = d;
-          highlightCalDrag(YEAR, m, d, YEAR, m, d);
-        });
-        cell.addEventListener('mouseenter', () => {
-          if (!calDrag.active) return;
-          const s = new Date(calDrag.startY, calDrag.startM, calDrag.startD);
-          const e2 = new Date(YEAR, m, d);
-          const [from, to] = s <= e2 ? [s, e2] : [e2, s];
-          highlightCalDrag(from.getFullYear(), from.getMonth(), from.getDate(), to.getFullYear(), to.getMonth(), to.getDate());
-        });
-      }
-
-      cell.innerHTML=`<span class="day-num" title="Ver día">${d}</span>`;
-      cell.dataset.cy = YEAR; cell.dataset.cm = m; cell.dataset.cd = d;
-      // Click on the day number opens the day modal
-      cell.querySelector('.day-num').addEventListener('click', e => {
-        e.stopPropagation();
-        openDayModal(new Date(YEAR, m, d));
-      });
-      dg.appendChild(cell);
-    }
-
-    // ── FLOATING LABELS ──────────────────────────────────────────────────────
-    // First pass: collect all label positions so we can detect overlaps on same row
-    const labelMetas = [];
-    placements.forEach(p => {
-      const card = cards.find(c=>c.id===p.cardId); if(!card) return;
-
-      const monthStart = new Date(YEAR, m, 1);
-      const monthEnd   = new Date(YEAR, m, daysInMonth(YEAR,m));
-      const pStart     = new Date(p.startY, p.startM, p.startD);
-      const pEnd       = new Date(p.endY,   p.endM,   p.endD);
-      if (pEnd < monthStart || pStart > monthEnd) return;
-
-      const visStart = pStart < monthStart ? 1 : p.startD;
-      const visEnd   = pEnd   > monthEnd   ? daysInMonth(YEAR,m) : p.endD;
-
-      const COLS = 8;
-      const DAY_COLS = 7;
-      const dayCol  = n => ((fd + n - 1) % DAY_COLS) + 1;
-      const dayRow  = n => Math.floor((fd + n - 1) / DAY_COLS);
-
-      const startRow = dayRow(visStart), endRow = dayRow(visEnd);
-      const midDay   = Math.round((visStart + visEnd) / 2);
-      const midRow   = dayRow(midDay);
-
-      let rangeColStart, rangeColEnd;
-      if (startRow === endRow) {
-        rangeColStart = dayCol(visStart); rangeColEnd = dayCol(visEnd);
-      } else if (midRow === startRow) {
-        rangeColStart = dayCol(visStart); rangeColEnd = DAY_COLS;
-      } else if (midRow === endRow) {
-        rangeColStart = 1; rangeColEnd = dayCol(visEnd);
-      } else {
-        rangeColStart = 1; rangeColEnd = DAY_COLS;
-      }
-
-      const cellW = 100 / COLS;
-      const leftEdge  = cellW * rangeColStart;
-      const rightEdge = cellW * rangeColEnd + cellW;
-      const left      = (leftEdge + rightEdge) / 2;
-      const spanCols  = rangeColEnd - rangeColStart + 1;
-      const maxW      = cellW * spanCols * 0.85;
-
-      const totalRows = Math.ceil((fd + daysInMonth(YEAR,m)) / DAY_COLS);
-      const cellH     = 100 / totalRows;
-
-      const initials = card.name.split(/\s+/).map(w => w[0]?.toUpperCase() || '').filter(Boolean).slice(0, 3).join('');
-
-      labelMetas.push({ p, card, midRow, left, maxW, cellH, visStart, visEnd, initials });
-    });
-
-    // Second pass: for each midRow, group overlapping labels and assign vertical offsets
-    // Two labels "overlap" on midRow if their horizontal spans intersect
-    // Group by midRow first
-    const rowGroups = {};
-    labelMetas.forEach((meta, i) => {
-      if (!rowGroups[meta.midRow]) rowGroups[meta.midRow] = [];
-      rowGroups[meta.midRow].push(i);
-    });
-
-    // Within each row, find clusters of horizontally-overlapping labels
-    Object.values(rowGroups).forEach(indices => {
-      // Sort by visStart so stacking order is consistent
-      indices.sort((a,b) => labelMetas[a].visStart - labelMetas[b].visStart);
-
-      // Build overlap clusters using interval merging
-      const metas = indices.map(i => labelMetas[i]);
-      // Assign stack index within overlapping groups
-      // Simple greedy: compare each pair, if spans overlap give them different slot indices
-      const slots = new Array(metas.length).fill(0);
-      const totalSlots = new Array(metas.length).fill(1);
-
-      for (let i = 0; i < metas.length; i++) {
-        for (let j = i + 1; j < metas.length; j++) {
-          // Check if spans overlap
-          if (metas[i].visStart <= metas[j].visEnd && metas[j].visStart <= metas[i].visEnd) {
-            slots[j] = slots[i] + 1;
-          }
-        }
-      }
-      // Count max slots per group
-      for (let i = 0; i < metas.length; i++) {
-        for (let j = 0; j < metas.length; j++) {
-          if (i !== j && metas[i].visStart <= metas[j].visEnd && metas[j].visStart <= metas[i].visEnd) {
-            totalSlots[i] = Math.max(totalSlots[i], slots[i] + 1, slots[j] + 1);
-          }
-        }
-      }
-
-      metas.forEach((meta, idx) => {
-        const n = totalSlots[idx];       // total stacked labels at this position
-        const s = slots[idx];            // this label's slot (0-based)
-        // Distribute vertically within the cell height
-        // Base top is at 50% of cell + small offset; spread labels around that
-        const baseTop = meta.cellH * meta.midRow + meta.cellH * 0.5;
-        const spread  = meta.cellH * 0.38; // use 38% of cell height for spread
-        const top = n === 1
-          ? baseTop + spread * 0.12           // single: slightly below center
-          : baseTop + spread * (s / (n - 1) - 0.5) * 1.1; // multiple: spread evenly
-
-        const lbl = document.createElement('div');
-        lbl.className = 'range-label';
-        lbl.textContent = meta.card.name;
-        lbl.style.cssText = `left:${meta.left}%;top:${top}%;transform:translate(-50%,-50%);max-width:${meta.maxW}%;`;
-        dg.appendChild(lbl);
-        requestAnimationFrame(() => {
-          if (lbl.scrollWidth > lbl.offsetWidth + 2) {
-            lbl.textContent = meta.initials;
-            lbl.title = meta.card.name;
-          }
-        });
-      });
-    });
-  }
-}
-
-// ── DRAG ──────────────────────────────────────────────────────────────────────
-function onDragStart(e,card){
-  dragCard=card;
-  e.dataTransfer.setData('text/plain',card.id);
-  e.dataTransfer.effectAllowed='copy';
-  const g=document.getElementById('drag-ghost');
-  g.textContent=`${card.name} · ${card.days}d`;
-  g.style.color=card.baseColor; g.style.display='block'; g.style.left='-9999px';
-  e.dataTransfer.setDragImage(g,0,0);
-  setTimeout(()=>e.target.classList.add('dragging'),0);
-}
-function onDragEnd(e){
-  e.target.classList.remove('dragging');
-  document.getElementById('drag-ghost').style.display='none';
-  dragCard=null;
-}
-function onDrop(e,y,m,d){
-  e.preventDefault(); if(!dragCard) return;
-  placements=placements.filter(p=>p.cardId!==dragCard.id);
-  const end=addDays(y,m,d,dragCard.days-1);
-  placements.push({id:++idCounter,cardId:dragCard.id,name:dragCard.name,days:dragCard.days,
-    startY:y,startM:m,startD:d,endY:end.getFullYear(),endM:end.getMonth(),endD:end.getDate()});
-  renderCalendar(); renderLegend(); persist();
-}
-function removePlacement(id){placements=placements.filter(p=>p.id!==id);renderCalendar();renderLegend();persist();}
-
-// ── TOOLTIP ───────────────────────────────────────────────────────────────────
-function showTT(e, fill, allFills){
-  const fills = allFills || [fill];
-  const ph = document.getElementById('tt-phases');
-  ph.innerHTML = '';
-
-  if (fills.length === 1) {
-    // Single project — original behaviour
-    const {placement:p, card, info} = fills[0];
-    document.getElementById('tt-name').textContent = p.name;
-    document.getElementById('tt-name').style.color = card.baseColor;
-    document.getElementById('tt-dates').textContent = `${fmtDate(p.startY,p.startM,p.startD)} → ${fmtDate(p.endY,p.endM,p.endD)} · ${p.days} días`;
-    if(card.phases.length){
-      card.phases.forEach((phase,i)=>{
-        const active = info && info.phIdx === i;
-        const row = document.createElement('div');
-        row.className = 'tt-phase' + (active?' active':'');
-        row.innerHTML = `<div class="tt-phase-dot" style="background:${phase.color}"></div>${esc(phase.name)} · ${phase.days}d${active?' ◀':''}`;
-        ph.appendChild(row);
-      });
-    }
-  } else {
-    // Multiple overlapping projects
-    document.getElementById('tt-name').textContent = `${fills.length} proyectos`;
-    document.getElementById('tt-name').style.color = 'var(--text)';
-    document.getElementById('tt-dates').textContent = 'Superposición';
-    fills.forEach(f => {
-      const {placement:p, card} = f;
-      const row = document.createElement('div');
-      row.className = 'tt-phase active';
-      row.innerHTML = `<div class="tt-phase-dot" style="background:${card.baseColor};border-radius:50%"></div><strong style="color:${card.baseColor}">${esc(p.name)}</strong> · ${fmtDate(p.startY,p.startM,p.startD)}→${fmtDate(p.endY,p.endM,p.endD)}`;
-      ph.appendChild(row);
-    });
+  // Update datalist for autocomplete
+  const dl = document.getElementById('category-datalist');
+  if (dl) {
+    const cats = [...new Set(cards.map(c=>c.category).filter(Boolean))];
+    dl.innerHTML = cats.map(c=>`<option value="${esc(c)}">`).join('');
   }
 
-  document.getElementById('tooltip').style.display = 'block';
-  moveTT(e);
-}
-function moveTT(e){
-  const tt=document.getElementById('tooltip');
-  tt.style.left=Math.min(e.clientX+14,window.innerWidth-230)+'px';
-  tt.style.top=(e.clientY-10)+'px';
-}
-function hideTT(){document.getElementById('tooltip').style.display='none';}
-
-// ── LEGEND ────────────────────────────────────────────────────────────────────
-function renderLegend(){
-  const leg=document.getElementById('legend'), items=document.getElementById('legend-items');
-  items.innerHTML='';
-  if(!placements.length){leg.style.display='none';return;}
-  leg.style.display='flex';
-  const seen=new Set();
-  placements.forEach(p=>{
-    if(seen.has(p.cardId))return; seen.add(p.cardId);
-    const card=cards.find(c=>c.id===p.cardId); if(!card)return;
-    if(card.hidden) return;
-    let col=card.phases.length
-      ?`<div class="legend-phases">${card.phases.map(ph=>`<div class="legend-phase-seg" style="background:${ph.color}"></div>`).join('')}</div>`
-      :`<div class="legend-dot" style="background:${card.baseColor}"></div>`;
-    const item=document.createElement('div');
-    item.className='legend-item';
-    item.innerHTML=`${col}<span>${esc(p.name)}</span><span class="legend-remove" onclick="removePlacement(${p.id})">✕</span>`;
-    items.appendChild(item);
-  });
-}
-
-// ── CLEAR ─────────────────────────────────────────────────────────────────────
-function clearAll(){
-  if(!confirm('¿Borrar todos los proyectos del calendario?'))return;
-  placements=[];renderCalendar();renderLegend();persist();
-}
-
-// ── KEYBOARD ──────────────────────────────────────────────────────────────────
-document.getElementById('input-name').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('input-days').focus();});
-document.getElementById('input-days').addEventListener('keydown',e=>{if(e.key==='Enter')createCard();});
-
-// ── EXPORT ────────────────────────────────────────────────────────────────────
-async function exportAs(format){
-  const isPrint = format === 'print-pdf';
-  const overlay=document.getElementById('export-overlay');
-  document.getElementById('export-msg').textContent =
-    format==='pdf'  ? 'Generando PDF...' :
-    isPrint         ? 'Generando PDF para imprimir...' :
-                      'Generando JPG...';
-  overlay.style.display='flex';
-  const sidebar=document.querySelector('.sidebar'), layout=document.getElementById('main-layout'), calArea=document.querySelector('.calendar-area');
-  const origCols=layout.style.gridTemplateColumns;
-  layout.style.gridTemplateColumns='0px 1fr'; sidebar.style.display='none';
-  const fab = document.getElementById('sidebar-fab'); if(fab) fab.style.display='none';
-  const stb = document.getElementById('sidebar-toggle-btn'); if(stb) stb.style.display='none';
-  calArea.style.overflow='visible'; calArea.style.height='auto';
-
-  // Hide months with no placements
-  const activeMonths = new Set();
-  placements.forEach(p => {
-    const start = new Date(p.startY, p.startM, p.startD);
-    for (let i = 0; i < p.days; i++) {
-      const dt = new Date(start); dt.setDate(dt.getDate() + i);
-      if (dt.getFullYear() === YEAR) activeMonths.add(dt.getMonth());
-    }
-  });
-  const hiddenMonths = [];
-  for (let m = 0; m < 12; m++) {
-    const block = document.getElementById(`month-${m}`);
-    if (block && !activeMonths.has(m)) { block.style.display='none'; hiddenMonths.push(block); }
-  }
-
-  // Apply light theme for print
-  const root = document.documentElement;
-  const savedVars = {};
-  if (isPrint) {
-    const light = {'--bg':'#ffffff','--surface':'#f7f7f7','--surface2':'#ebebeb','--border':'#d0d0d0','--text':'#111111','--muted':'#777777', 'week-task-time':'#111111'};
-    Object.entries(light).forEach(([k,v])=>{ savedVars[k]=root.style.getPropertyValue(k); root.style.setProperty(k,v); });
-    document.querySelectorAll('.range-label').forEach(el=>el.style.color='rgba(0,0,0,0.8)');
-    document.querySelectorAll('.week-num').forEach(el=>{ el.style.color='#555'; el.style.opacity='1'; });
-    document.querySelectorAll('.day-cell.filled .day-num').forEach(el=>el.style.color='rgba(0,0,0,0.85)');
-    const leg=document.getElementById('legend'); if(leg) leg.style.background='#f0f0f0';
-    // Nav title
-    document.getElementById('cal-title').style.color='#111';
-    // Compact grid for print: no gaps, merged borders
-    const grid = document.getElementById('months-grid');
-    grid.style.gap='0';
-    grid.style.border='1px solid #ccc';
-    grid.style.borderRadius='8px';
-    grid.style.overflow='hidden';
-    document.querySelectorAll('.month-block').forEach(b=>{
-      b.style.borderRadius='0';
-      b.style.border='none';
-      b.style.borderRight='1px solid #d0d0d0';
-      b.style.borderBottom='1px solid #d0d0d0';
-    });
-  }
-
-  await new Promise(r=>setTimeout(r,260));
-  try{
-    const bgColor = isPrint ? '#ffffff' : '#0f0f11';
-    const canvas=await html2canvas(document.querySelector('.calendar-wrapper'),{backgroundColor:bgColor,scale:2,useCORS:true,logging:false});
-    if(format==='jpg'){
-      const a=document.createElement('a'); a.download=`planboard-${YEAR}.jpg`; a.href=canvas.toDataURL('image/jpeg',.95); a.click();
-    }else{
-      const fname = isPrint ? `planboard-${YEAR}-print.pdf` : `planboard-${YEAR}.pdf`;
-      const{jsPDF}=window.jspdf, imgData=canvas.toDataURL('image/jpeg',.97);
-      const pxW=canvas.width, pxH=canvas.height;
-      const pageW=297, pageH=210; // A4 landscape mm
-      const scale=pxW/pageW;      // px per mm
-      const pageHpx=Math.round(pageH*scale); // page height in canvas px
-
-      const imgH=pageW*(pxH/pxW);
-      if(imgH<=pageH){
-        // Fits on one page
-        const pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-        pdf.addImage(imgData,'JPEG',0,(pageH-imgH)/2,pageW,imgH);
-        pdf.save(fname);
-      } else {
-        // Multi-page: find cut points between month rows
-        // Measure each visible month block's bottom Y position relative to .calendar-wrapper
-        const wrapper = document.querySelector('.calendar-wrapper');
-        const wrapperTop = wrapper.getBoundingClientRect().top;
-        const monthBlocks = Array.from(document.querySelectorAll('.month-block'))
-          .filter(b => b.style.display !== 'none');
-
-        // Get the bottom edge of each block in canvas px (scale:2 from html2canvas)
-        const blockBottoms = monthBlocks.map(b => {
-          const rect = b.getBoundingClientRect();
-          return Math.round((rect.bottom - wrapperTop) * 2); // *2 because scale:2
-        });
-
-        // Build list of safe cut points: after each month's bottom, before the next starts
-        // Safe cut = midpoint between end of one row and start of next
-        const monthTops = monthBlocks.map(b => {
-          const rect = b.getBoundingClientRect();
-          return Math.round((rect.top - wrapperTop) * 2);
-        });
-
-        // Group blocks into rows by their top position (within 10px tolerance)
-        const rows = [];
-        monthTops.forEach((top, i) => {
-          const row = rows.find(r => Math.abs(r.top - top) < 10);
-          if (row) { row.bottom = Math.max(row.bottom, blockBottoms[i]); }
-          else rows.push({ top, bottom: blockBottoms[i] });
-        });
-        rows.sort((a,b) => a.top - b.top);
-
-        // Safe cut Y values: halfway between row bottom and next row top
-        const safeCuts = [];
-        for (let i = 0; i < rows.length - 1; i++) {
-          safeCuts.push(Math.round((rows[i].bottom + rows[i+1].top) / 2));
-        }
-        safeCuts.push(pxH); // always end at canvas bottom
-
-        // Slice canvas at safe cuts, fitting as many rows per page as possible
-        const pdf = new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-        let pageStart = 0, pg = 0;
-
-        while (pageStart < pxH) {
-          // Find the furthest safe cut that still fits within one page height
-          let cutY = pageStart + pageHpx;
-          // Find the best safe cut ≤ cutY
-          const bestCut = safeCuts.filter(c => c > pageStart && c <= cutY).pop()
-                       || safeCuts.find(c => c > pageStart) // if no cut fits, use next safe cut
-                       || pxH;
-
-          const sliceH = bestCut - pageStart;
-          const sc = document.createElement('canvas');
-          sc.width = pxW; sc.height = sliceH;
-          sc.getContext('2d').drawImage(canvas, 0, -pageStart);
-
-          const sliceHmm = sliceH / scale;
-          if (pg > 0) pdf.addPage();
-          pdf.addImage(sc.toDataURL('image/jpeg',.97), 'JPEG', 0, 0, pageW, sliceHmm);
-          pageStart = bestCut;
-          pg++;
-          if (pg > 20) break; // safety valve
-        }
-        pdf.save(fname);
-      }
-    }
-  }catch(err){alert('Error al exportar: '+err.message);}
-  finally{
-    if(isPrint){
-      Object.entries(savedVars).forEach(([k,v])=>root.style.setProperty(k,v));
-      document.querySelectorAll('.range-label').forEach(el=>el.style.color='');
-      document.querySelectorAll('.week-num').forEach(el=>{ el.style.color=''; el.style.opacity=''; });
-      document.querySelectorAll('.day-cell.filled .day-num').forEach(el=>el.style.color='');
-      const leg=document.getElementById('legend'); if(leg) leg.style.background='';
-      document.getElementById('cal-title').style.color='';
-      // Restore grid
-      const grid = document.getElementById('months-grid');
-      grid.style.gap=''; grid.style.border=''; grid.style.borderRadius=''; grid.style.overflow='';
-      document.querySelectorAll('.month-block').forEach(b=>{
-        b.style.borderRadius=''; b.style.border=''; b.style.borderRight=''; b.style.borderBottom='';
-      });
-    }
-    hiddenMonths.forEach(b=>b.style.display='');
-    layout.style.gridTemplateColumns=origCols; sidebar.style.display='';
-    calArea.style.overflow=''; calArea.style.height=''; overlay.style.display='none';
-    const fab2 = document.getElementById('sidebar-fab'); if(fab2 && window.innerWidth<=600) fab2.style.display='flex';
-    const stb2 = document.getElementById('sidebar-toggle-btn'); if(stb2) stb2.style.display='';
-  }
-}
-
-//Export week
-async function exportWeek(format) {
-  const isPrint = format === 'print';
-  const wm = document.querySelector('.week-modal');
-  if (!wm) return;
-
-  // Show overlay
-  const overlay = document.getElementById('export-overlay');
-  document.getElementById('export-msg').textContent = isPrint ? 'Generando PDF...' : 'Generando JPG...';
-  overlay.style.display = 'flex';
-
-  // Apply light theme for print
-  const root = document.documentElement;
-  const savedVars = {};
-  if (isPrint) {
-    const light = { '--bg':'#ffffff', '--surface':'#f7f7f7', '--surface2':'#ebebeb',
-                    '--border':'#d0d0d0', '--text':'#111111', '--muted':'#777777' };
-    Object.entries(light).forEach(([k,v]) => {
-  savedVars[k] = root.style.getPropertyValue(k);
-  root.style.setProperty(k, v);
-});
-  // Darken time labels for print
-  document.querySelectorAll('.week-task-time').forEach(el => el.dataset._origColor = el.style.color);
-  document.querySelectorAll('.week-task-time').forEach(el => el.style.color = '#111111');
-    }
-
-  // Temporarily make the modal static so html2canvas can capture it fully
-  const origPosition   = wm.style.position;
-  const origHeight     = wm.style.height;
-  const origMaxHeight  = wm.style.maxHeight;
-  const origOverflow   = wm.style.overflow;
-  const body           = document.getElementById('wm-body');
-  const origBodyOF     = body.style.overflowY;
-  const origBodyH      = body.style.height;
-
-  wm.style.position  = 'relative';
-  wm.style.height    = 'auto';
-  wm.style.maxHeight = 'none';
-  wm.style.overflow  = 'visible';
-  body.style.overflowY = 'visible';
-  body.style.height    = 'auto';
-
-  await new Promise(r => setTimeout(r, 200));
-
-  try {
-    const bgColor = isPrint ? '#ffffff' : '#1a1a1f';
-    const canvas  = await html2canvas(wm, { backgroundColor: bgColor, scale: 2,
-                                            useCORS: true, logging: false });
-    if (!isPrint) {
-      // JPG download
-      const a = document.createElement('a');
-      a.download = `semana-${document.getElementById('wm-title').textContent.replace(/\s+/g,'-')}.jpg`;
-      a.href = canvas.toDataURL('image/jpeg', 0.95);
-      a.click();
-    } else {
-      // PDF — landscape A4
-      const { jsPDF } = window.jspdf;
-      const imgData = canvas.toDataURL('image/jpeg', 0.97);
-      const pxW = canvas.width, pxH = canvas.height;
-      const pageW = 297, pageH = 210; // A4 landscape mm
-      const imgH  = pageW * (pxH / pxW);
-      const pdf   = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
-      pdf.addImage(imgData, 'JPEG', 0, Math.max(0,(pageH-imgH)/2), pageW, Math.min(imgH, pageH));
-      const fname = `semana-${document.getElementById('wm-title').textContent.replace(/\s+/g,'-')}.pdf`;
-      pdf.save(fname);
-    }
-  } catch(err) {
-    alert('Error al exportar: ' + err.message);
-  } finally {
-    // Restore modal styles
-    wm.style.position  = origPosition;
-    wm.style.height    = origHeight;
-    wm.style.maxHeight = origMaxHeight;
-    wm.style.overflow  = origOverflow;
-    body.style.overflowY = origBodyOF;
-    body.style.height    = origBodyH;
-
-    // Restore theme
-    if (isPrint) {
-  Object.entries(savedVars).forEach(([k,v]) => root.style.setProperty(k, v));
-  document.querySelectorAll('.week-task-time').forEach(el => {
-    el.style.color = el.dataset._origColor || '';
-    delete el.dataset._origColor;
-  });
-}
-    overlay.style.display = 'none';
-  }
-}
-
-// ── GOOGLE CALENDAR / ICS EXPORT ─────────────────────────────────────────────
-function exportICS() {
-  if (!placements.length) { showToast('⚠ No hay proyectos en el calendario'); return; }
-
-  const pad = n => String(n).padStart(2,'0');
-
-  // Format date as YYYYMMDD for ICS (all-day events)
-  const icsDate = (y,m,d) => `${y}${pad(m+1)}${pad(d)}`;
-
-  // Add 1 day to end date because ICS DTEND for all-day is exclusive
-  const icsEndDate = (y,m,d,extraDays=1) => {
-    const dt = new Date(y,m,d); dt.setDate(dt.getDate()+extraDays);
-    return `${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}`;
-  };
-
-  const now = new Date();
-  const stamp = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}T${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}Z`;
-
-  let uid = 1;
-  const lines = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//PlanBoard 2026//ES',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'X-WR-CALNAME:PlanBoard 2026',
-    'X-WR-TIMEZONE:America/Argentina/Buenos_Aires',
-  ];
-
-  placements.forEach(p => {
-    const card = cards.find(c => c.id === p.cardId);
-    if (!card) return;
-
-    if (card.phases.length > 0) {
-      // One event per phase
-      let cursor = new Date(p.startY, p.startM, p.startD);
-      card.phases.forEach((phase, i) => {
-        const sy = cursor.getFullYear(), sm = cursor.getMonth(), sd = cursor.getDate();
-        lines.push(
-          'BEGIN:VEVENT',
-          `UID:planboard-${p.id}-phase-${i}-${uid++}@planboard`,
-          `DTSTAMP:${stamp}`,
-          `DTSTART;VALUE=DATE:${icsDate(sy,sm,sd)}`,
-          `DTEND;VALUE=DATE:${icsEndDate(sy,sm,sd,phase.days)}`,
-          `SUMMARY:${esc(card.name)} — ${esc(phase.name)}`,
-          `DESCRIPTION:Proyecto: ${esc(card.name)}\\nFase ${i+1}: ${esc(phase.name)}\\nDuración: ${phase.days} días`,
-          'END:VEVENT'
-        );
-        cursor.setDate(cursor.getDate() + phase.days);
-      });
-    } else {
-      // Single event for the whole card
-      lines.push(
-        'BEGIN:VEVENT',
-        `UID:planboard-${p.id}-${uid++}@planboard`,
-        `DTSTAMP:${stamp}`,
-        `DTSTART;VALUE=DATE:${icsDate(p.startY,p.startM,p.startD)}`,
-        `DTEND;VALUE=DATE:${icsEndDate(p.endY,p.endM,p.endD)}`,
-        `SUMMARY:${esc(card.name)}`,
-        `DESCRIPTION:Duración: ${card.days} días`,
-        'END:VEVENT'
-      );
-    }
-  });
-
-  lines.push('END:VCALENDAR');
-
-  const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `planboard-${YEAR}.ics`;
-  a.click();
-  URL.revokeObjectURL(a.href);
-  showToast('✓ Archivo .ics descargado — importalo en Google Calendar');
-}
-
-// ── DATA SOURCE — GitHub JSON ─────────────────────────────────────────────────
-// Edit this URL to point to your raw JSON file on GitHub.
-// Example: https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/planboard-data.json
-const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/NMS47/Planner/main/planboard-data.json';
-
-// ── Status badge ──────────────────────────────────────────────────────────────
-function setSyncStatus(status, detail) {
-  const dot   = document.getElementById('sync-dot');
-  const text  = document.getElementById('sync-text');
-  const badge = document.getElementById('sync-status');
-  if (!dot) return;
-  const map = {
-    loading:  { bg: '#fbbf24', label: 'Cargando...' },
-    github:   { bg: '#4ade80', label: 'Datos desde GitHub' },
-    local:    { bg: '#60a5fa', label: 'Datos locales' },
-    empty:    { bg: '#888',    label: 'Sin datos' },
-    error:    { bg: '#ff6b6b', label: detail || 'Error al cargar' },
-  };
-  const s = map[status] || map.empty;
-  dot.style.background = s.bg;
-  text.textContent     = s.label;
-  if (badge) badge.classList.toggle('loading', status === 'loading');
-}
-setSyncStatus('loading');
-
-// ── Apply a plain data object to the app state ────────────────────────────────
-function applyData(data) {
-  const rawCards = Array.isArray(data.cards) ? data.cards
-    : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : []);
-  cards      = rawCards.map(c => sanitizeCard(c));
-  placements = Array.isArray(data.placements) ? data.placements
-    : (data.placements ? Object.values(data.placements) : []);
-  idCounter  = parseInt(data.idCounter) || 0;
-
-  const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
-  dayTasks = {};
-  Object.keys(rawTasks).forEach(k => {
-    const list = Array.isArray(rawTasks[k]) ? rawTasks[k]
-      : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
-    if (list.length > 0) dayTasks[k] = list.map(t => ({
-      id: t.id || 0, name: t.name || '', desde: t.desde || '',
-      hasta: t.hasta || '', duration: t.duration || '',
-      desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
-    }));
-  });
-
-  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
-  renderCards(); renderCalendar(); renderLegend();
-  if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
-  if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
-}
-
-// ── Load from localStorage cache ──────────────────────────────────────────────
-function loadLocalCache() {
-  try {
-    const raw = localStorage.getItem('planboard_cache')
-             || localStorage.getItem('planboard_session'); // legacy key
-    if (!raw) return false;
-    const data = JSON.parse(raw);
-    applyData(data);
-    return cards.length > 0 || placements.length > 0;
-  } catch(e) { return false; }
-}
-
-// ── Fetch JSON from GitHub and boot the app ───────────────────────────────────
-(async function bootApp() {
-  // Skip fetch if URL is still the placeholder
-  const isPlaceholder = GITHUB_JSON_URL.includes('TU-USUARIO');
-
-  if (!isPlaceholder) {
-    try {
-      const resp = await fetch(GITHUB_JSON_URL + '?_=' + Date.now(), { cache: 'no-cache' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const data = await resp.json();
-      applyData(data);
-      setSyncStatus('github');
-      return;
-    } catch(err) {
-      console.warn('No se pudo cargar el JSON de GitHub:', err.message);
-      // Fall through to local cache
-    }
-  }
-
-  // Try local cache
-  const hadCache = loadLocalCache();
-  if (hadCache) {
-    setSyncStatus('local');
-    if (!isPlaceholder) showToast('⚠ Sin conexión a GitHub — mostrando caché local');
-  } else {
-    setSyncStatus('empty');
-    renderCards(); renderCalendar(); renderLegend();
-    showBannerEmpty();
-  }
-})();
-
-function saveSession() {
-  // Saves to localStorage as working cache
-  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
-}
-
-function loadSession() {
-  return loadLocalCache();
-}
-
-function exportSession() {
-  const data = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'planboard-data.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-  showToast('✓ planboard-data.json descargado — subilo a GitHub para publicar los cambios');
-}
-
-function sanitizeCard(c) {
-  // Normalize a card object — handles Firebase object-arrays and missing fields
-  const phases = (() => {
-    if (!c.phases) return [];
-    if (Array.isArray(c.phases)) return c.phases.map(p => ({
-      name: p.name || '',
-      days: parseInt(p.days) || 1,
-      color: p.color || c.baseColor || '#e8ff47'
-    }));
-    // Firebase may serialize arrays as objects {"0":{...},"1":{...}}
-    const keys = Object.keys(c.phases).filter(k => !isNaN(k)).sort((a,b) => a-b);
-    return keys.map(k => {
-      const p = c.phases[k];
-      return { name: p.name || '', days: parseInt(p.days) || 1, color: p.color || c.baseColor || '#e8ff47' };
-    });
-  })();
-  return {
-    id:        c.id        || 0,
-    name:      c.name      || 'Sin nombre',
-    days:      parseInt(c.days) || 1,
-    baseColor: c.baseColor || '#e8ff47',
-    phases,
-    hidden:    c.hidden    || false,
-  };
-}
-
-function importSession() {
-  const input = document.createElement('input');
-  input.type = 'file'; input.accept = '.json';
-  input.style.display = 'none';
-  document.body.appendChild(input);
-  input.onchange = e => {
-    const file = e.target.files[0];
-    document.body.removeChild(input);
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const raw = ev.target.result;
-        if (!raw) throw new Error('El archivo está vacío');
-        const data = JSON.parse(raw);
-        if (!data || typeof data !== 'object') throw new Error('Formato inválido');
-
-        // Support both array and Firebase object-of-arrays for cards
-        const rawCards = Array.isArray(data.cards)
-          ? data.cards
-          : (data.cards && typeof data.cards === 'object' ? Object.values(data.cards) : null);
-        if (!rawCards) throw new Error('El archivo no contiene tarjetas válidas');
-
-        cards      = rawCards.map(c => sanitizeCard(c));
-        placements = Array.isArray(data.placements)
-          ? data.placements
-          : (data.placements ? Object.values(data.placements) : []);
-        idCounter  = parseInt(data.idCounter) || 0;
-
-        // Sanitize dayTasks: Firebase serializes inner arrays as numeric-keyed objects
-        const rawTasks = (data.dayTasks && typeof data.dayTasks === 'object') ? data.dayTasks : {};
-        dayTasks = {};
-        Object.keys(rawTasks).forEach(k => {
-          const list = Array.isArray(rawTasks[k])
-            ? rawTasks[k]
-            : (rawTasks[k] && typeof rawTasks[k] === 'object' ? Object.values(rawTasks[k]) : []);
-          if (list.length > 0) dayTasks[k] = list.map(t => ({
-            id: t.id || 0, name: t.name || '', desde: t.desde || '',
-            hasta: t.hasta || '', duration: t.duration || '',
-            desc: t.desc || '', responsable: t.responsable || '', apoyos: t.apoyos || '',
-          }));
-        });
-
-        // Recalculate max idCounter so new items don't collide
-        const allTaskIds = Object.values(dayTasks).flat().map(t => t.id || 0);
-        const maxId = Math.max(0, ...cards.map(c=>c.id), ...placements.map(p=>p.id), ...allTaskIds);
-        if (maxId > idCounter) idCounter = maxId;
-
-        try { persist(); } catch(pe) { console.warn('persist error after import:', pe); }
-        renderCards(); renderCalendar(); renderLegend();
-        const taskCount = Object.values(dayTasks).reduce((s,a) => s + a.length, 0);
-        setSyncStatus('local');
-        showToast('Sesion importada — ' + cards.length + ' tarjeta' + (cards.length!==1?'s':'') + (taskCount ? ', ' + taskCount + ' tarea' + (taskCount!==1?'s':'') : ''));
-      } catch(err) {
-        console.error('Import error:', err);
-        alert('No se pudo cargar el archivo: ' + err.message);
-      }
-    };
-    reader.onerror = () => alert('No se pudo leer el archivo');
-    reader.readAsText(file);
-  };
-  input.click();
-}
-
-// ── EDITOR MODE ───────────────────────────────────────────────────────────────
-let _editorMode = false;
-
-function toggleEditorMode() {
-  _editorMode = !_editorMode;
-  document.body.classList.toggle('readonly', !_editorMode);
-  if (_editorMode) {
-    showToast('🔓 Modo editor activado');
-    // Re-open sidebar on desktop
-    if (window.innerWidth > 600 && !sidebarOpen) toggleSidebar();
-    else if (window.innerWidth > 600) {
-      document.getElementById('main-sidebar').style.display = '';
-    }
-  } else {
-    showToast('🔒 Modo lectura');
-    if (window.innerWidth > 600 && sidebarOpen) toggleSidebar();
-  }
-}
-
-// Start in read-only mode
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('readonly');
-  // Collapse sidebar on load in read-only
-  if (typeof sidebarOpen !== 'undefined' && sidebarOpen) toggleSidebar();
-});
-
-function showToast(msg, duration) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), duration || 2800);
-}
-
-function showBannerEmpty() {
-  const el = document.getElementById('empty-msg');
-  if (!el) return;
-  el.style.display = 'block';
-  document.getElementById('empty-icon').textContent = '📭';
-  document.getElementById('empty-text').innerHTML =
-    'Base de datos vacía<br>' +
-    '<span style="font-size:10px;color:var(--muted);line-height:1.6">Cargá una sesión guardada (.json)<br>para sincronizar con todos</span>';
-  const loadBtn = document.getElementById('empty-load-btn');
-  if (loadBtn) loadBtn.style.display = 'inline-block';
-}
-
-function persist() {
-  saveSession(); // saves to localStorage cache only
-}
-
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-// Render empty skeleton immediately; bootApp() (async) will populate with
-// data from GitHub JSON or fall back to localStorage cache.
-renderCards();
-renderCalendar();
-let weekModal = { open: false, monday: null };
-
-function getMondayOfDate(date) {
-  const d = new Date(date); d.setHours(0,0,0,0);
-  const day = d.getDay(); // 0=Sun,1=Mon...
-  const diff = (day === 0) ? -6 : 1 - day;
-  d.setDate(d.getDate() + diff);
-  return d;
-}
-
-function openWeekModal(mondayDate) {
-  weekModal.monday = getMondayOfDate(mondayDate);
-  weekModal.open = true;
-  renderWeekModal();
-  document.getElementById('week-modal-backdrop').classList.add('open');
-}
-
-function closeWeekModal() {
-  document.getElementById('week-modal-backdrop').classList.remove('open');
-  weekModal.open = false;
-}
-
-function onWeekBackdropClick(e) {
-  if (e.target === document.getElementById('week-modal-backdrop')) closeWeekModal();
-}
-
-function shiftWeek(delta) {
-  weekModal.monday = new Date(weekModal.monday.getTime() + delta * 7 * 86400000);
-  renderWeekModal();
-}
-
-function renderWeekModal() {
-  const mon = weekModal.monday;
-  const weekNum = (() => {
-    const d = new Date(Date.UTC(mon.getFullYear(), mon.getMonth(), mon.getDate()));
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-    const y = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    return Math.ceil((((d - y) / 86400000) + 1) / 7);
-  })();
-
-  document.getElementById('wm-title').textContent =
-    `Semana ${weekNum} — ${mon.getDate()} ${MONTHS[mon.getMonth()]} ${mon.getFullYear()}`;
-
-  const body = document.getElementById('wm-body');
-  body.innerHTML = '';
-
-  const today = new Date(); today.setHours(0,0,0,0);
-
-  for (let i = 0; i < 7; i++) {
-    const dt = new Date(mon.getTime() + i * 86400000);
-    const y2 = dt.getFullYear(), m2 = dt.getMonth(), d2 = dt.getDate();
-    const k = dateKey(y2, m2, d2);
-    const tasks = (dayTasks[k] || []).slice().sort((a,b) => (a.desde||'0000').localeCompare(b.desde||'0000'));
-    const isToday = dt.getTime() === today.getTime();
-
-    const col = document.createElement('div');
-    col.className = 'week-day-col';
-
-    const hdr = document.createElement('div');
-    hdr.className = 'week-day-header';
-    hdr.innerHTML = `
-      <div class="week-day-name">${DAY_NAMES[dt.getDay()]}</div>
-      <div class="week-day-num${isToday ? ' today' : ''}">${d2}</div>`;
-    hdr.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
-    col.appendChild(hdr);
-
-    const taskArea = document.createElement('div');
-    taskArea.className = 'week-day-tasks';
-
-    if (!tasks.length) {
-      taskArea.innerHTML = `<div class="week-day-empty">Sin tareas</div>`;
-    } else {
-      tasks.forEach((t, ti) => {
-        const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
-        const color = COLORS[ti % COLORS.length];
-        const row = document.createElement('div');
-        row.className = 'week-task-row';
-        row.style.borderLeft = `3px solid ${color}`;
-        row.style.background = color + '0f';
-        row.innerHTML = `
-          <div class="week-task-time">${t.desde || ''}${t.hasta ? '–'+t.hasta : ''}</div>
-          <div class="week-task-name">${esc(t.name)}</div>
-          ${t.desc ? `<div class="week-task-desc">${esc(t.desc)}</div>` : ''}
-          ${(t.responsable||t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
-        taskArea.appendChild(row);
-      });
-    }
-
-    col.appendChild(taskArea);
-    body.appendChild(col);
-  }
-}
-
-document.addEventListener('keydown', e => {
-  if (!weekModal.open) return;
-  if (e.key === 'Escape') { closeWeekModal(); return; }
-  if (e.key === 'ArrowLeft')  shiftWeek(-1);
-  if (e.key === 'ArrowRight') shiftWeek(1);
-});
-
-// ── DAY MODAL ─────────────────────────────────────────────────────────────────
-const DAY_NAMES = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-
-function openDayModal(date) {
-  const now = date || new Date();
-  dayModal.y = now.getFullYear();
-  dayModal.m = now.getMonth();
-  dayModal.d = now.getDate();
-  dayModal.editMode = false;
-  renderDayModal();
-  document.getElementById('day-modal-backdrop').classList.add('open');
-  dayModal.open = true;
-}
-
-function closeDayModal() {
-  document.getElementById('day-modal-backdrop').classList.remove('open');
-  dayModal.open = false;
-  editingTaskId = null;
-  document.querySelector('.task-form-add').textContent = '+ Agregar';
-}
-
-function onBackdropClick(e) {
-  if (e.target === document.getElementById('day-modal-backdrop')) closeDayModal();
-}
-
-function shiftDay(delta) {
-  editingTaskId = null;
-  document.querySelector('.task-form-add').textContent = '+ Agregar';
-  const dt = new Date(dayModal.y, dayModal.m, dayModal.d + delta);
-  dayModal.y = dt.getFullYear();
-  dayModal.m = dt.getMonth();
-  dayModal.d = dt.getDate();
-  renderDayModal();
-}
-
-function toggleDayEditMode() {
-  dayModal.editMode = !dayModal.editMode;
-  const btn = document.getElementById('dm-edit-btn');
-  btn.textContent = dayModal.editMode ? '👁 Solo lectura' : '✎ Editar';
-  btn.classList.toggle('active', dayModal.editMode);
-  document.getElementById('dm-form').style.display = dayModal.editMode ? 'flex' : 'none';
-  if (dayModal.editMode) document.getElementById('tf-name').focus();
-  renderDayTasks();
-}
-
-function renderDayModal() {
-  const {y, m, d} = dayModal;
-  const dt = new Date(y, m, d);
-
-  // Header
-  document.getElementById('dm-daynum').textContent = d;
-  document.getElementById('dm-dayname').textContent = DAY_NAMES[dt.getDay()];
-  document.getElementById('dm-monthyear').textContent = `${MONTHS[m]} ${y}`;
-
-  // Edit btn state
-  const editBtn = document.getElementById('dm-edit-btn');
-  editBtn.textContent = dayModal.editMode ? '👁 Solo lectura' : '✎ Editar';
-  editBtn.classList.toggle('active', dayModal.editMode);
-  document.getElementById('dm-form').style.display = dayModal.editMode ? 'flex' : 'none';
-
-  // Projects active on this day
-  const k = dateKey(y, m, d);
-  const fills = (window._lastFmap || {})[k] || [];
-  const projEl = document.getElementById('dm-projects');
-  projEl.innerHTML = '';
-  if (fills.length) {
-    fills.forEach(f => {
-      const chip = document.createElement('div');
-      chip.className = 'day-proj-chip';
-      chip.style.cssText = `color:${f.card.baseColor};border-color:${f.card.baseColor}22;background:${f.card.baseColor}15`;
-      chip.innerHTML = `<span style="width:7px;height:7px;border-radius:50%;background:${f.card.baseColor};display:inline-block"></span>${esc(f.card.name)}`;
-      projEl.appendChild(chip);
-    });
-    projEl.style.display = '';
-  } else {
-    projEl.style.display = 'none';
-  }
-
-  renderDayTasks();
-  renderSideCards();
-}
-
-function renderDayTasks() {
-  const {y, m, d, editMode} = dayModal;
-  const k = dateKey(y, m, d);
-  const tasks = dayTasks[k] || [];
-  const container = document.getElementById('dm-tasks');
-  container.innerHTML = '';
-
-  if (!tasks.length) {
-    container.innerHTML = `<div class="day-empty">${editMode ? 'Agregá la primera tarea del día 👆' : 'Sin tareas para este día'}</div>`;
-    return;
-  }
-
-  const sorted = [...tasks].sort((a,b) => (a.desde||'0000').localeCompare(b.desde||'0000'));
-  const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
-
-  const table = document.createElement('table');
-  table.className = 'day-table';
-
-  table.innerHTML = `
-    <thead>
-      <tr>
-        <th class="col-hora">Hora</th>
-        <th class="col-actividad">Actividad</th>
-        <th class="col-resp">Responsable</th>
-        <th class="col-apoyos">Apoyos</th>
-        ${editMode ? '<th class="col-actions"></th>' : ''}
-      </tr>
-    </thead>
-    <tbody id="day-table-body"></tbody>`;
-
-  container.appendChild(table);
-  const tbody = document.getElementById('day-table-body');
-
-  sorted.forEach((task, i) => {
-    const color = COLORS[i % COLORS.length];
-    const isEditing = editingTaskId === task.id;
-    const horaStr = task.desde
-      ? (task.hasta ? `${task.desde}–${task.hasta}` : task.desde)
-      : (task.time || '—');
-
-    const tr = document.createElement('tr');
-    if (isEditing) tr.classList.add('editing-row');
-    tr.style.background = color + '12'; // very subtle tint
-
-    tr.innerHTML = `
-      <td class="col-hora">
-        <span style="display:inline-block;width:3px;height:100%;min-height:32px;background:${color};border-radius:2px;margin-right:7px;vertical-align:middle"></span>${horaStr}
-        ${task.duration ? `<div style="font-size:9px;color:var(--muted);margin-top:2px;padding-left:10px">⏱ ${esc(task.duration)}</div>` : ''}
-      </td>
-      <td>
-        <div class="dt-name">${esc(task.name)}</div>
-        ${task.desc ? `<div class="dt-desc">${esc(task.desc)}</div>` : ''}
-      </td>
-      <td class="col-resp"><span class="dt-person">${esc(task.responsable || '—')}</span></td>
-      <td class="col-apoyos"><span class="dt-person">${esc(task.apoyos || '—')}</span></td>
-      ${editMode ? `
-        <td>
-          <div class="dt-actions">
-            <button class="dt-btn" title="Editar" onclick="startEditDayTask('${k}',${task.id})">✎</button>
-            <button class="dt-btn del" title="Eliminar" onclick="deleteDayTask('${k}',${task.id})">✕</button>
-          </div>
-        </td>` : ''}`;
-
-    tbody.appendChild(tr);
-  });
-}
-
-// Variable para guardar qué grupos están colapsados
-let collapsedGroups = new Set();
-
-function renderSideCards() {
-  const container = document.getElementById('cards-list');
-  if (!container) return;
-  container.innerHTML = '';
-
-  if (tasks.length === 0) {
-    container.innerHTML = `<div class="empty-state"><div class="icon">📭</div>No hay tarjetas creadas.<br>Usa el formulario superior.</div>`;
-    updateCardsCount();
-    return;
-  }
-
-  // Agrupamos tareas por la propiedad 'category' (o "Sin Categoría" si no tienen)
-  const groups = {};
-  tasks.forEach(t => {
-    const cat = (t.category || 'Sin Categoría').trim();
-    if (!groups[cat]) groups[cat] = [];
-    groups[cat].push(t);
-  });
-
-  // Ordenamos los nombres de los grupos
-  const sortedNames = Object.keys(groups).sort((a, b) => {
-    if (a === 'Sin Categoría') return 1;
-    if (b === 'Sin Categoría') return -1;
-    return a.localeCompare(b);
-  });
-
-  sortedNames.forEach(name => {
-    const groupTasks = groups[name];
-    const isCollapsed = collapsedGroups.has(name);
-    
-    const groupEl = document.createElement('div');
-    groupEl.className = `card-group ${isCollapsed ? 'collapsed' : ''}`;
-    
-    groupEl.innerHTML = `
-      <div class="card-group-header" onclick="toggleGroup('${name}')">
-        <span class="card-group-arrow">▼</span>
-        <span class="card-group-name">${name}</span>
-        <span class="card-group-count">${groupTasks.length}</span>
-      </div>
-      <div class="card-group-body"></div>
-    `;
-
-    const body = groupEl.querySelector('.card-group-body');
-    groupTasks.forEach(task => {
-      // Reutiliza tu lógica existente de creación de tarjetas aquí
-      const card = createCardElement(task); 
-      body.appendChild(card);
-    });
-
-    container.appendChild(groupEl);
-  });
-
-  updateCardsCount();
-  updateCategorySuggestions();
-}
-
-function toggleGroup(name) {
-  if (collapsedGroups.has(name)) collapsedGroups.delete(name);
-  else collapsedGroups.add(name);
-  renderSideCards();
-}
-
-function updateCategorySuggestions() {
-  const dl = document.getElementById('category-suggestions');
-  if (!dl) return;
-  const cats = [...new Set(tasks.map(t => t.category).filter(Boolean))];
-  dl.innerHTML = cats.map(c => `<option value="${c}">`).join('');
-}
-
-function parseMilitary(s) {
-  // Accept "0700" or "700" → returns {h, m} or null
-  const clean = s.replace(/\D/g,'').padStart(4,'0');
-  if (clean.length !== 4) return null;
-  const h = parseInt(clean.slice(0,2)), m = parseInt(clean.slice(2,4));
-  if (h > 23 || m > 59) return null;
-  return {h, m};
-}
-
-function militaryToMinutes(s) {
-  const p = parseMilitary(s); if (!p) return null;
-  return p.h * 60 + p.m;
-}
-
-function minutesToDuration(mins) {
-  if (mins <= 0) return null;
-  const h = Math.floor(mins / 60), m = mins % 60;
-  return h && m ? `${h}h ${m}m` : h ? `${h}h` : `${m}m`;
-}
-
-let editingTaskId = null; // id of task being edited, or null
-
-function startEditDayTask(k, id) {
-  const task = (dayTasks[k] || []).find(t => t.id === id);
-  if (!task) return;
-  editingTaskId = id;
-  document.getElementById('tf-name').value        = task.name || '';
-  document.getElementById('tf-desde').value       = task.desde || '';
-  document.getElementById('tf-hasta').value       = task.hasta || '';
-  document.getElementById('tf-desc').value        = task.desc || '';
-  document.getElementById('tf-responsable').value = task.responsable || '';
-  document.getElementById('tf-apoyos').value      = task.apoyos || '';
-  // Update button label
-  document.querySelector('.task-form-add').textContent = '✓ Guardar';
-  // Ensure edit mode is on and form visible
-  if (!dayModal.editMode) toggleDayEditMode();
-  document.getElementById('tf-name').focus();
-}
-
-
-function addDayTask() {
-  const name = document.getElementById('tf-name').value.trim();
-  if (!name) { flash('tf-name'); return; }
-  const desdeRaw = document.getElementById('tf-desde').value.trim();
-  const hastaRaw = document.getElementById('tf-hasta').value.trim();
-
-  // Validate military time if provided
-  let desde = '', hasta = '', duration = '';
-  if (desdeRaw) {
-    const p = parseMilitary(desdeRaw);
-    if (!p) { flash('tf-desde'); return; }
-    desde = String(p.h).padStart(2,'0') + String(p.m).padStart(2,'0');
-  }
-  if (hastaRaw) {
-    const p = parseMilitary(hastaRaw);
-    if (!p) { flash('tf-hasta'); return; }
-    hasta = String(p.h).padStart(2,'0') + String(p.m).padStart(2,'0');
-  }
-  if (desde && hasta) {
-    const mins = militaryToMinutes(hasta) - militaryToMinutes(desde);
-    duration = minutesToDuration(mins) || '';
-  }
-
-  const desc        = document.getElementById('tf-desc').value.trim();
-  const responsable = document.getElementById('tf-responsable').value.trim();
-  const apoyos      = document.getElementById('tf-apoyos').value.trim();
-  const k = dateKey(dayModal.y, dayModal.m, dayModal.d);
-  if (!dayTasks[k]) dayTasks[k] = [];
-
-  if (editingTaskId !== null) {
-    const task = dayTasks[k].find(t => t.id === editingTaskId);
-    if (task) Object.assign(task, { name, desde, hasta, duration, desc, responsable, apoyos });
-    editingTaskId = null;
-    document.querySelector('.task-form-add').textContent = '+ Agregar';
-  } else {
-    dayTasks[k].push({ id: ++idCounter, name, desde, hasta, duration, desc, responsable, apoyos });
-  }
-
-  ['tf-name','tf-desde','tf-hasta','tf-desc','tf-responsable','tf-apoyos'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('tf-name').focus();
-  persist();
-  renderDayTasks();
-  renderSideCards();
-}
-
-function deleteDayTask(k, id) {
-  if (!dayTasks[k]) return;
-  dayTasks[k] = dayTasks[k].filter(t => t.id !== id);
-  persist();
-  renderDayTasks();
-}
-
-// Keyboard nav for day modal
-document.addEventListener('keydown', e => {
-  if (!dayModal.open) return;
-  if (e.key === 'Escape') { closeDayModal(); return; }
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-    if (e.key === 'Enter' && (e.target.id === 'tf-name' || e.target.id === 'tf-hasta')) { addDayTask(); return; }
-    return;
-  }
-  if (e.key === 'ArrowLeft')  shiftDay(-1);
-  if (e.key === 'ArrowRight') shiftDay(1);
-});
-</script>
-<button id="editor-unlock" onclick="toggleEditorMode()" title=""></button>
-</body>
-</html>
+  // Group cards
+  const groups = {}; // category → [card]
+  const NO_CAT = '
