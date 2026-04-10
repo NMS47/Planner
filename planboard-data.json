@@ -518,7 +518,7 @@
       "endD": 16
     }
   ],
-  "idCounter": 256,
+  "idCounter": 296,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -2281,6 +2281,418 @@
       },
       {
         "id": 254,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-27": [
+      {
+        "id": 257,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 258,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 259,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 260,
+        "name": "Fisica de Buceo",
+        "desde": "0700",
+        "hasta": "1000",
+        "duration": "3h",
+        "desc": "Leyes de los Gases (Ud 3)",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 261,
+        "name": "BTP",
+        "desde": "1015",
+        "hasta": "1300",
+        "duration": "2h 45m",
+        "desc": "PREPARACIÓN Y EQUIPAMIENTO, INGRESO AL AGUA, RESPIRACION INDIVIDUAL, SEÑALES SUBACUAS  (UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 262,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 263,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "PREPARACIÓN Y EQUIPAMIENTO, INGRESO AL AGUA, RESPIRACION INDIVIDUAL, SEÑALES SUBACUAS(UD 1)\nDESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIE(UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 264,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 265,
+        "name": "GMA",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "COORDENADAS PLANAS Y GEOGRAFICAS (UD 2)",
+        "responsable": "SI BIAGGINI",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-28": [
+      {
+        "id": 266,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0630",
+        "duration": "6h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 267,
+        "name": "Diana",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 268,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 269,
+        "name": "AFBE",
+        "desde": "0730",
+        "hasta": "1000",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 270,
+        "name": "BTP",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "PREPARACIÓN Y EQUIPAMIENTO, INGRESO AL AGUA, RESPIRACION INDIVIDUAL, SEÑALES SUBACUAS(UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 271,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 272,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "DESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIES, RESPIRACION POR PARJEA Y GRUPAL(UD 1)\nDESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIES, RESPIRACION POR PARJEA Y GRUPAL(UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 273,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 274,
+        "name": "Mant",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 275,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-29": [
+      {
+        "id": 276,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0630",
+        "duration": "6h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 277,
+        "name": "Fisica de buceo",
+        "desde": "0730",
+        "hasta": "1000",
+        "duration": "2h 30m",
+        "desc": "Planto de Buceo (Ud 4)",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 278,
+        "name": "BTP",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "DESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIES, EJERCICIO DE MOVILIDAD Y DESTREZ, EMPLEO DE LA BRÚJULA (UD 1)",
+        "responsable": "SA FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 279,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 280,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "DESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIES, EJERCICIO DE MOVILIDAD Y DESTREZ, EMPLEO DE LA BRÚJULA (UD 1)\nDESCENSO Y ASCENSO, DESPLAZAMIENTOS SUMERGIDOS Y EN SUPERFICIES, EJERCICIO DE MOVILIDAD Y DESTREZ, EMPLEO DE LA BRÚJULA (UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 281,
+        "name": "Ceno",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 282,
+        "name": "Demol",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "MEDIDAS DE SEGURIDAD, MATERIAL EXPLOSIVO Y COMPONENTES(UD 1 Y 2)",
+        "responsable": "TT MUÑOZ",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-30": [
+      {
+        "id": 283,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0630",
+        "duration": "6h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 284,
+        "name": "AFM",
+        "desde": "0730",
+        "hasta": "1000",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 285,
+        "name": "BTP",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "TÉCNICAS EN AGUAS OSCURAS, (VISOR CIEGO), COMUNICACIÓN EN AGUAS OSCURAS, SEGURIDAD DEL BUCEO, NAVEGACIÓN SUBACUA(UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 286,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 287,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "TÉCNICAS EN AGUAS OSCURAS, (VISOR CIEGO), COMUNICACIÓN EN AGUAS OSCURAS, SEGURIDAD DEL BUCEO, NAVEGACIÓN SUBACUA(UD 1)\nTÉCNICAS EN AGUAS OSCURAS, (VISOR CIEGO), COMUNICACIÓN EN AGUAS OSCURAS, SEGURIDAD DEL BUCEO, NAVEGACIÓN SUBACUA, BUCEO NOCTURNO (UD 1)",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": "CB ROMERO"
+      },
+      {
+        "id": 288,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 289,
+        "name": "NSF",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "NSF: REGLAMENTACION Y SEÑALES (UD 2) RIPPA- IALA",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-01": [
+      {
+        "id": 290,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0630",
+        "duration": "6h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 291,
+        "name": "Combate Anfibio",
+        "desde": "0730",
+        "hasta": "1300",
+        "duration": "5h 30m",
+        "desc": "EL COMBATE ANFIBIO Y ELEMENTOS DE BE (Ud 1)\nEMPLEO DEL ELEMENTO DE BUZOS DE EJERCITO (UD 2)",
+        "responsable": "SI SORIA",
+        "apoyos": ""
+      },
+      {
+        "id": 292,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 293,
+        "name": "Combate Anfibio",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "",
+        "responsable": "SI SORIA",
+        "apoyos": ""
+      }
+    ],
+    "2026-04-19": [
+      {
+        "id": 294,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2100",
+        "duration": "21h",
+        "desc": "Almuerzo y cena optativo",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 295,
+        "name": "Mant",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 296,
         "name": "Descanso",
         "desde": "2200",
         "hasta": "2359",
