@@ -494,18 +494,6 @@
       "endD": 20
     },
     {
-      "id": 196,
-      "cardId": 195,
-      "name": "2da Habilitacion",
-      "days": 2,
-      "startY": 2026,
-      "startM": 11,
-      "startD": 3,
-      "endY": 2026,
-      "endM": 11,
-      "endD": 4
-    },
-    {
       "id": 256,
       "cardId": 255,
       "name": "Basica",
@@ -516,9 +504,21 @@
       "endY": 2026,
       "endM": 4,
       "endD": 16
+    },
+    {
+      "id": 298,
+      "cardId": 195,
+      "name": "2da Habilitacion",
+      "days": 2,
+      "startY": 2026,
+      "startM": 5,
+      "startD": 17,
+      "endY": 2026,
+      "endM": 5,
+      "endD": 18
     }
   ],
-  "idCounter": 297,
+  "idCounter": 298,
   "dayTasks": {
     "2026-04-06": [
       {
