@@ -518,7 +518,7 @@
       "endD": 16
     }
   ],
-  "idCounter": 296,
+  "idCounter": 297,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -2387,8 +2387,8 @@
         "id": 266,
         "name": "Descanso",
         "desde": "0000",
-        "hasta": "0630",
-        "duration": "6h 30m",
+        "hasta": "0600",
+        "duration": "6h",
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
@@ -2396,8 +2396,8 @@
       {
         "id": 267,
         "name": "Diana",
-        "desde": "0630",
-        "hasta": "0700",
+        "desde": "0600",
+        "hasta": "0630",
         "duration": "30m",
         "desc": "",
         "responsable": "SS",
@@ -2406,8 +2406,8 @@
       {
         "id": 268,
         "name": "Desayuno",
-        "desde": "0700",
-        "hasta": "0730",
+        "desde": "0630",
+        "hasta": "0700",
         "duration": "30m",
         "desc": "",
         "responsable": "SS",
@@ -2482,6 +2482,16 @@
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
+      },
+      {
+        "id": 297,
+        "name": "Acuatizacion en Rio",
+        "desde": "0700",
+        "hasta": "1000",
+        "duration": "3h",
+        "desc": "Trote y natacion desde playa Santo Tome 4km\n3 Botes neumaticos y 1 Guardian",
+        "responsable": "SA DEMO",
+        "apoyos": "Enfermero, conductor, 4 operadores, 4 aux, 2 nadadores"
       }
     ],
     "2026-04-29": [

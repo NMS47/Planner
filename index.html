@@ -10,6 +10,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="pizzip.js"></script>
 <script src="docxtemplater.js"></script>
+<script>
+  if (typeof Docxtemplater === 'undefined' && typeof module !== 'undefined') {
+    window.Docxtemplater = module.exports;
+  }
+</script>
 
 <style>
 :root {
@@ -2986,6 +2991,23 @@ document.addEventListener('keydown', e => {
 </script>
 
 <button id="editor-unlock" onclick="toggleEditorMode()" title=""></button>
+<script>
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
 
+  window.addEventListener('load', async () => {
+    await loadScript('./pizzip.js');
+    await loadScript('./docxtemplater.js');
+    console.log('PizZip:', typeof PizZip);
+    console.log('Docxtemplater:', typeof Docxtemplater);
+  });
+</script>
 </body>
 </html>
