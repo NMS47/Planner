@@ -2087,69 +2087,44 @@ function obtenerSemanaLabel(dias) {
   return `Del ${parseInt(d1)} al ${parseInt(d2)} de ${meses[parseInt(m1)-1]} de ${y1}`;
 }
 
-async function exportWeekPES() {
+function exportWeekPES() {
   if (!weekModal.monday) return;
 
-  if (typeof PizZip === 'undefined' || typeof Docxtemplater === 'undefined') {
-    showToast('⚠ Librerías no cargadas, reintentá en un momento');
-    return;
-  }
+  const mon = weekModal.monday;
+  const result = {};
 
-  try {
-    // Cargar plantilla desde GitHub
-    const response = await fetch('./plantilla.docx');
-    if (!response.ok) throw new Error('No se pudo cargar plantilla.docx');
-    const arrayBuffer = await response.arrayBuffer();
-
-    // Recolectar datos de la semana
-    const mon = weekModal.monday;
-    const diasData = [];
-
-    for (let i = 0; i < 7; i++) {
-      const dt = new Date(mon.getTime() + i * 86400000);
-      const k  = dateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
-      const tasks = dayTasks[k];
-      if (tasks && tasks.length > 0) {
-        const actividades = [...tasks]
-          .sort((a, b) => (a.desde || '').localeCompare(b.desde || ''))
-          .map(t => ({
-            desde:       t.desde       || '',
-            hasta:       t.hasta       || '',
-            name:        t.name        || '',
-            responsable: t.responsable || '-',
-          }));
-        diasData.push({ nombre: formatearFechaPES(k), fecha: k, actividades });
-      }
+  for (let i = 0; i < 7; i++) {
+    const dt = new Date(mon.getTime() + i * 86400000);
+    const k  = dateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
+    const tasks = dayTasks[k];
+    if (tasks && tasks.length > 0) {
+      result[k] = [...tasks]
+        .sort((a, b) => (a.desde || '').localeCompare(b.desde || ''))
+        .map(t => ({
+          id:          t.id,
+          name:        t.name        || '',
+          desde:       t.desde       || '',
+          hasta:       t.hasta       || '',
+          duration:    t.duration    || '',
+          desc:        t.desc        || '',
+          responsable: t.responsable || '',
+          apoyos:      t.apoyos      || '',
+        }));
     }
-
-    if (!diasData.length) { showToast('⚠ No hay tareas en esta semana'); return; }
-
-    const semana = obtenerSemanaLabel(diasData);
-
-    // Renderizar plantilla
-    const zip = new PizZip(arrayBuffer);
-    const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
-    doc.render({ dias: diasData, semana });
-
-    const out = doc.getZip().generate({
-      type: 'blob',
-      mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    });
-
-    const weekTitle = document.getElementById('wm-title').textContent
-      .replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-]/g, '');
-
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(out);
-    a.download = `PES-${weekTitle}.docx`;
-    a.click();
-    URL.revokeObjectURL(a.href);
-    showToast('✓ PES-' + weekTitle + '.docx generado');
-
-  } catch (err) {
-    console.error('Error exportando PES:', err);
-    showToast('⚠ Error al generar el Word: ' + err.message);
   }
+
+  if (!Object.keys(result).length) { showToast('⚠ No hay tareas en esta semana'); return; }
+
+  const weekTitle = document.getElementById('wm-title').textContent
+    .replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-]/g, '');
+
+  const blob = new Blob([JSON.stringify({ dayTasks: result }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `PES-${weekTitle}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('✓ PES-' + weekTitle + '.json descargado');
 }
 
 // ── GOOGLE CALENDAR / ICS EXPORT ─────────────────────────────────────────────
