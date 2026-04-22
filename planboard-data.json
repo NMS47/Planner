@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 298,
+  "idCounter": 306,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -1913,12 +1913,12 @@
       },
       {
         "id": 218,
-        "name": "Fisiopatologia",
+        "name": "CH",
         "desde": "0700",
         "hasta": "1000",
         "duration": "3h",
-        "desc": "ACCIDENTES Y ENFERMEDADES DEL BUCEO (UD 2 )",
-        "responsable": "TP GUTIERREZ",
+        "desc": "",
+        "responsable": "TT CRUZ",
         "apoyos": ""
       },
       {
@@ -1973,22 +1973,12 @@
       },
       {
         "id": 224,
-        "name": "Acuatizacion",
-        "desde": "2130",
-        "hasta": "2330",
-        "duration": "2h",
-        "desc": "",
-        "responsable": "SA DEMO",
-        "apoyos": ""
-      },
-      {
-        "id": 225,
-        "name": "Descanso",
-        "desde": "2330",
+        "name": "Cartografia",
+        "desde": "2200",
         "hasta": "2359",
-        "duration": "29m",
+        "duration": "1h 59m",
         "desc": "",
-        "responsable": "SS",
+        "responsable": "SI BIAGGINI",
         "apoyos": ""
       }
     ],
@@ -2029,7 +2019,7 @@
         "desde": "1015",
         "hasta": "1300",
         "duration": "2h 45m",
-        "desc": "",
+        "desc": "Pileta",
         "responsable": "SA DEMO",
         "apoyos": ""
       },
@@ -2044,21 +2034,11 @@
         "apoyos": ""
       },
       {
-        "id": 231,
-        "name": "Fisiopatologia",
-        "desde": "1430",
-        "hasta": "1700",
-        "duration": "2h 30m",
-        "desc": "1ros Auxilios",
-        "responsable": "TP GUTIERREZ",
-        "apoyos": ""
-      },
-      {
         "id": 232,
         "name": "BTP",
-        "desde": "1715",
+        "desde": "1400",
         "hasta": "2000",
-        "duration": "2h 45m",
+        "duration": "6h",
         "desc": "",
         "responsable": "SG FERNANDEZ",
         "apoyos": "CB ROMERO"
@@ -2131,43 +2111,23 @@
         "desde": "1300",
         "hasta": "1430",
         "duration": "1h 30m",
-        "desc": "",
+        "desc": "Destrezas pileta",
         "responsable": "SS",
         "apoyos": ""
       },
       {
         "id": 240,
-        "name": "Fisica de buceo",
-        "desde": "1430",
-        "hasta": "1800",
-        "duration": "3h 30m",
-        "desc": "PPA",
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "1900",
+        "duration": "5h",
+        "desc": "Señales, ingreso al agua desde bote, equipamiento, desplazamiento",
         "responsable": "CT SALVADORES",
         "apoyos": ""
       },
       {
-        "id": 241,
-        "name": "Cartografia Militar",
-        "desde": "1815",
-        "hasta": "2000",
-        "duration": "1h 45m",
-        "desc": "COORDENADAS PLANAS Y GEOGRAFICAS (UD 2)  GPS",
-        "responsable": "SI BIAGGINI",
-        "apoyos": "SS"
-      },
-      {
         "id": 242,
         "name": "Cena",
-        "desde": "2000",
-        "hasta": "2100",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 243,
-        "name": "Mant",
         "desde": "2100",
         "hasta": "2200",
         "duration": "1h",
@@ -2176,13 +2136,23 @@
         "apoyos": ""
       },
       {
+        "id": 243,
+        "name": "Acuatizacion",
+        "desde": "1900",
+        "hasta": "2100",
+        "duration": "2h",
+        "desc": "Cuba",
+        "responsable": "SA DEMO",
+        "apoyos": "2"
+      },
+      {
         "id": 244,
-        "name": "Descanso",
+        "name": "Fisica de Buceo",
         "desde": "2200",
         "hasta": "2359",
         "duration": "1h 59m",
-        "desc": "",
-        "responsable": "SS",
+        "desc": "Ley de Dalto, Ley de Henry, Tablas de buceo",
+        "responsable": "CT SALVADORES",
         "apoyos": ""
       }
     ],
@@ -2213,9 +2183,9 @@
         "desde": "0700",
         "hasta": "1300",
         "duration": "6h",
-        "desc": "",
+        "desc": "Pileta recuperacion equipo\nCuba buceo",
         "responsable": "SA DEMO",
-        "apoyos": ""
+        "apoyos": "2"
       },
       {
         "id": 248,
@@ -2323,12 +2293,12 @@
       },
       {
         "id": 260,
-        "name": "Fisica de Buceo",
+        "name": "Fisiopatologia",
         "desde": "0700",
         "hasta": "1000",
         "duration": "3h",
-        "desc": "Leyes de los Gases (Ud 3)",
-        "responsable": "CT SALVADORES",
+        "desc": "",
+        "responsable": "TP GUTIERREZ",
         "apoyos": ""
       },
       {
@@ -2578,16 +2548,6 @@
         "apoyos": ""
       },
       {
-        "id": 284,
-        "name": "AFM",
-        "desde": "0730",
-        "hasta": "1000",
-        "duration": "2h 30m",
-        "desc": "",
-        "responsable": "SA DEMO",
-        "apoyos": ""
-      },
-      {
         "id": 285,
         "name": "BTP",
         "desde": "1000",
@@ -2630,12 +2590,22 @@
       {
         "id": 289,
         "name": "NSF",
-        "desde": "2100",
-        "hasta": "2359",
-        "duration": "2h 59m",
+        "desde": "0700",
+        "hasta": "1000",
+        "duration": "3h",
         "desc": "NSF: REGLAMENTACION Y SEÑALES (UD 2) RIPPA- IALA",
         "responsable": "SG FUGAS",
-        "apoyos": ""
+        "apoyos": "Prefectura"
+      },
+      {
+        "id": 299,
+        "name": "Acuatizacion",
+        "desde": "2130",
+        "hasta": "2330",
+        "duration": "2h",
+        "desc": "Cuba",
+        "responsable": "SA DEMO",
+        "apoyos": "Dos Buzos"
       }
     ],
     "2026-05-01": [
@@ -2673,10 +2643,30 @@
         "id": 293,
         "name": "Combate Anfibio",
         "desde": "1400",
-        "hasta": "1800",
-        "duration": "4h",
+        "hasta": "2000",
+        "duration": "6h",
         "desc": "",
         "responsable": "SI SORIA",
+        "apoyos": ""
+      },
+      {
+        "id": 300,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 301,
+        "name": "Clase de refuerzo a designar",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "A designar",
         "apoyos": ""
       }
     ],
@@ -2707,6 +2697,60 @@
         "desde": "2200",
         "hasta": "2359",
         "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-02": [
+      {
+        "id": 302,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 303,
+        "name": "Acuatizacion",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 304,
+        "name": "Franco",
+        "desde": "1300",
+        "hasta": "2359",
+        "duration": "10h 59m",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-03": [
+      {
+        "id": 305,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2100",
+        "duration": "21h",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 306,
+        "name": "Preparacion de Equipo",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
