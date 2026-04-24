@@ -508,11 +508,9 @@ body.readonly .card-group-del { display:none; }
   .week-day-col { min-width:88px; }
   .week-day-num { font-size:18px; }
 
-  /* Day table — hide less important cols */
-  .day-table th.col-resp,
-  .day-table th.col-apoyos,
-  .day-table td.col-resp,
-  .day-table td.col-apoyos { display:none; }
+  /* Day table — scroll horizontal para ver todas las columnas */
+  .day-card-body { overflow-x:auto; }
+  .day-table { min-width:480px; }
   .day-table th { font-size:9px; padding:6px 7px; }
   .day-table td { padding:7px 8px; }
 
@@ -2963,6 +2961,23 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  shiftDay(-1);
   if (e.key === 'ArrowRight') shiftDay(1);
 });
+
+// Swipe táctil para cambiar día en móvil
+(function() {
+  let startX = 0, startY = 0;
+  const card = document.getElementById('day-card-main');
+  card.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  card.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > Math.abs(dy) * 1.5 && Math.abs(dx) > 60) {
+      shiftDay(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+})();
 </script>
 
 <button id="editor-unlock" onclick="toggleEditorMode()" title=""></button>
