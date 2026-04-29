@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 358,
+  "idCounter": 370,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -3267,6 +3267,142 @@
         "duration": "59m",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-18": [
+      {
+        "id": 359,
+        "name": "Viaje",
+        "desde": "0400",
+        "hasta": "2000",
+        "duration": "16h",
+        "desc": "18 hrs",
+        "responsable": "J Etapa",
+        "apoyos": ""
+      },
+      {
+        "id": 360,
+        "name": "Descarga material",
+        "desde": "2000",
+        "hasta": "2359",
+        "duration": "3h 59m",
+        "desc": "",
+        "responsable": "Subof Turno",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-19": [
+      {
+        "id": 361,
+        "name": "AFM",
+        "desde": "0730",
+        "hasta": "0900",
+        "duration": "1h 30m",
+        "desc": "Trote 8 km",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 362,
+        "name": "Buceo Plataforma",
+        "desde": "0900",
+        "hasta": "1400",
+        "duration": "5h",
+        "desc": "9mts adaptativo",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 370,
+        "name": "Navegacion",
+        "desde": "1500",
+        "hasta": "1900",
+        "duration": "4h",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-20": [
+      {
+        "id": 363,
+        "name": "Buceo Folias",
+        "desde": "0900",
+        "hasta": "1800",
+        "duration": "9h",
+        "desc": "",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-21": [
+      {
+        "id": 364,
+        "name": "Buceo Muelle",
+        "desde": "0900",
+        "hasta": "1700",
+        "duration": "8h",
+        "desc": "",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 365,
+        "name": "Natacion Mar",
+        "desde": "1700",
+        "hasta": "2000",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-22": [
+      {
+        "id": 366,
+        "name": "Buceo Chino",
+        "desde": "0900",
+        "hasta": "1800",
+        "duration": "9h",
+        "desc": "",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-23": [
+      {
+        "id": 367,
+        "name": "Buceo Albatroz",
+        "desde": "0900",
+        "hasta": "1800",
+        "duration": "9h",
+        "desc": "",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-24": [
+      {
+        "id": 368,
+        "name": "Buceo Urbain",
+        "desde": "0900",
+        "hasta": "1800",
+        "duration": "9h",
+        "desc": "",
+        "responsable": "0900",
+        "apoyos": "1800"
+      }
+    ],
+    "2026-05-25": [
+      {
+        "id": 369,
+        "name": "Navegacion Subacuatica",
+        "desde": "0900",
+        "hasta": "1800",
+        "duration": "9h",
+        "desc": "150/250 por parejas\n150/250 por escalon\n250 por parejas (nocturno)",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       }
     ]
