@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 370,
+  "idCounter": 372,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -2820,12 +2820,12 @@
       {
         "id": 315,
         "name": "NSF",
-        "desde": "0700",
+        "desde": "0900",
         "hasta": "1300",
-        "duration": "6h",
-        "desc": "",
+        "duration": "4h",
+        "desc": "1 Armado y desarmado de botes-Nomenclatura y datos tecnicos motor\n2 Guardian\n3 Atraque y desatraque, puesta en marcha",
         "responsable": "SG FUGAS",
-        "apoyos": ""
+        "apoyos": "3 del B Anf"
       },
       {
         "id": 316,
@@ -2843,9 +2843,9 @@
         "desde": "1400",
         "hasta": "1700",
         "duration": "3h",
-        "desc": "",
+        "desc": "Operacion con botes neumaticos y guardian",
         "responsable": "SG FUGAS",
-        "apoyos": ""
+        "apoyos": "4 operadores"
       },
       {
         "id": 318,
@@ -2855,14 +2855,14 @@
         "duration": "2h",
         "desc": "",
         "responsable": "SI SORIA",
-        "apoyos": "Muñoz (Controlador) Ferez (Controlador) Baini (Controlador) Biagini(Controlador) Fugas (Controlador) Fernandez (Controlador) Villafan (Controlador) Zapana (Controlador) Romero (Controlador)"
+        "apoyos": "Muñoz (Controlador) Ferez (Controlador) Baini (Controlador) Biagini(Controlador) Fugas (Controlador) Villafan (Controlador) 4 B Anf"
       },
       {
         "id": 319,
         "name": "Cena",
-        "desde": "1900",
-        "hasta": "1930",
-        "duration": "30m",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
         "desc": "En cilindro en el fondo",
         "responsable": "SS",
         "apoyos": ""
@@ -2870,9 +2870,9 @@
       {
         "id": 320,
         "name": "Natacion en rio",
-        "desde": "1930",
-        "hasta": "2100",
-        "duration": "1h 30m",
+        "desde": "1900",
+        "hasta": "2000",
+        "duration": "1h",
         "desc": "Cruce a la isla",
         "responsable": "SI SORIA",
         "apoyos": "Ferez (Controlador) Baini (Controlador) Biagini (Controlador) Fugas (Controlador) Fernández (Controlador) Villafan (Nad  comb) Zapana (Nad  comb) Romero (Nad  comb)"
@@ -2881,10 +2881,10 @@
         "id": 321,
         "name": "Instruccion de ofideos y primeros auxilios",
         "desde": "2100",
-        "hasta": "2300",
-        "duration": "2h",
+        "hasta": "2200",
+        "duration": "1h",
         "desc": "",
-        "responsable": "SG GOMEZ",
+        "responsable": "TT FEREZ",
         "apoyos": ""
       },
       {
@@ -2895,6 +2895,26 @@
         "duration": "59m",
         "desc": "Base Patrulla",
         "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 371,
+        "name": "Estress en combate",
+        "desde": "2200",
+        "hasta": "2300",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SI SORIA",
+        "apoyos": ""
+      },
+      {
+        "id": 372,
+        "name": "Combate Anfibio",
+        "desde": "0700",
+        "hasta": "0830",
+        "duration": "1h 30m",
+        "desc": "Impermeabilizacion",
+        "responsable": "SG ACEVEDO",
         "apoyos": ""
       }
     ],
@@ -2917,7 +2937,7 @@
         "duration": "6h",
         "desc": "Camalotero.\nEnmascaramiento de embarcaciones.\nEnmascaramiento de un POE\nEnmascaramiento de Equipos de buceo.\nNatación de combate espalda con armamento.\nNatación por elon.",
         "responsable": "",
-        "apoyos": "Romero, Villafan"
+        "apoyos": "1 Anf picante, Villafan"
       },
       {
         "id": 325,
@@ -2937,7 +2957,7 @@
         "duration": "3h 30m",
         "desc": "Libre de playa\nProcedimiento\nTipos de Alerta\nCambios de Base\nConfección del PAT",
         "responsable": "SI SORIA",
-        "apoyos": "Fernandez, Biaggini"
+        "apoyos": "1 Anf picante, Biaggini"
       },
       {
         "id": 327,
@@ -2945,7 +2965,7 @@
         "desde": "1730",
         "hasta": "2130",
         "duration": "4h",
-        "desc": "Preparacion de equipo",
+        "desc": "2km",
         "responsable": "SI SORIA",
         "apoyos": "TT FEREZ (nadador Seg) CI ZAPANA (nadador Seg) SG FUGAS (operador)"
       },
@@ -2955,7 +2975,7 @@
         "desde": "2130",
         "hasta": "2359",
         "duration": "2h 29m",
-        "desc": "Operacion de Base",
+        "desc": "Operacion de Base\n1er control 2130/2230 Baini Ferez\n2do control 2230/0030 Villa Muñoz\n3er control 0230 ferez soria fugas\nCambio de base 0430 Soria ferex fugas muñoz baini",
         "responsable": "SI SORIA",
         "apoyos": "SI SORIA  SP BAINI  TT FEREZ  CI ZAPANA CI VILLAFAN SG FUGAS CB ROMEREO"
       }
@@ -2979,7 +2999,7 @@
         "duration": "5h",
         "desc": "TEI EXPLORACION\nTEI  ZONA PELIGROSA\nTEI ALTOS  \nZONA DE REUNION",
         "responsable": "SI SORIA",
-        "apoyos": "CI ZAPANA"
+        "apoyos": "3 Bzo 601"
       },
       {
         "id": 331,
@@ -3009,7 +3029,7 @@
         "duration": "3h 30m",
         "desc": "TAI CONGELAR \nTAI EMB REPENTINA\nTAI ELUDIR CONTACTO\nTAI ROMPER CONTACTO",
         "responsable": "SI SORIA",
-        "apoyos": ""
+        "apoyos": "2 bzo601"
       },
       {
         "id": 334,
@@ -3061,7 +3081,7 @@
         "duration": "4h",
         "desc": "TEI. Ruptura cerco, Asalto inmediato",
         "responsable": "SI SORIA",
-        "apoyos": "CI VILLAFAN CB ROMERO SG FERNANDEZ SI BIAGGINI"
+        "apoyos": "CI VILLAFAN SI BIAGGINI 2 picante Anf"
       },
       {
         "id": 339,
@@ -3087,21 +3107,21 @@
         "id": 341,
         "name": "Combate Anfibio",
         "desde": "1400",
-        "hasta": "2000",
-        "duration": "6h",
+        "hasta": "1600",
+        "duration": "2h",
         "desc": "Golpe de Mano, Emboscada",
         "responsable": "SI SORIA",
-        "apoyos": "TT FEREZ SG FUGAS SI BIAGGINI"
+        "apoyos": "SALVA SG FUGAS SI BIAGGINI"
       },
       {
         "id": 342,
         "name": "Combate Anfibio",
-        "desde": "2000",
+        "desde": "1600",
         "hasta": "2359",
-        "duration": "3h 59m",
+        "duration": "7h 59m",
         "desc": "Ejercicio",
         "responsable": "SI SORIA",
-        "apoyos": "TT FEREZ SG FERNANDEZ CI VILLAFAN CI ZAPANA SP BAINI TP MUñOZ"
+        "apoyos": "TT FEREZ CI VILLAFAN SP BAINI TP MUñOZ 2 picantes Anf"
       }
     ],
     "2026-05-08": [
@@ -3113,7 +3133,7 @@
         "duration": "6h 30m",
         "desc": "Ejercicio",
         "responsable": "SI SORIA",
-        "apoyos": "TT FEREZ SG FERNANDEZ CI VILLAFAN CI ZAPANA SP BAINI TP MUñOZ"
+        "apoyos": "TT FEREZ CI VILLAFAN SP BAINI TP MUñOZ"
       },
       {
         "id": 344,
@@ -3219,12 +3239,12 @@
       },
       {
         "id": 354,
-        "name": "Acuatizacion y Natacion",
+        "name": "BTP",
         "desde": "0700",
         "hasta": "1300",
         "duration": "6h",
         "desc": "",
-        "responsable": "SA DEMO",
+        "responsable": "SG FERNANDEZ",
         "apoyos": ""
       },
       {
