@@ -41,23 +41,57 @@
         <span></span><span></span><span></span>
       </button>
       <div class="hamburger-menu" id="hamburger-menu">
+        <div class="hm-section-label">Exportar</div>
+        <button class="hm-item" onclick="exportAs('pdf');closeHamburger()">⬇ PDF</button>
+        <button class="hm-item" onclick="exportAs('jpg');closeHamburger()">⬇ JPG</button>
+        <button class="hm-item" onclick="exportAs('print-pdf');closeHamburger()">🖨 Imprimir (PDF blanco)</button>
+        <div class="hm-divider"></div>
         <div class="hm-section-label">Navegación</div>
         <button class="hm-item" onclick="openWeekModal(getMondayOfDate(new Date()));closeHamburger()">📅 Ver semana actual</button>
-        <button class="hm-item" onclick="openDayModal(null);closeHamburger()">📆 Ver / editar día</button>
+        <button class="hm-item" onclick="openDayModal(null);closeHamburger()">📆 Ver día actual</button>
         <div class="hm-divider"></div>
-        <div class="hm-section-label">Exportar</div>
-        <button class="hm-item" onclick="exportAs('jpg');closeHamburger()">⬇ JPG</button>
-        <button class="hm-item" onclick="exportAs('pdf');closeHamburger()">⬇ PDF</button>
-        <button class="hm-item" onclick="exportAs('print-pdf');closeHamburger()">🖨 Imprimir (PDF blanco)</button>
         <button class="hm-item hm-gcal" onclick="exportICS();closeHamburger()">📅 Google Calendar (.ics)</button>
         <div class="hm-divider"></div>
-        <div class="hm-section-label">Sesión</div>
-        <button class="hm-item" onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
-        <button class="hm-item" onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
+        <button class="hm-item" onclick="openFilterModal();closeHamburger()">🔍 Filtrar por materia</button>
+        <div class="hm-divider" data-edit></div>
+        <div class="hm-section-label" data-edit>Sesión</div>
+        <button class="hm-item" data-edit onclick="exportSession();closeHamburger()">💾 Exportar datos (.json)</button>
+        <button class="hm-item" data-edit onclick="importSession();closeHamburger()">📂 Importar datos (.json)</button>
       </div>
     </div>
   </div>
 </header>
+<!-- Filter banner — visible when a materia filter is active -->
+<div id="filter-banner">
+  <span>🔍 Filtrando: <strong id="fb-name"></strong></span>
+  <button class="fb-clear" onclick="clearFilter()">✕ Quitar filtro</button>
+</div>
+
+<!-- Filter dashboard — auto-shown when filter is active -->
+<div id="filter-dashboard">
+  <div class="fd-header">
+    <span class="fd-title" id="fd-title">📊 Resumen</span>
+    <button class="fd-toggle" id="fd-toggle-btn" onclick="toggleDashboard()" title="Colapsar">▲</button>
+  </div>
+  <div class="fd-body" id="fd-body"></div>
+  <div class="fd-footer" id="fd-footer"></div>
+</div>
+
+<!-- Filter modal — materia picker -->
+<div id="filter-modal-backdrop" onclick="onFilterBackdropClick(event)">
+  <div id="filter-modal">
+    <div class="fm-header">
+      <span class="fm-title">🔍 Filtrar por materia</span>
+      <button class="fm-close" onclick="closeFilterModal()">✕</button>
+    </div>
+    <div class="fm-chips" id="fm-chips"></div>
+    <div class="fm-add-section" id="fm-add-section" style="display:none">
+      <input class="fm-add-input" id="fm-add-input" placeholder="Nueva materia..." maxlength="20" />
+      <button class="fm-add-btn" onclick="addMateriaFromInput()">+ Agregar</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <div id="export-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center">
@@ -142,6 +176,9 @@
       <div class="calendar-nav">
         <h2 id="cal-title">Calendario 2026</h2>
         <button class="clear-btn" onclick="clearAll()">Limpiar todo</button>
+      </div>
+      <div id="past-months-bar" style="display:none">
+        <button id="past-months-btn" onclick="togglePastMonths()"></button>
       </div>
       <div class="months-grid" id="months-grid"></div>
       <div class="legend" id="legend" style="display:none">

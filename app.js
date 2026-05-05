@@ -8,6 +8,286 @@ let calDrag = { active: false, startY: null, startM: null, startD: null };
 let dayTasks = {}; // key: "YYYY-MM-DD" → [{id, name, time, duration, desc}]
 let dayModal = { open: false, y: null, m: null, d: null, editMode: false };
 
+// ── MATERIAS / FILTER ────────────────────────────────────────────────────────
+const DEFAULT_MATERIAS = ['AYN','AFM','CA','FIBU','BTP','CH','FIPA','GMA','Demol','NSF','Planto','MEB'];
+let materias = [...DEFAULT_MATERIAS];
+let activeFilter = null; // null or materia string
+let _dashCollapsed = false;
+
+// Alternative names/aliases for each materia key (uppercase, accent-stripped)
+const MATERIA_ALIASES = {
+  'AYN':    ['AYN','ACUATIZACION','NATACION','ACUATIZACION Y NATACION'],
+  'AFM':    ['AFM','ADIESTRAMIENTO FISICO MILITAR','ADIESTRAMIENTO FISICO'],
+  'CA':     ['CA','COMBATE ANFIBIO'],
+  'FIBU':   ['FIBU','FISICA DE BUCEO'],
+  'BTP':    ['BTP','BUCEO TEORICO PRACTICO','BUCEO TEORICO'],
+  'CH':     ['CH','CAMARA HIPERBARICA'],
+  'FIPA':   ['FIPA','FISIOPATOLOGIA'],
+  'GMA':    ['GMA'],
+  'DEMOL':  ['DEMOL','DEMOLICION','DEMOLICIONES'],
+  'NSF':    ['NSF'],
+  'PLANTO': ['PLANTO','PLANEAMIENTO'],
+  'MEB':    ['MEB','MATERIAL Y EQUIPO DE BUCEO','MATERIAL DE BUCEO']
+};
+
+let _pastMonthsHidden = true;
+
+function isMonthPast(year, month) {
+  const lastDay = new Date(year, month + 1, 0); lastDay.setHours(0,0,0,0);
+  const today = new Date(); today.setHours(0,0,0,0);
+  return lastDay < today;
+}
+
+function monthHasFilter(month) {
+  if (!activeFilter) return false;
+  const total = daysInMonth(YEAR, month);
+  for (let d = 1; d <= total; d++) {
+    if (dayHasFilter(dateKey(YEAR, month, d))) return true;
+  }
+  return false;
+}
+
+function applyPastMonthVisibility() {
+  const blocks = document.querySelectorAll('.month-block.month-past');
+  blocks.forEach(b => {
+    const m = parseInt(b.id.replace('month-', ''));
+    const hide = activeFilter ? !monthHasFilter(m) : _pastMonthsHidden;
+    b.style.display = hide ? 'none' : '';
+  });
+  const bar = document.getElementById('past-months-bar');
+  const btn = document.getElementById('past-months-btn');
+  if (!bar || !btn) return;
+  if (blocks.length > 0 && !activeFilter) {
+    bar.style.display = 'flex';
+    btn.textContent = _pastMonthsHidden
+      ? `▶ Ver meses anteriores (${blocks.length})`
+      : '▲ Ocultar meses anteriores';
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+function togglePastMonths() {
+  _pastMonthsHidden = !_pastMonthsHidden;
+  applyPastMonthVisibility();
+}
+
+function _normStr(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().trim();
+}
+
+function loadMaterias() {
+  try {
+    const s = localStorage.getItem('planboard_materias');
+    if (s) materias = JSON.parse(s);
+  } catch(e) {}
+}
+function saveMaterias() {
+  try { localStorage.setItem('planboard_materias', JSON.stringify(materias)); } catch(e) {}
+}
+
+function taskMatchesFilter(task) {
+  if (!activeFilter) return false;
+  const name = _normStr(task.name || '');
+  const mat  = _normStr(activeFilter);
+  const aliases = (MATERIA_ALIASES[activeFilter.toUpperCase()] || [mat]).map(_normStr);
+  const terms = [...new Set([mat, ...aliases])];
+  return terms.some(t => name === t || name.startsWith(t+' ') || name.startsWith(t+'-') || name.startsWith(t+':'));
+}
+function dayHasFilter(dk) {
+  return (dayTasks[dk] || []).some(t => taskMatchesFilter(t));
+}
+
+function applyFilterHighlights() {
+  document.querySelectorAll('.day-cell[data-cy]').forEach(cell => {
+    const k = dateKey(+cell.dataset.cy, +cell.dataset.cm, +cell.dataset.cd);
+    cell.classList.toggle('filter-match', !!activeFilter && dayHasFilter(k));
+  });
+}
+
+function setMateriaFilter(materia) {
+  activeFilter = materia;
+  // Banner
+  const banner = document.getElementById('filter-banner');
+  const fbName = document.getElementById('fb-name');
+  if (banner && fbName) {
+    fbName.textContent = materia;
+    banner.classList.add('visible');
+  }
+  applyFilterHighlights();
+  applyPastMonthVisibility();
+  renderFilterDashboard();
+  // Re-render open modals to show highlights
+  if (typeof dayModal !== 'undefined' && dayModal.open) renderDayModal();
+  if (typeof weekModal !== 'undefined' && weekModal.open) renderWeekModal();
+}
+
+function clearFilter() {
+  activeFilter = null;
+  const banner = document.getElementById('filter-banner');
+  if (banner) banner.classList.remove('visible');
+  const dash = document.getElementById('filter-dashboard');
+  if (dash) dash.classList.remove('visible');
+  applyFilterHighlights();
+  applyPastMonthVisibility();
+  if (typeof dayModal !== 'undefined' && dayModal.open) renderDayModal();
+  if (typeof weekModal !== 'undefined' && weekModal.open) renderWeekModal();
+}
+
+// ── FILTER MODAL ──────────────────────────────────────────────────────────────
+function openFilterModal() {
+  renderFilterModalChips();
+  const bd = document.getElementById('filter-modal-backdrop');
+  if (bd) bd.classList.add('open');
+  // Show add-section only in edit mode
+  const addSec = document.getElementById('fm-add-section');
+  if (addSec) addSec.style.display = _editorMode ? 'flex' : 'none';
+}
+function closeFilterModal() {
+  const bd = document.getElementById('filter-modal-backdrop');
+  if (bd) bd.classList.remove('open');
+}
+function onFilterBackdropClick(e) {
+  if (e.target === document.getElementById('filter-modal-backdrop')) closeFilterModal();
+}
+function renderFilterModalChips() {
+  const container = document.getElementById('fm-chips');
+  if (!container) return;
+  container.innerHTML = '';
+  materias.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'materia-chip' + (activeFilter === m ? ' active' : '');
+    btn.textContent = m;
+    btn.onclick = () => {
+      if (activeFilter === m) {
+        clearFilter();
+      } else {
+        setMateriaFilter(m);
+      }
+      closeFilterModal();
+    };
+    container.appendChild(btn);
+  });
+}
+function addMateriaFromInput() {
+  const input = document.getElementById('fm-add-input');
+  if (!input) return;
+  const name = input.value.trim().toUpperCase();
+  if (!name) return;
+  if (materias.map(m=>m.toUpperCase()).includes(name)) {
+    showToast('Esa materia ya existe');
+    return;
+  }
+  materias.push(name);
+  saveMaterias();
+  input.value = '';
+  renderFilterModalChips();
+  showToast('✓ Materia agregada: ' + name);
+}
+function addMateria(name) {
+  const n = name.trim().toUpperCase();
+  if (!n || materias.map(m=>m.toUpperCase()).includes(n)) return;
+  materias.push(n);
+  saveMaterias();
+  renderFilterModalChips();
+}
+
+// ── FILTER DASHBOARD ──────────────────────────────────────────────────────────
+const DAY_NAMES_SHORT = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+function renderFilterDashboard() {
+  const dash = document.getElementById('filter-dashboard');
+  const body = document.getElementById('fd-body');
+  const footer = document.getElementById('fd-footer');
+  const title = document.getElementById('fd-title');
+  if (!dash || !body || !footer) return;
+
+  if (!activeFilter) { dash.classList.remove('visible'); return; }
+
+  title.textContent = '📊 ' + activeFilter;
+
+  // Collect matching tasks across all dayTasks
+  const rows = [];
+  let totalMins = 0;
+  Object.keys(dayTasks).sort().forEach(dk => {
+    const matched = (dayTasks[dk] || []).filter(t => taskMatchesFilter(t));
+    if (!matched.length) return;
+    matched.forEach(t => {
+      let mins = 0;
+      const s = t.desde ? parseMilitary(t.desde) : null;
+      const e = t.hasta ? parseMilitary(t.hasta) : null;
+      if (s && e) {
+        mins = (e.h * 60 + e.m) - (s.h * 60 + s.m);
+        if (mins < 0) mins = 0;
+      } else if (t.duration) {
+        // parse "9h" or "1h 30min" or "1:30"
+        const mH = t.duration.match(/(\d+)\s*h/i);
+        const mM = t.duration.match(/(\d+)\s*m/i);
+        if (mH) mins += parseInt(mH[1]) * 60;
+        if (mM) mins += parseInt(mM[1]);
+      }
+      totalMins += mins;
+      const parts = dk.split('-');
+      const dt = new Date(+parts[0], +parts[1]-1, +parts[2]);
+      rows.push({ dk, dt, task: t, mins });
+    });
+  });
+
+  if (!rows.length) {
+    body.innerHTML = '<div style="padding:16px;text-align:center;font-size:11px;color:var(--muted)">No se encontraron tareas con esta materia</div>';
+    footer.innerHTML = '';
+    dash.classList.add('visible');
+    return;
+  }
+
+  const totalH = Math.floor(totalMins / 60);
+  const totalM = totalMins % 60;
+  const totalStr = totalH > 0 ? (totalM > 0 ? `${totalH}h ${totalM}min` : `${totalH}h`) : `${totalM}min`;
+
+  const table = document.createElement('table');
+  table.className = 'fd-table';
+  table.innerHTML = `<thead><tr>
+    <th>Fecha</th><th>Día</th><th>Tema / Desc</th><th>Horas</th>
+  </tr></thead>`;
+  const tbody = document.createElement('tbody');
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    const dateStr = `${String(r.dt.getDate()).padStart(2,'0')}/${String(r.dt.getMonth()+1).padStart(2,'0')}`;
+    const dayName = DAY_NAMES_SHORT[r.dt.getDay()];
+    const topic = r.task.desc || r.task.name || '—';
+    const horaStr = r.mins > 0
+      ? (Math.floor(r.mins/60) > 0 ? `${Math.floor(r.mins/60)}h${r.mins%60>0?r.mins%60+'m':''}` : `${r.mins}m`)
+      : (r.task.desde && r.task.hasta ? `${r.task.desde}–${r.task.hasta}` : '—');
+    tr.innerHTML = `
+      <td class="fd-date">${esc(dateStr)}</td>
+      <td class="fd-day">${esc(dayName)}</td>
+      <td class="fd-topic">${esc(topic)}</td>
+      <td class="fd-hours">${esc(horaStr)}</td>`;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  body.innerHTML = '';
+  body.appendChild(table);
+
+  footer.innerHTML = `<span class="fd-total-label">Total horas:</span> <span style="color:var(--accent)">${esc(totalStr)}</span>`;
+
+  _dashCollapsed = false;
+  body.style.display = '';
+  const toggleBtn = document.getElementById('fd-toggle-btn');
+  if (toggleBtn) toggleBtn.textContent = '▲';
+  dash.classList.add('visible');
+}
+
+function toggleDashboard() {
+  _dashCollapsed = !_dashCollapsed;
+  const body = document.getElementById('fd-body');
+  const footer = document.getElementById('fd-footer');
+  const btn = document.getElementById('fd-toggle-btn');
+  if (body) body.style.display = _dashCollapsed ? 'none' : '';
+  if (footer) footer.style.display = _dashCollapsed ? 'none' : '';
+  if (btn) btn.textContent = _dashCollapsed ? '▼' : '▲';
+}
+
 // ── SIDEBAR TOGGLE (DESKTOP) ─────────────────────────────────────────────────
 let sidebarOpen = true;
 
@@ -573,6 +853,7 @@ function renderCalendar() {
     const block=document.createElement('div');
     block.className='month-block';
     block.id=`month-${m}`;
+    if (isMonthPast(YEAR, m)) block.classList.add('month-past');
     const total=daysInMonth(YEAR,m), fd=firstDay(YEAR,m);
     block.innerHTML=`
       <div class="month-title">${MONTHS[m]} <span>${total} días</span></div>
@@ -809,6 +1090,8 @@ function renderCalendar() {
     const currentBlock = document.getElementById(`month-${todayM.getMonth()}`);
     if (currentBlock) setTimeout(() => currentBlock.scrollIntoView({ behavior:'smooth', block:'center' }), 100);
   }
+  applyFilterHighlights();
+  applyPastMonthVisibility();
 }
 
 // ── DRAG ──────────────────────────────────────────────────────────────────────
@@ -1521,6 +1804,7 @@ function toggleEditorMode() {
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('readonly');
   if (typeof sidebarOpen !== 'undefined' && sidebarOpen) toggleSidebar();
+  loadMaterias();
 });
 
 
@@ -1577,8 +1861,9 @@ function renderWeekModal() {
     return Math.ceil((((d - y) / 86400000) + 1) / 7);
   })();
 
-  document.getElementById('wm-title').textContent =
-    `Semana ${weekNum} — ${mon.getDate()} ${MONTHS[mon.getMonth()]} ${mon.getFullYear()}`;
+  const filterBadge = activeFilter ? `<span class="filter-badge">🔍 ${esc(activeFilter)}</span>` : '';
+  document.getElementById('wm-title').innerHTML =
+    `Semana ${weekNum} — ${mon.getDate()} ${MONTHS[mon.getMonth()]} ${mon.getFullYear()}${filterBadge}`;
 
   const body = document.getElementById('wm-body');
   body.innerHTML = '';
@@ -1622,7 +1907,7 @@ function renderWeekListView(body, mon) {
         const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
         const color = COLORS[ti % COLORS.length];
         const row = document.createElement('div');
-        row.className = 'week-task-row';
+        row.className = 'week-task-row' + (taskMatchesFilter(t) ? ' task-filtered' : '');
         row.style.borderLeft = `3px solid ${color}`;
         row.style.background = color + '0f';
         row.innerHTML = `
@@ -1740,7 +2025,7 @@ function renderWeekGridView(body, mon) {
       const height = Math.max((durationMins / 60) * HOUR_H, 24);
 
       const ev = document.createElement('div');
-      ev.className = 'wg-event';
+      ev.className = 'wg-event' + (taskMatchesFilter(t) ? ' task-filtered' : '');
       ev.style.cssText = `top:${top}px;height:${height}px;background:${color}18;border-color:${color};color:var(--text)`;
       ev.innerHTML = `
         <div class="wg-event-time" style="color:${color}">${t.desde||''}${t.hasta?'–'+t.hasta:''}</div>
@@ -1827,7 +2112,7 @@ function renderDayModal() {
   // Header
   document.getElementById('dm-daynum').textContent = d;
   document.getElementById('dm-dayname').textContent = DAY_NAMES[dt.getDay()];
-  document.getElementById('dm-monthyear').textContent = `${MONTHS[m]} ${y}`;
+  document.getElementById('dm-monthyear').innerHTML = `${MONTHS[m]} ${y}${activeFilter ? `<span class="filter-badge">🔍 ${esc(activeFilter)}</span>` : ''}`;
 
   // Edit btn state
   const editBtn = document.getElementById('dm-edit-btn');
@@ -1899,6 +2184,7 @@ function renderDayTasks() {
 
     const tr = document.createElement('tr');
     if (isEditing) tr.classList.add('editing-row');
+    if (taskMatchesFilter(task)) tr.classList.add('task-filtered');
     tr.style.background = color + '12'; // very subtle tint
 
     tr.innerHTML = `
@@ -2059,10 +2345,3 @@ document.addEventListener('keydown', e => {
       document.head.appendChild(s);
     });
   }
-
-  window.addEventListener('load', async () => {
-    await loadScript('./pizzip.js');
-    await loadScript('./docxtemplater.js');
-    console.log('PizZip:', typeof PizZip);
-    console.log('Docxtemplater:', typeof Docxtemplater);
-  });
