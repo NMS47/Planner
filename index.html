@@ -244,6 +244,7 @@
       <div class="day-card-body" id="dm-tasks"></div>
       <!-- Edit form (hidden in read mode) -->
       <div class="day-card-form" id="dm-form" style="display:none">
+        <div class="quick-chips" id="quick-chips"></div>
         <input class="task-form-input task-form-name" id="tf-name" placeholder="Nombre de la tarea" />
         <div class="task-form-row">
           <div class="task-form-time-wrap">
@@ -254,7 +255,6 @@
             <span class="task-form-time-label">Hasta</span>
             <input class="task-form-input" id="tf-hasta" placeholder="0830" maxlength="4" />
           </div>
-          <button class="task-form-add" onclick="addDayTask()" style="align-self:flex-end">+ Agregar</button>
         </div>
         <textarea class="task-form-input task-form-desc" id="tf-desc" placeholder="Descripción (opcional)"></textarea>
         <div class="task-form-row" style="grid-template-columns:1fr 1fr">
@@ -267,6 +267,7 @@
             <input class="task-form-input" id="tf-apoyos" placeholder="Ej: María, Pedro" />
           </div>
         </div>
+        <button class="task-form-add" onclick="addDayTask()">+ Agregar</button>
       </div>
     </div>
 

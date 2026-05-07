@@ -14,6 +14,22 @@ let materias = [...DEFAULT_MATERIAS];
 let activeFilter = null; // null or materia string
 let _dashCollapsed = false;
 
+// Fixed color per materia — used in day/week views when a task matches a materia
+const MATERIA_COLORS = {
+  'AYN':    '#47c8ff',  // celeste
+  'AFM':    '#ffdd00',  // amarillo
+  'CA':     '#4cd080',  // verde
+  'FIBU':   '#b06cf0',  // violeta
+  'BTP':    '#2255cc',  // azul francia
+  'CH':     '#ff6b00',  // naranja fuerte
+  'FIPA':   '#d4a8ff',  // lila claro
+  'GMA':    '#b8d400',  // amarillo verdoso
+  'DEMOL':  '#999999',  // gris
+  'NSF':    '#26c6a6',  // azul verdoso
+  'PLANTO': '#8d5e3f',  // marrón
+  'MEB':    '#c09070',  // marrón claro
+};
+
 // Alternative names/aliases for each materia key (uppercase, accent-stripped)
 const MATERIA_ALIASES = {
   'AYN':    ['AYN','ACUATIZACION','NATACION','ACUATIZACION Y NATACION'],
@@ -31,6 +47,34 @@ const MATERIA_ALIASES = {
 };
 
 let _pastMonthsHidden = true;
+
+// ── MATERIA RESPONSABLES (auto-fill) ──────────────────────────────────────────
+let materiaResponsables = {}; // { 'AYN': 'Juan', ... }
+
+function loadMateriaResponsables() {
+  try {
+    const s = localStorage.getItem('planboard_materia_responsables');
+    if (s) materiaResponsables = JSON.parse(s);
+  } catch(e) {}
+}
+
+function saveMateriaResponsable(materia, responsable) {
+  if (!responsable) return;
+  materiaResponsables[materia] = responsable;
+  try { localStorage.setItem('planboard_materia_responsables', JSON.stringify(materiaResponsables)); } catch(e) {}
+}
+
+function getMateriaForTaskName(name) {
+  if (!name) return null;
+  const norm = _normStr(name);
+  for (const mat of Object.keys(MATERIA_ALIASES)) {
+    const aliases = MATERIA_ALIASES[mat].map(_normStr);
+    if (aliases.some(a => norm === a || norm.startsWith(a+' ') || norm.startsWith(a+'-') || norm.startsWith(a+':'))) {
+      return mat;
+    }
+  }
+  return null;
+}
 
 function isMonthPast(year, month) {
   const lastDay = new Date(year, month + 1, 0); lastDay.setHours(0,0,0,0);
@@ -486,6 +530,18 @@ function generateTones(hex, n) {
     tones.push(hslToRgb(hShift, newS, newL));
   }
   return tones;
+}
+
+function getTaskColor(task, fallback) {
+  if (!task || !task.name) return fallback;
+  const name = _normStr(task.name);
+  for (const [mat, color] of Object.entries(MATERIA_COLORS)) {
+    const aliases = (MATERIA_ALIASES[mat] || [mat]).map(_normStr);
+    if (aliases.some(a => name === a || name.startsWith(a+' ') || name.startsWith(a+'-') || name.startsWith(a+':'))) {
+      return color;
+    }
+  }
+  return fallback;
 }
 
 // ── UTILS ─────────────────────────────────────────────────────────────────────
@@ -1805,6 +1861,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('readonly');
   if (typeof sidebarOpen !== 'undefined' && sidebarOpen) toggleSidebar();
   loadMaterias();
+  loadMateriaResponsables();
+  renderQuickChips();
+
+  // Auto-fill responsable when task name matches a known materia
+  document.getElementById('tf-name').addEventListener('input', () => {
+    if (editingTaskId !== null) return;
+    const mat = getMateriaForTaskName(document.getElementById('tf-name').value.trim());
+    const respField = document.getElementById('tf-responsable');
+    if (mat && materiaResponsables[mat] && !respField.value.trim()) {
+      respField.value = materiaResponsables[mat];
+    }
+  });
 });
 
 
@@ -1905,7 +1973,7 @@ function renderWeekListView(body, mon) {
     } else {
       tasks.forEach((t, ti) => {
         const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
-        const color = COLORS[ti % COLORS.length];
+        const color = getTaskColor(t, COLORS[ti % COLORS.length]);
         const row = document.createElement('div');
         row.className = 'week-task-row' + (taskMatchesFilter(t) ? ' task-filtered' : '');
         row.style.borderLeft = `3px solid ${color}`;
@@ -2016,7 +2084,7 @@ function renderWeekGridView(body, mon) {
 
     // Events
     tasks.forEach((t, ti) => {
-      const color = COLORS[ti % COLORS.length];
+      const color = getTaskColor(t, COLORS[ti % COLORS.length]);
       const desde = militaryToMinutes(t.desde || '0000') ?? 0;
       const hasta = t.hasta ? (militaryToMinutes(t.hasta) ?? desde + 60) : desde + 60;
       const durationMins = Math.max(hasta - desde, 30); // min 30 min height
@@ -2053,6 +2121,43 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  shiftWeek(-1);
   if (e.key === 'ArrowRight') shiftWeek(1);
 });
+
+// ── QUICK TASKS ───────────────────────────────────────────────────────────────
+const QUICK_TASKS = [
+  { label: 'Descanso',  name: 'Descanso',  desde: '',     hasta: ''     },
+  { label: 'Almuerzo',  name: 'Almuerzo',  desde: '1200', hasta: '1300' },
+  { label: 'Cena',      name: 'Cena',      desde: '1900', hasta: '2100' },
+];
+
+function renderQuickChips() {
+  const container = document.getElementById('quick-chips');
+  if (!container) return;
+  container.innerHTML = '';
+  QUICK_TASKS.forEach(qt => {
+    const btn = document.createElement('button');
+    btn.className = 'quick-chip';
+    btn.textContent = '+ ' + qt.label;
+    btn.type = 'button';
+    btn.onclick = () => addQuickTask(qt);
+    container.appendChild(btn);
+  });
+}
+
+function addQuickTask(preset) {
+  if (!dayModal.open) return;
+  const k = dateKey(dayModal.y, dayModal.m, dayModal.d);
+  if (!dayTasks[k]) dayTasks[k] = [];
+  let duration = '';
+  if (preset.desde && preset.hasta) {
+    const mins = militaryToMinutes(preset.hasta) - militaryToMinutes(preset.desde);
+    duration = minutesToDuration(mins) || '';
+  }
+  dayTasks[k].push({ id: ++idCounter, name: preset.name, desde: preset.desde,
+    hasta: preset.hasta, duration, desc: '', responsable: '', apoyos: '' });
+  persist();
+  renderDayTasks();
+  showToast('✓ ' + preset.name + ' agregado');
+}
 
 // ── DAY MODAL ─────────────────────────────────────────────────────────────────
 const DAY_NAMES = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
@@ -2176,7 +2281,7 @@ function renderDayTasks() {
   const tbody = document.getElementById('day-table-body');
 
   sorted.forEach((task, i) => {
-    const color = COLORS[i % COLORS.length];
+    const color = getTaskColor(task, COLORS[i % COLORS.length]);
     const isEditing = editingTaskId === task.id;
     const horaStr = task.desde
       ? (task.hasta ? `${task.desde}–${task.hasta}` : task.desde)
@@ -2292,6 +2397,10 @@ function addDayTask() {
   } else {
     dayTasks[k].push({ id: ++idCounter, name, desde, hasta, duration, desc, responsable, apoyos });
   }
+
+  // Remember the responsable for this materia
+  const _mat = getMateriaForTaskName(name);
+  if (_mat && responsable) saveMateriaResponsable(_mat, responsable);
 
   ['tf-name','tf-desde','tf-hasta','tf-desc','tf-responsable','tf-apoyos'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('tf-name').focus();
