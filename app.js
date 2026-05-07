@@ -2128,21 +2128,21 @@ const QUICK_TASKS = [
   {
     label: 'DDD',
     tasks: [
-      { name: 'Descanso',  desde: '',     hasta: '',     responsable: 'Diana', apoyos: '' },
-      { name: 'Diana',     desde: '0600', hasta: '0630', responsable: 'Diana', apoyos: '' },
-      { name: 'Desayuno',  desde: '0630', hasta: '0700', responsable: 'SS',    apoyos: '' },
+      { name: 'Descanso',  desde: '0000', hasta: '0600', responsable: 'SS', apoyos: '' },
+      { name: 'Diana',     desde: '0600', hasta: '0630', responsable: 'SS', apoyos: '' },
+      { name: 'Desayuno',  desde: '0630', hasta: '0700', responsable: 'SS', apoyos: '' },
     ]
   },
   {
     label: 'Almuerzo',
     tasks: [
-      { name: 'Almuerzo',  desde: '1200', hasta: '1300', responsable: 'SS', apoyos: '' },
+      { name: 'Almuerzo',  desde: '1300', hasta: '1400', responsable: 'SS', apoyos: '' },
     ]
   },
   {
     label: 'Cena',
     tasks: [
-      { name: 'Cena',      desde: '1900', hasta: '2100', responsable: 'SS', apoyos: '' },
+      { name: 'Cena', desde: '2000', hasta: '2100', responsable: 'SS', apoyos: '' },
     ]
   },
 ];

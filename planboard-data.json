@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 388,
+  "idCounter": 398,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -3152,7 +3152,7 @@
         "hasta": "1300",
         "duration": "6h",
         "desc": "",
-        "responsable": "SS",
+        "responsable": "Enc Curso",
         "apoyos": ""
       },
       {
@@ -3173,16 +3173,16 @@
         "duration": "4h",
         "desc": "Sembrado y Recoleccion, Nudos",
         "responsable": "Zapana",
-        "apoyos": "Fernandez, Romero, Salva, Fleitas, Taborda"
+        "apoyos": "Fernandez, Romero, Salva, Vergara, 4 601"
       },
       {
         "id": 348,
-        "name": "Demolisiones",
+        "name": "Mantenimiento",
         "desde": "1800",
         "hasta": "2000",
         "duration": "2h",
         "desc": "",
-        "responsable": "TP MUÑOZ",
+        "responsable": "SI BIAGGINI",
         "apoyos": ""
       },
       {
@@ -3245,7 +3245,7 @@
         "duration": "6h",
         "desc": "Cuba chica",
         "responsable": "SA DEMO",
-        "apoyos": "2 buzos"
+        "apoyos": "2 buzos 601"
       },
       {
         "id": 355,
@@ -3465,7 +3465,7 @@
         "duration": "6h",
         "desc": "Visor Ciego, Rompecabezas",
         "responsable": "SG FERNANDEZ",
-        "apoyos": "CB ROMERO, CI VILLAFAN"
+        "apoyos": "CB ROMERO, CI VILLAFAN, 3 Bzo"
       },
       {
         "id": 377,
@@ -3485,7 +3485,7 @@
         "duration": "4h",
         "desc": "Pista de Destrezas",
         "responsable": "SG FERNANDEZ",
-        "apoyos": ""
+        "apoyos": "CB ROMERO, 4 Bzo"
       },
       {
         "id": 379,
@@ -3537,7 +3537,7 @@
         "duration": "6h",
         "desc": "Buceo recorrido lineal en el rio",
         "responsable": "SG FERNANDEZ",
-        "apoyos": ""
+        "apoyos": "6 buzos apy, 1 op 1 aux"
       },
       {
         "id": 384,
@@ -3586,6 +3586,98 @@
         "hasta": "2359",
         "duration": "2h 59m",
         "desc": "Preparacion para examen",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-13": [
+      {
+        "id": 389,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "Diana",
+        "apoyos": ""
+      },
+      {
+        "id": 390,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "Diana",
+        "apoyos": ""
+      },
+      {
+        "id": 391,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 392,
+        "name": "PAFB",
+        "desde": "0700",
+        "hasta": "1100",
+        "duration": "4h",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 393,
+        "name": "Recuperacion",
+        "desde": "1100",
+        "hasta": "1300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 394,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 395,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "1700",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 397,
+        "name": "Examen Intelectual",
+        "desde": "1700",
+        "hasta": "2000",
+        "duration": "3h",
+        "desc": "Fisica de Buceo, Fisiopatologia, camara hiperbarica, navegacion y seguridad fluvial, combate anfibio, geogramia militar aplicada.",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 398,
+        "name": "Cena",
+        "desde": "1900",
+        "hasta": "2100",
+        "duration": "2h",
+        "desc": "",
         "responsable": "SS",
         "apoyos": ""
       }
