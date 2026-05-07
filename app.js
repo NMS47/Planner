@@ -2123,10 +2123,28 @@ document.addEventListener('keydown', e => {
 });
 
 // ── QUICK TASKS ───────────────────────────────────────────────────────────────
+// Each entry is a button that inserts one or more tasks at once.
 const QUICK_TASKS = [
-  { label: 'Descanso',  name: 'Descanso',  desde: '',     hasta: ''     },
-  { label: 'Almuerzo',  name: 'Almuerzo',  desde: '1200', hasta: '1300' },
-  { label: 'Cena',      name: 'Cena',      desde: '1900', hasta: '2100' },
+  {
+    label: 'DDD',
+    tasks: [
+      { name: 'Descanso',  desde: '',     hasta: '',     responsable: 'Diana', apoyos: '' },
+      { name: 'Diana',     desde: '0600', hasta: '0630', responsable: 'Diana', apoyos: '' },
+      { name: 'Desayuno',  desde: '0630', hasta: '0700', responsable: 'SS',    apoyos: '' },
+    ]
+  },
+  {
+    label: 'Almuerzo',
+    tasks: [
+      { name: 'Almuerzo',  desde: '1200', hasta: '1300', responsable: 'SS', apoyos: '' },
+    ]
+  },
+  {
+    label: 'Cena',
+    tasks: [
+      { name: 'Cena',      desde: '1900', hasta: '2100', responsable: 'SS', apoyos: '' },
+    ]
+  },
 ];
 
 function renderQuickChips() {
@@ -2147,16 +2165,19 @@ function addQuickTask(preset) {
   if (!dayModal.open) return;
   const k = dateKey(dayModal.y, dayModal.m, dayModal.d);
   if (!dayTasks[k]) dayTasks[k] = [];
-  let duration = '';
-  if (preset.desde && preset.hasta) {
-    const mins = militaryToMinutes(preset.hasta) - militaryToMinutes(preset.desde);
-    duration = minutesToDuration(mins) || '';
-  }
-  dayTasks[k].push({ id: ++idCounter, name: preset.name, desde: preset.desde,
-    hasta: preset.hasta, duration, desc: '', responsable: '', apoyos: '' });
+  preset.tasks.forEach(t => {
+    let duration = '';
+    if (t.desde && t.hasta) {
+      const mins = militaryToMinutes(t.hasta) - militaryToMinutes(t.desde);
+      duration = minutesToDuration(mins) || '';
+    }
+    dayTasks[k].push({ id: ++idCounter, name: t.name, desde: t.desde,
+      hasta: t.hasta, duration, desc: '', responsable: t.responsable, apoyos: t.apoyos || '' });
+  });
   persist();
   renderDayTasks();
-  showToast('✓ ' + preset.name + ' agregado');
+  const count = preset.tasks.length;
+  showToast('✓ ' + preset.label + (count > 1 ? ' (' + count + ' actividades)' : '') + ' agregado');
 }
 
 // ── DAY MODAL ─────────────────────────────────────────────────────────────────

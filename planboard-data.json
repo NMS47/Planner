@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 381,
+  "idCounter": 388,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -3515,6 +3515,78 @@
         "duration": "2h 59m",
         "desc": "Planeamiento de Buceo",
         "responsable": "CT SALVADORES",
+        "apoyos": ""
+      }
+    ],
+    "2026-05-12": [
+      {
+        "id": 382,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 383,
+        "name": "BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Buceo recorrido lineal en el rio",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 384,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 385,
+        "name": "Fisiopatologia",
+        "desde": "1400",
+        "hasta": "1600",
+        "duration": "2h",
+        "desc": "Tablas de descompresion",
+        "responsable": "TT CRUZ",
+        "apoyos": ""
+      },
+      {
+        "id": 386,
+        "name": "Preparacion",
+        "desde": "1600",
+        "hasta": "2000",
+        "duration": "4h",
+        "desc": "Estudio y preparacion para examenes finales",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 387,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 388,
+        "name": "Preparacion",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Preparacion para examen",
+        "responsable": "SS",
         "apoyos": ""
       }
     ]
