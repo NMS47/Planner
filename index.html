@@ -181,15 +181,20 @@
         <button id="past-months-btn" onclick="togglePastMonths()"></button>
       </div>
       <div class="months-grid" id="months-grid"></div>
-      <div class="legend" id="legend" style="display:none">
-        <span class="legend-title">Proyectos:</span>
-        <div id="legend-items" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"></div>
-      </div>
-      <div class="instructions">
-        <span>🖱 Arrastrá una tarjeta sobre el día de inicio</span>
-        <span>✏️ Click y arrastrá días vacíos para crear una tarjeta</span>
-        <span>👆 Hover para ver las fases del proyecto</span>
-        <span>🗑 Quitá un proyecto desde la leyenda ✕</span>
+      <div class="ref-wrap" id="ref-wrap">
+        <button class="ref-toggle" onclick="this.parentElement.classList.toggle('open')">Referencias <span class="ref-arrow">▾</span></button>
+        <div class="ref-body">
+          <div class="legend" id="legend" style="display:none">
+            <span class="legend-title">Proyectos:</span>
+            <div id="legend-items" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"></div>
+          </div>
+          <div class="instructions">
+            <span>🖱 Arrastrá una tarjeta sobre el día de inicio</span>
+            <span>✏️ Click y arrastrá días vacíos para crear una tarjeta</span>
+            <span>👆 Hover para ver las fases del proyecto</span>
+            <span>🗑 Quitá un proyecto desde la leyenda ✕</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -241,6 +246,7 @@
         </div>
       </div>
       <div class="day-card-projects" id="dm-projects"></div>
+      <div class="day-stats-bar" id="dm-stats" style="display:none"></div>
       <div class="day-card-body" id="dm-tasks"></div>
       <!-- Edit form (hidden in read mode) -->
       <div class="day-card-form" id="dm-form" style="display:none">

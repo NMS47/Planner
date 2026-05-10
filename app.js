@@ -28,6 +28,7 @@ const MATERIA_COLORS = {
   'NSF':    '#26c6a6',  // azul verdoso
   'PLANTO': '#8d5e3f',  // marrón
   'MEB':    '#c09070',  // marrón claro
+  'RUTINA': '#ff8fa3',  // rosa — diana/desayuno/almuerzo/cena/descanso
 };
 
 // Alternative names/aliases for each materia key (uppercase, accent-stripped)
@@ -43,7 +44,8 @@ const MATERIA_ALIASES = {
   'DEMOL':  ['DEMOL','DEMOLICION','DEMOLICIONES'],
   'NSF':    ['NSF', 'NAVEGACION Y SEGURIDAD FLUVIAL', 'NAVEGACION'],
   'PLANTO': ['PLANTO','PLANEAMIENTO'],
-  'MEB':    ['MEB','MATERIAL Y EQUIPO DE BUCEO','MATERIAL DE BUCEO']
+  'MEB':    ['MEB','MATERIAL Y EQUIPO DE BUCEO','MATERIAL DE BUCEO'],
+  'RUTINA': ['DIANA','DESAYUNO','ALMUERZO','CENA','DESCANSO']
 };
 
 let _pastMonthsHidden = true;
@@ -1227,6 +1229,7 @@ function renderLegend(){
   items.innerHTML='';
   if(!placements.length){leg.style.display='none';return;}
   leg.style.display='flex';
+  const refWrap=document.getElementById('ref-wrap'); if(refWrap) refWrap.classList.add('open');
   const seen=new Set();
   placements.forEach(p=>{
     if(seen.has(p.cardId))return; seen.add(p.cardId);
@@ -2227,6 +2230,7 @@ function toggleDayEditMode() {
   btn.textContent = dayModal.editMode ? '👁 Solo lectura' : '✎ Editar';
   btn.classList.toggle('active', dayModal.editMode);
   document.getElementById('dm-form').style.display = dayModal.editMode ? 'flex' : 'none';
+  document.getElementById('day-card-main').classList.toggle('edit-expanded', dayModal.editMode);
   if (dayModal.editMode) document.getElementById('tf-name').focus();
   renderDayTasks();
 }
@@ -2268,6 +2272,43 @@ function renderDayModal() {
   renderSideCards();
 }
 
+function renderDayStats(tasks) {
+  const el = document.getElementById('dm-stats');
+  if (!el) return;
+  if (!tasks.length) { el.style.display = 'none'; return; }
+
+  let totalMins = 0;
+  const sorted = [...tasks].sort((a,b) => (a.desde||'9999').localeCompare(b.desde||'9999'));
+  tasks.forEach(t => {
+    if (t.desde && t.hasta) {
+      const s = militaryToMinutes(t.desde), e = militaryToMinutes(t.hasta);
+      if (s !== null && e !== null && e > s) totalMins += e - s;
+    }
+  });
+
+  const now = new Date();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+  const todayDate = new Date(); todayDate.setHours(0,0,0,0);
+  const isToday = new Date(dayModal.y, dayModal.m, dayModal.d).getTime() === todayDate.getTime();
+  let nextLabel = '—';
+  if (sorted.length && sorted[0].desde) {
+    if (isToday) {
+      const next = sorted.find(t => t.desde && militaryToMinutes(t.desde) >= nowMins);
+      if (next) nextLabel = next.desde.slice(0,2) + ':' + next.desde.slice(2,4);
+      else nextLabel = 'Fin del día';
+    } else {
+      nextLabel = sorted[0].desde.slice(0,2) + ':' + sorted[0].desde.slice(2,4);
+    }
+  }
+
+  const durLabel = minutesToDuration(totalMins) || '—';
+  el.style.display = '';
+  el.innerHTML = `
+    <div class="day-stat"><div class="day-stat-label">Actividades</div><div class="day-stat-value">${tasks.length}</div></div>
+    <div class="day-stat"><div class="day-stat-label">Total</div><div class="day-stat-value accent">${durLabel}</div></div>
+    <div class="day-stat"><div class="day-stat-label">${isToday ? 'Próxima' : 'Primera'}</div><div class="day-stat-value">${nextLabel}</div></div>`;
+}
+
 function renderDayTasks() {
   const {y, m, d, editMode} = dayModal;
   const k = dateKey(y, m, d);
@@ -2275,13 +2316,15 @@ function renderDayTasks() {
   const container = document.getElementById('dm-tasks');
   container.innerHTML = '';
 
+  renderDayStats(tasks);
+
   if (!tasks.length) {
     container.innerHTML = `<div class="day-empty">${editMode ? 'Agregá la primera tarea del día 👆' : 'Sin tareas para este día'}</div>`;
     return;
   }
 
   const sorted = [...tasks].sort((a,b) => (a.desde||'0000').localeCompare(b.desde||'0000'));
-  const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
+  const COLORS = ['#d4e85a','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
 
   const table = document.createElement('table');
   table.className = 'day-table';
@@ -2290,6 +2333,7 @@ function renderDayTasks() {
     <thead>
       <tr>
         <th class="col-hora">Hora</th>
+        <th class="col-materia">Mat.</th>
         <th class="col-actividad">Actividad</th>
         <th class="col-resp">Responsable</th>
         <th class="col-apoyos">Apoyos</th>
@@ -2303,6 +2347,7 @@ function renderDayTasks() {
 
   sorted.forEach((task, i) => {
     const color = getTaskColor(task, COLORS[i % COLORS.length]);
+    const mat = getMateriaForTaskName(task.name);
     const isEditing = editingTaskId === task.id;
     const horaStr = task.desde
       ? (task.hasta ? `${task.desde}–${task.hasta}` : task.desde)
@@ -2311,13 +2356,14 @@ function renderDayTasks() {
     const tr = document.createElement('tr');
     if (isEditing) tr.classList.add('editing-row');
     if (taskMatchesFilter(task)) tr.classList.add('task-filtered');
-    tr.style.background = color + '12'; // very subtle tint
+    tr.style.background = color + '10';
+    tr.style.setProperty('--row-color', color);
 
     tr.innerHTML = `
-      <td class="col-hora">
-        <span style="display:inline-block;width:3px;height:100%;min-height:32px;background:${color};border-radius:2px;margin-right:7px;vertical-align:middle"></span>${horaStr}
-        ${task.duration ? `<div style="font-size:9px;color:var(--muted);margin-top:2px;padding-left:10px">⏱ ${esc(task.duration)}</div>` : ''}
+      <td class="col-hora">${horaStr}
+        ${task.duration ? `<div style="font-size:9px;color:var(--muted);margin-top:2px">⏱ ${esc(task.duration)}</div>` : ''}
       </td>
+      <td class="col-materia">${mat ? `<span class="mat-badge" style="color:${color};background:${color}20">${mat}</span>` : '—'}</td>
       <td>
         <div class="dt-name">${esc(task.name)}</div>
         ${task.desc ? `<div class="dt-desc">${esc(task.desc)}</div>` : ''}
