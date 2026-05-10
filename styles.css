@@ -77,6 +77,8 @@ header {
 }
 .hm-item:hover { background:var(--surface2); color:var(--accent); }
 .hm-gcal:hover { color:#4ade80; }
+.hm-gh-save { color:#4ade80; }
+.hm-gh-save:hover { background:rgba(74,222,128,.08); color:#4ade80; }
 
 /* ── CARD CATEGORIES ────────────────────────────────────────────────── */
 .card-group { display:flex; flex-direction:column; }

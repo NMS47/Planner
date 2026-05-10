@@ -45,8 +45,21 @@ const MATERIA_ALIASES = {
   'NSF':    ['NSF', 'NAVEGACION Y SEGURIDAD FLUVIAL', 'NAVEGACION'],
   'PLANTO': ['PLANTO','PLANEAMIENTO'],
   'MEB':    ['MEB','MATERIAL Y EQUIPO DE BUCEO','MATERIAL DE BUCEO'],
-  'RUTINA': ['DIANA','DESAYUNO','ALMUERZO','CENA','DESCANSO']
+  'RUTINA': ['DIANA','DESAYUNO','ALMUERZO','CENA','DESCANSO', 'FRANCO']
 };
+
+const LOGISTIC_TASK_NAMES = ['DIANA','DESAYUNO','ALMUERZO','CENA','DESCANSO','MANTENIMIENTO', 'FRANCO'];
+function isLogisticTask(task) {
+  const norm = _normStr(task.name || '');
+  return LOGISTIC_TASK_NAMES.some(n => norm === n || norm.startsWith(n+' ') || norm.startsWith(n+'-') || norm.startsWith(n+':'));
+}
+function countTaskPersonal(task) {
+  let n = 0;
+  if ((task.responsable || '').trim()) n++;
+  const ap = (task.apoyos || '').trim();
+  if (ap) n += ap.split(/[,;·\/]+/).map(s => s.trim()).filter(Boolean).length;
+  return n;
+}
 
 let _pastMonthsHidden = true;
 
@@ -1612,6 +1625,58 @@ function exportICS() {
 // Edit this URL to point to your raw JSON file on GitHub.
 // Example: https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/planboard-data.json
 const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/nms47/Planner/main/planboard-data.json';
+const GITHUB_API_URL  = 'https://api.github.com/repos/nms47/Planner/contents/planboard-data.json';
+const GITHUB_BRANCH   = 'main';
+
+function getGithubToken() {
+  return localStorage.getItem('planboard_gh_token') || '';
+}
+
+async function saveToGithub() {
+  let token = getGithubToken();
+  if (!token) {
+    token = (prompt('GitHub Personal Access Token (scope: Contents → write):') || '').trim();
+    if (!token) return;
+    localStorage.setItem('planboard_gh_token', token);
+  }
+
+  setSyncStatus('loading');
+  try {
+    const getResp = await fetch(GITHUB_API_URL, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    const sha = getResp.ok ? (await getResp.json()).sha : null;
+
+    const json    = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
+    const content = btoa(unescape(encodeURIComponent(json)));
+
+    const body = { message: 'planboard: auto-save', content, branch: GITHUB_BRANCH };
+    if (sha) body.sha = sha;
+
+    const putResp = await fetch(GITHUB_API_URL, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!putResp.ok) {
+      const err = await putResp.json().catch(() => ({}));
+      if (putResp.status === 401) localStorage.removeItem('planboard_gh_token');
+      throw new Error(err.message || 'HTTP ' + putResp.status);
+    }
+
+    setSyncStatus('github');
+    showToast('✓ Guardado en GitHub');
+  } catch(e) {
+    setSyncStatus('error', 'Error al guardar');
+    showToast('✗ ' + e.message);
+    console.error('GitHub save error:', e);
+  }
+}
 
 // ── Status badge ──────────────────────────────────────────────────────────────
 function setSyncStatus(status, detail) {
@@ -2275,11 +2340,12 @@ function renderDayModal() {
 function renderDayStats(tasks) {
   const el = document.getElementById('dm-stats');
   if (!el) return;
-  if (!tasks.length) { el.style.display = 'none'; return; }
+  const filtered = tasks.filter(t => !isLogisticTask(t));
+  if (!filtered.length) { el.style.display = 'none'; return; }
 
   let totalMins = 0;
-  const sorted = [...tasks].sort((a,b) => (a.desde||'9999').localeCompare(b.desde||'9999'));
-  tasks.forEach(t => {
+  const sorted = [...filtered].sort((a,b) => (a.desde||'9999').localeCompare(b.desde||'9999'));
+  filtered.forEach(t => {
     if (t.desde && t.hasta) {
       const s = militaryToMinutes(t.desde), e = militaryToMinutes(t.hasta);
       if (s !== null && e !== null && e > s) totalMins += e - s;
@@ -2302,11 +2368,21 @@ function renderDayStats(tasks) {
   }
 
   const durLabel = minutesToDuration(totalMins) || '—';
+
+  const people = new Set();
+  filtered.forEach(t => {
+    if ((t.responsable || '').trim()) people.add(t.responsable.trim());
+    const ap = (t.apoyos || '').trim();
+    if (ap) ap.split(/[,;·\/]+/).forEach(s => { const p = s.trim(); if (p) people.add(p); });
+  });
+  const cantPersonal = people.size || '—';
+
   el.style.display = '';
   el.innerHTML = `
-    <div class="day-stat"><div class="day-stat-label">Actividades</div><div class="day-stat-value">${tasks.length}</div></div>
+    <div class="day-stat"><div class="day-stat-label">Actividades</div><div class="day-stat-value">${filtered.length}</div></div>
     <div class="day-stat"><div class="day-stat-label">Total</div><div class="day-stat-value accent">${durLabel}</div></div>
-    <div class="day-stat"><div class="day-stat-label">${isToday ? 'Próxima' : 'Primera'}</div><div class="day-stat-value">${nextLabel}</div></div>`;
+    <div class="day-stat"><div class="day-stat-label">${isToday ? 'Próxima' : 'Primera'}</div><div class="day-stat-value">${nextLabel}</div></div>
+    <div class="day-stat"><div class="day-stat-label">Cant. Personal</div><div class="day-stat-value">${cantPersonal}</div></div>`;
 }
 
 function renderDayTasks() {
