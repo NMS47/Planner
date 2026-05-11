@@ -3732,16 +3732,6 @@
         "apoyos": ""
       },
       {
-        "id": 395,
-        "name": "BTP",
-        "desde": "1400",
-        "hasta": "1700",
-        "duration": "3h",
-        "desc": "",
-        "responsable": "SG FERNANDEZ",
-        "apoyos": ""
-      },
-      {
         "id": 397,
         "name": "Examen Intelectual",
         "desde": "0800",
