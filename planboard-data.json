@@ -518,7 +518,7 @@
       "endD": 18
     }
   ],
-  "idCounter": 484,
+  "idCounter": 485,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -4003,13 +4003,13 @@
       },
       {
         "id": 392,
-        "name": "PAFB",
+        "name": "AFM",
         "desde": "1130",
         "hasta": "1300",
         "duration": "1h 30m",
-        "desc": "",
+        "desc": "PAFB",
         "responsable": "SA DEMO",
-        "apoyos": ""
+        "apoyos": "2 aux"
       },
       {
         "id": 394,
@@ -4039,7 +4039,7 @@
         "duration": "3h 30m",
         "desc": "",
         "responsable": "SA DEMO",
-        "apoyos": ""
+        "apoyos": "4 botes y 2 instructores"
       },
       {
         "id": 400,
@@ -4048,17 +4048,17 @@
         "hasta": "2000",
         "duration": "1h",
         "desc": "",
-        "responsable": "SA CASTILLO",
-        "apoyos": ""
+        "responsable": "CT SALVADORES",
+        "apoyos": "8 de la 601"
       },
       {
         "id": 401,
-        "name": "Natacion de Conbate",
+        "name": "Natacion de Combate",
         "desde": "2100",
         "hasta": "2300",
         "duration": "2h",
         "desc": "Cruce del Rio",
-        "responsable": "SA DEMO",
+        "responsable": "Of 601",
         "apoyos": ""
       },
       {
@@ -4068,8 +4068,8 @@
         "hasta": "0400",
         "duration": "",
         "desc": "Pista de Combate",
-        "responsable": "Of Ca Bzo 601",
-        "apoyos": ""
+        "responsable": "SI SORIA",
+        "apoyos": "8 ca buzo"
       }
     ],
     "2026-05-14": [
@@ -4087,8 +4087,8 @@
         "id": 405,
         "name": "Acuatizacion y Natacion",
         "desde": "0400",
-        "hasta": "0600",
-        "duration": "2h",
+        "hasta": "0500",
+        "duration": "1h",
         "desc": "Natacion y Flotacion en Pileta",
         "responsable": "SA DEMO",
         "apoyos": ""
@@ -4096,8 +4096,8 @@
       {
         "id": 406,
         "name": "Pasaje de Etapa",
-        "desde": "0700",
-        "hasta": "0800",
+        "desde": "0600",
+        "hasta": "0700",
         "duration": "1h",
         "desc": "Bajada de ACL",
         "responsable": "J Cur",
@@ -4106,9 +4106,9 @@
       {
         "id": 407,
         "name": "Matenimiento",
-        "desde": "0800",
-        "hasta": "1300",
-        "duration": "5h",
+        "desde": "0700",
+        "hasta": "0900",
+        "duration": "2h",
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
@@ -4161,6 +4161,16 @@
         "duration": "1h 29m",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 485,
+        "name": "Logistica",
+        "desde": "0900",
+        "hasta": "1300",
+        "duration": "4h",
+        "desc": "",
+        "responsable": "Dutten",
         "apoyos": ""
       }
     ],
