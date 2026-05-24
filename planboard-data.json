@@ -183,15 +183,6 @@
       "category": "Inmersion/Habilitacion"
     },
     {
-      "id": 189,
-      "name": "2da Inmersion/ Hab Compl",
-      "days": 2,
-      "baseColor": "#ffd147",
-      "phases": [],
-      "hidden": false,
-      "category": "Inmersion/Habilitacion"
-    },
-    {
       "id": 191,
       "name": "3 Inmersion",
       "days": 2,
@@ -264,18 +255,6 @@
       "endY": 2026,
       "endM": 5,
       "endD": 10
-    },
-    {
-      "id": 27,
-      "cardId": 26,
-      "name": "Cordoba",
-      "days": 14,
-      "startY": 2026,
-      "startM": 5,
-      "startD": 22,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 5
     },
     {
       "id": 29,
@@ -458,18 +437,6 @@
       "endD": 11
     },
     {
-      "id": 190,
-      "cardId": 189,
-      "name": "2da Inmersion/ Hab Compl",
-      "days": 2,
-      "startY": 2026,
-      "startM": 6,
-      "startD": 8,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 9
-    },
-    {
       "id": 192,
       "cardId": 191,
       "name": "3 Inmersion",
@@ -516,9 +483,21 @@
       "endY": 2026,
       "endM": 5,
       "endD": 18
+    },
+    {
+      "id": 669,
+      "cardId": 26,
+      "name": "Cordoba",
+      "days": 14,
+      "startY": 2026,
+      "startM": 5,
+      "startD": 29,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 12
     }
   ],
-  "idCounter": 668,
+  "idCounter": 669,
   "dayTasks": {
     "2026-04-06": [
       {
