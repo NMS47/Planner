@@ -497,7 +497,7 @@
       "endD": 12
     }
   ],
-  "idCounter": 686,
+  "idCounter": 726,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -5706,6 +5706,418 @@
         "duration": "59m",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-15": [
+      {
+        "id": 687,
+        "name": "CCR",
+        "desde": "0800",
+        "hasta": "1300",
+        "duration": "5h",
+        "desc": "CONCEPTOS BÁSICOS DEL CCR:\nMarco legal y Doctrina – Ejemplos Históricos – Principio del CCR – Organización y Alistamiento \nEQUIPAMIENTO PARA CCR: Equipamiento, radios, armamento y complementos.",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 689,
+        "name": "CCR",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Planeamiento para CCR",
+        "responsable": "",
+        "apoyos": "601"
+      },
+      {
+        "id": 695,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 696,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 697,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 698,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 699,
+        "name": "CCR",
+        "desde": "2100",
+        "hasta": "2235",
+        "duration": "1h 35m",
+        "desc": "EL TIRO EN CCR:\nPosiciones del tirador (Alta Lista, Baja Lista, Lista)- Cambio de cargador – Transición – Camina Dispara.",
+        "responsable": "601",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-16": [
+      {
+        "id": 688,
+        "name": "CCR",
+        "desde": "0800",
+        "hasta": "1300",
+        "duration": "5h",
+        "desc": "Defensa personal en CCR",
+        "responsable": "",
+        "apoyos": "MY BORRO"
+      },
+      {
+        "id": 690,
+        "name": "CCR",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "TÉCNICAS DE CCR - MOVIMIENTOS EXTERNOS: Técnicas: Corte de torta-  Israelí – Avanzar ante puertas cerradas, ventana alta ventana baja.",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 691,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 692,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 693,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 694,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 700,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 701,
+        "name": "CCR",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "CCR Nocturno (NVG e IR)",
+        "responsable": "601",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-17": [
+      {
+        "id": 702,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 703,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 704,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 705,
+        "name": "CCR",
+        "desde": "0800",
+        "hasta": "1300",
+        "duration": "5h",
+        "desc": "TÉCNICAS DE CCR - MOVIMIENTOS INTERNOS( Dos Hombres)\nTécnicas en Pasillos – Técnicas para despejar una intersección en “T\". en \"L\" y en Cruz",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 706,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 707,
+        "name": "CCR",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Ingreso y despeje de cuartos por pareja.\nIngreso y despeje de cuartos por estaca.",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 708,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 709,
+        "name": "CCR",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Ejercicio practico (Mov Externo, interno, ingreso a cuarto)",
+        "responsable": "601",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-18": [
+      {
+        "id": 710,
+        "name": "Medicina Tactica",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "Ca Res",
+        "apoyos": ""
+      },
+      {
+        "id": 711,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 712,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 713,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 714,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 715,
+        "name": "Medicina Tactica",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "",
+        "responsable": "Ca Res",
+        "apoyos": ""
+      },
+      {
+        "id": 716,
+        "name": "CCR",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Metodos de brecha",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 717,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 718,
+        "name": "CCR",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Confeccion de cargas",
+        "responsable": "601",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-19": [
+      {
+        "id": 719,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 720,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 721,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 722,
+        "name": "CCR",
+        "desde": "0800",
+        "hasta": "1300",
+        "duration": "5h",
+        "desc": "Guadalupe (Tecnicas en escalera interna y externa)",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 723,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "Racto frio",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 724,
+        "name": "CCR",
+        "desde": "1400",
+        "hasta": "2100",
+        "duration": "7h",
+        "desc": "Ejercicio CCR",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 725,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-20": [
+      {
+        "id": 726,
+        "name": "CCR",
+        "desde": "0800",
+        "hasta": "1300",
+        "duration": "5h",
+        "desc": "TPO (torre y BTP)",
+        "responsable": "601",
         "apoyos": ""
       }
     ]
