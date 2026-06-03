@@ -497,7 +497,7 @@
       "endD": 12
     }
   ],
-  "idCounter": 728,
+  "idCounter": 749,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -6142,6 +6142,222 @@
         "duration": "11h",
         "desc": "",
         "responsable": "TT FEREZ",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-22": [
+      {
+        "id": 729,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 730,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 731,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 732,
+        "name": "Demoliciones",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Clase demoliciones subaqua teoria\nPractica en seco\nPractica en cuba con visibilidad",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 733,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 734,
+        "name": "Demoliciones",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Practica en cuba sin visibilidad",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 735,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-23": [
+      {
+        "id": 736,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 737,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 738,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 739,
+        "name": "BYS",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Rastreo de objetos con metodo de cancha en zona de playa de santo tome",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 740,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "En playa santo tome",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 741,
+        "name": "BYS",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Rastreo de objetos con metodo de cancha en zona de playa de santo tome",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 742,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-24": [
+      {
+        "id": 743,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 744,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 745,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 746,
+        "name": "BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Buceo de profundidad en aguas sin visibilidad",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 747,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 748,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Buceo de profundidad en aguas sin visibilidad",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 749,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ]
