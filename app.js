@@ -2011,176 +2011,285 @@ function renderWeekModal() {
   }
 }
 
+// Vista lista como MATRIZ: filas = horarios de inicio que existen esa semana,
+// columnas = días. El mismo horario queda en la misma fila → alineado entre días.
 function renderWeekListView(body, mon) {
   const today = new Date(); today.setHours(0,0,0,0);
-  body.className = 'week-modal-body';
-
-  for (let i = 0; i < 7; i++) {
-    const dt = new Date(mon.getTime() + i * 86400000);
-    const y2 = dt.getFullYear(), m2 = dt.getMonth(), d2 = dt.getDate();
-    const k = dateKey(y2, m2, d2);
-    const tasks = (dayTasks[k] || []).slice().sort((a,b) => (a.desde||'0000').localeCompare(b.desde||'0000'));
-    const isToday = dt.getTime() === today.getTime();
-
-    const col = document.createElement('div');
-    col.className = 'week-day-col';
-
-    const hdr = document.createElement('div');
-    hdr.className = 'week-day-header';
-    hdr.innerHTML = `
-      <div class="week-day-name">${DAY_NAMES[dt.getDay()]}</div>
-      <div class="week-day-num${isToday ? ' today' : ''}">${d2}</div>`;
-    hdr.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
-    col.appendChild(hdr);
-
-    const taskArea = document.createElement('div');
-    taskArea.className = 'week-day-tasks';
-
-    if (!tasks.length) {
-      taskArea.innerHTML = `<div class="week-day-empty">Sin tareas</div>`;
-    } else {
-      tasks.forEach((t, ti) => {
-        const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
-        const color = getTaskColor(t, COLORS[ti % COLORS.length]);
-        const row = document.createElement('div');
-        row.className = 'week-task-row' + (taskMatchesFilter(t) ? ' task-filtered' : '');
-        row.style.borderLeft = `3px solid ${color}`;
-        row.style.background = color + '0f';
-        row.innerHTML = `
-          <div class="week-task-time">${t.desde || ''}${t.hasta ? '–'+t.hasta : ''}</div>
-          <div class="week-task-name">${esc(t.name)}</div>
-          ${t.desc ? `<div class="week-task-desc">${esc(t.desc)}</div>` : ''}
-          ${(t.responsable||t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
-        taskArea.appendChild(row);
-      });
-    }
-
-    col.appendChild(taskArea);
-    body.appendChild(col);
-  }
-}
-
-function renderWeekGridView(body, mon) {
-  const today = new Date(); today.setHours(0,0,0,0);
-  body.className = 'week-modal-body grid-view';
-  const HOUR_H = 48; // px per hour
+  body.className = 'week-modal-body list-view';
   const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
 
-  // ── Header row ──────────────────────────────────────────────────────────
-  const headerRow = document.createElement('div');
-  headerRow.style.cssText = 'display:flex;flex-shrink:0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;background:var(--surface2)';
-
-  // Corner cell
-  const corner = document.createElement('div');
-  corner.style.cssText = `width:52px;flex-shrink:0;border-right:1px solid var(--border)`;
-  headerRow.appendChild(corner);
-
-  for (let i = 0; i < 7; i++) {
-    const dt = new Date(mon.getTime() + i * 86400000);
-    const isToday = dt.getTime() === today.getTime();
-    const th = document.createElement('div');
-    th.className = 'wg-day-header';
-    th.style.flex = '1';
-    th.innerHTML = `<div class="wg-day-name">${DAY_NAMES[dt.getDay()]}</div>
-      <div class="wg-day-num${isToday ? ' today' : ''}">${dt.getDate()}</div>`;
-    th.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
-    headerRow.appendChild(th);
-  }
-  body.appendChild(headerRow);
-
-  // ── Scrollable grid ──────────────────────────────────────────────────────
-  const container = document.createElement('div');
-  container.className = 'wg-container';
-
-  // Hours column
-  const hoursCol = document.createElement('div');
-  hoursCol.className = 'wg-hours-col';
-  for (let h = 0; h < 24; h++) {
-    const lbl = document.createElement('div');
-    lbl.className = 'wg-hour-label';
-    lbl.textContent = String(h).padStart(2,'0') + ':00';
-    hoursCol.appendChild(lbl);
-  }
-  // Extra label for 24:00
-  const lbl24 = document.createElement('div');
-  lbl24.className = 'wg-hour-label';
-  lbl24.textContent = '24:00';
-  hoursCol.appendChild(lbl24);
-  container.appendChild(hoursCol);
-
-  // Days area
-  const daysArea = document.createElement('div');
-  daysArea.className = 'wg-days-area';
-
+  // Reunir tareas por día
+  const days = [];
   for (let i = 0; i < 7; i++) {
     const dt = new Date(mon.getTime() + i * 86400000);
     const k = dateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
-    const tasks = (dayTasks[k] || []);
+    days.push({ dt, tasks: (dayTasks[k] || []).slice() });
+  }
 
-    const dayCol = document.createElement('div');
-    dayCol.className = 'wg-day-col';
+  // Conjunto ordenado de horarios de inicio distintos (en minutos)
+  const slotSet = new Map(); // minutos -> string 'desde' representativo
+  let hasUntimed = false;
+  days.forEach(d => d.tasks.forEach(t => {
+    const m = militaryToMinutes(t.desde);
+    if (m == null) hasUntimed = true;
+    else if (!slotSet.has(m)) slotSet.set(m, t.desde);
+  }));
+  const slots = [...slotSet.keys()].sort((a, b) => a - b);
 
-    const gridBody = document.createElement('div');
-    gridBody.className = 'wg-grid-body';
-    gridBody.style.height = (HOUR_H * 24) + 'px';
+  const matrix = document.createElement('div');
+  matrix.className = 'week-list-matrix';
+  matrix.style.gridTemplateColumns = '56px repeat(7, minmax(0,1fr))';
 
-    // Hour lines
-    for (let h = 0; h <= 24; h++) {
-      const line = document.createElement('div');
-      line.className = 'wg-hour-line';
-      line.style.top = (h * HOUR_H) + 'px';
-      gridBody.appendChild(line);
-      // Half-hour line
-      if (h < 24) {
-        const half = document.createElement('div');
-        half.className = 'wg-hour-line half';
-        half.style.top = (h * HOUR_H + HOUR_H / 2) + 'px';
-        gridBody.appendChild(half);
+  // Fila de encabezados (días)
+  matrix.appendChild(Object.assign(document.createElement('div'), { className: 'wl-corner' }));
+  days.forEach(d => {
+    const isToday = d.dt.getTime() === today.getTime();
+    const h = document.createElement('div');
+    h.className = 'wl-day-header';
+    h.innerHTML = `<div class="week-day-name">${DAY_NAMES[d.dt.getDay()]}</div>
+      <div class="week-day-num${isToday ? ' today' : ''}">${d.dt.getDate()}</div>`;
+    h.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+    matrix.appendChild(h);
+  });
+
+  const makeCell = (dayObj, predicate) => {
+    const cell = document.createElement('div');
+    cell.className = 'wl-cell';
+    dayObj.tasks.forEach((t, ti) => {
+      if (!predicate(t)) return;
+      const color = getTaskColor(t, COLORS[ti % COLORS.length]);
+      const row = document.createElement('div');
+      row.className = 'wl-task' + (taskMatchesFilter(t) ? ' task-filtered' : '');
+      row.style.borderLeft = `3px solid ${color}`;
+      row.style.background = color + '0f';
+      const timeTxt = t.hasta ? `${formatearHora(t.desde)}–${formatearHora(t.hasta)}`
+                              : (t.desde ? formatearHora(t.desde) : '');
+      row.innerHTML = `
+        <div class="week-task-name">${esc(t.name)}</div>
+        ${timeTxt ? `<div class="week-task-time">${timeTxt}</div>` : ''}
+        ${(t.responsable || t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
+      row.addEventListener('click', () => { closeWeekModal(); openDayModal(dayObj.dt); });
+      cell.appendChild(row);
+    });
+    return cell;
+  };
+
+  // Filas por horario
+  slots.forEach(m => {
+    const lbl = document.createElement('div');
+    lbl.className = 'wl-time-label';
+    lbl.textContent = formatearHora(slotSet.get(m));
+    matrix.appendChild(lbl);
+    days.forEach(d => matrix.appendChild(makeCell(d, t => militaryToMinutes(t.desde) === m)));
+  });
+
+  // Fila para tareas sin hora
+  if (hasUntimed) {
+    const lbl = document.createElement('div');
+    lbl.className = 'wl-time-label';
+    lbl.textContent = 'Sin hora';
+    matrix.appendChild(lbl);
+    days.forEach(d => matrix.appendChild(makeCell(d, t => militaryToMinutes(t.desde) == null)));
+  }
+
+  if (!slots.length && !hasUntimed) {
+    const empty = document.createElement('div');
+    empty.className = 'week-day-empty';
+    empty.style.gridColumn = '1 / -1';
+    empty.textContent = 'Sin tareas esta semana';
+    matrix.appendChild(empty);
+  }
+
+  body.appendChild(matrix);
+}
+
+// Vista grilla con EJE DE TIEMPO COMPRIMIDO (compartido por los 7 días, así sigue
+// alineado). Recorta el rango al horario realmente usado, colapsa las franjas
+// vacías y achica los bloques largos/recurrentes (ej. Descanso) que no aportan
+// detalle, eliminando los espacios en blanco.
+function renderWeekGridView(body, mon) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  body.className = 'week-modal-body grid-view';
+  const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
+
+  const SLOT = 30;            // resolución del eje (minutos por franja)
+  const FULL_H = 22;          // px por franja en zonas densas
+  const COMP_H = 7;           // px por franja en zonas comprimidas (vacías o bloques largos)
+  const LONG_THRESHOLD = 180; // min: tareas ≥ esto no obligan a altura completa
+  const MIN_EVENT_H = 20;
+  const fmtMin = m => String(Math.floor((m % 1440) / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+
+  // ── Reunir tareas y rango horario real ──────────────────────────────────
+  const days = [];
+  let tMin = Infinity, tMax = -Infinity, hasUntimed = false;
+  for (let i = 0; i < 7; i++) {
+    const dt = new Date(mon.getTime() + i * 86400000);
+    const k = dateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
+    const raw = (dayTasks[k] || []);
+    const timed = [], untimed = [];
+    raw.forEach((t, origIdx) => {
+      const s = militaryToMinutes(t.desde);
+      if (s == null) { untimed.push({ t, origIdx }); hasUntimed = true; return; }
+      let e = t.hasta ? militaryToMinutes(t.hasta) : null;
+      if (e == null || e <= s) e = s + 60;
+      timed.push({ t, s, e, dur: e - s, origIdx });
+      tMin = Math.min(tMin, s); tMax = Math.max(tMax, e);
+    });
+    days.push({ dt, timed, untimed });
+  }
+  if (!isFinite(tMin)) { tMin = 6 * 60; tMax = 22 * 60; }
+  tMin = Math.floor(tMin / 60) * 60;
+  tMax = Math.ceil(tMax / 60) * 60;
+  if (tMax - tMin < 60) tMax = tMin + 60;
+
+  // ── Mapa de densidad y eje no-lineal compartido ─────────────────────────
+  const N = Math.ceil((tMax - tMin) / SLOT);
+  const dense = new Array(N).fill(false);   // hay alguna tarea corta en la franja
+  const anyTask = new Array(N).fill(false); // hay alguna tarea en la franja
+  days.forEach(d => d.timed.forEach(o => {
+    const i0 = Math.max(0, Math.floor((o.s - tMin) / SLOT));
+    const i1 = Math.min(N, Math.ceil((o.e - tMin) / SLOT));
+    for (let i = i0; i < i1; i++) { anyTask[i] = true; if (o.dur < LONG_THRESHOLD) dense[i] = true; }
+  }));
+  const TOP_PAD = 10; // respiro arriba/abajo para que no se corten las etiquetas
+  const heights = dense.map(d => d ? FULL_H : COMP_H);
+  const cumY = new Array(N + 1); cumY[0] = 0;
+  for (let i = 0; i < N; i++) cumY[i + 1] = cumY[i] + heights[i];
+  const totalH = cumY[N] + TOP_PAD * 2;
+  const timeToY = (min) => {
+    const pos = (Math.max(tMin, Math.min(tMax, min)) - tMin) / SLOT;
+    const idx = Math.min(N - 1, Math.floor(pos));
+    return TOP_PAD + cumY[idx] + (pos - idx) * heights[idx];
+  };
+
+  // ── Encabezado (días) ───────────────────────────────────────────────────
+  const headerRow = document.createElement('div');
+  headerRow.className = 'wg-header-row';
+  headerRow.appendChild(Object.assign(document.createElement('div'), { className: 'wg-corner' }));
+  days.forEach(d => {
+    const isToday = d.dt.getTime() === today.getTime();
+    const th = document.createElement('div');
+    th.className = 'wg-day-header';
+    th.style.flex = '1';
+    th.innerHTML = `<div class="wg-day-name">${DAY_NAMES[d.dt.getDay()]}</div>
+      <div class="wg-day-num${isToday ? ' today' : ''}">${d.dt.getDate()}</div>`;
+    th.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+    headerRow.appendChild(th);
+  });
+  body.appendChild(headerRow);
+
+  // ── Franja de tareas sin hora ───────────────────────────────────────────
+  if (hasUntimed) {
+    const strip = document.createElement('div');
+    strip.className = 'wg-untimed-row';
+    strip.appendChild(Object.assign(document.createElement('div'), { className: 'wg-untimed-label', textContent: 'Sin hora' }));
+    days.forEach(d => {
+      const cell = document.createElement('div');
+      cell.className = 'wg-untimed-cell';
+      d.untimed.forEach(({ t, origIdx }) => {
+        const color = getTaskColor(t, COLORS[origIdx % COLORS.length]);
+        const chip = document.createElement('div');
+        chip.className = 'wg-untimed-chip' + (taskMatchesFilter(t) ? ' task-filtered' : '');
+        chip.style.cssText = `background:${color}18;border-color:${color}`;
+        chip.textContent = t.name;
+        chip.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+        cell.appendChild(chip);
+      });
+      strip.appendChild(cell);
+    });
+    body.appendChild(strip);
+  }
+
+  // ── Grilla scrollable ───────────────────────────────────────────────────
+  const container = document.createElement('div');
+  container.className = 'wg-container';
+
+  // Columna de horas (etiquetas posicionadas según el eje no-lineal)
+  const hoursCol = document.createElement('div');
+  hoursCol.className = 'wg-hours-col';
+  hoursCol.style.height = totalH + 'px';
+  let lastLabelY = -999;
+  for (let min = tMin; min <= tMax; min += 60) {
+    const y = timeToY(min);
+    if (y - lastLabelY < 13) continue; // evita superposición en zonas comprimidas
+    lastLabelY = y;
+    const lbl = document.createElement('div');
+    lbl.className = 'wg-hour-label';
+    lbl.style.top = y + 'px';
+    lbl.textContent = fmtMin(min);
+    hoursCol.appendChild(lbl);
+  }
+  container.appendChild(hoursCol);
+
+  // Área de días
+  const daysArea = document.createElement('div');
+  daysArea.className = 'wg-days-area';
+  daysArea.style.height = totalH + 'px';
+
+  // Overlay compartido: líneas de hora + bandas de franjas vacías
+  const overlay = document.createElement('div');
+  overlay.className = 'wg-lines';
+  for (let min = tMin; min <= tMax; min += 60) {
+    const line = document.createElement('div');
+    line.className = 'wg-hour-line';
+    line.style.top = timeToY(min) + 'px';
+    overlay.appendChild(line);
+  }
+  for (let i = 0; i < N;) {
+    if (anyTask[i]) { i++; continue; }
+    let j = i; while (j < N && !anyTask[j]) j++;
+    const yTop = timeToY(tMin + i * SLOT), yBot = timeToY(tMin + j * SLOT);
+    if (yBot - yTop >= 6) {
+      const band = document.createElement('div');
+      band.className = 'wg-skip-band';
+      band.style.top = yTop + 'px';
+      band.style.height = (yBot - yTop) + 'px';
+      band.innerHTML = `<span>${fmtMin(tMin + i * SLOT)}–${fmtMin(tMin + j * SLOT)} · sin actividad</span>`;
+      overlay.appendChild(band);
+    }
+    i = j;
+  }
+  daysArea.appendChild(overlay);
+
+  // Columnas por día
+  days.forEach(d => {
+    const col = document.createElement('div');
+    col.className = 'wg-day-col';
+
+    const isToday = d.dt.getTime() === today.getTime();
+    if (isToday) {
+      const nm = new Date().getHours() * 60 + new Date().getMinutes();
+      if (nm >= tMin && nm <= tMax) {
+        const nl = document.createElement('div');
+        nl.className = 'wg-now-line';
+        nl.style.top = timeToY(nm) + 'px';
+        col.appendChild(nl);
       }
     }
 
-    // Current time line (only for today)
-    const isToday = dt.getTime() === today.getTime();
-    if (isToday) {
-      const now = new Date();
-      const nowMins = now.getHours() * 60 + now.getMinutes();
-      const nowLine = document.createElement('div');
-      nowLine.className = 'wg-now-line';
-      nowLine.style.top = ((nowMins / 60) * HOUR_H) + 'px';
-      gridBody.appendChild(nowLine);
-    }
-
-    // Events
-    tasks.forEach((t, ti) => {
-      const color = getTaskColor(t, COLORS[ti % COLORS.length]);
-      const desde = militaryToMinutes(t.desde || '0000') ?? 0;
-      const hasta = t.hasta ? (militaryToMinutes(t.hasta) ?? desde + 60) : desde + 60;
-      const durationMins = Math.max(hasta - desde, 30); // min 30 min height
-
-      const top = (desde / 60) * HOUR_H;
-      const height = Math.max((durationMins / 60) * HOUR_H, 24);
-
+    d.timed.forEach(o => {
+      const color = getTaskColor(o.t, COLORS[o.origIdx % COLORS.length]);
+      const top = timeToY(o.s);
+      const h = Math.max(timeToY(o.e) - top, MIN_EVENT_H);
       const ev = document.createElement('div');
-      ev.className = 'wg-event' + (taskMatchesFilter(t) ? ' task-filtered' : '');
-      ev.style.cssText = `top:${top}px;height:${height}px;background:${color}18;border-color:${color};color:var(--text)`;
+      ev.className = 'wg-event' + (taskMatchesFilter(o.t) ? ' task-filtered' : '');
+      ev.style.cssText = `top:${top}px;height:${h}px;background:${color}18;border-color:${color};color:var(--text)`;
       ev.innerHTML = `
-        <div class="wg-event-time" style="color:${color}">${t.desde||''}${t.hasta?'–'+t.hasta:''}</div>
-        <div class="wg-event-name">${esc(t.name)}</div>
-        ${t.desc && height > 50 ? `<div class="wg-event-desc">${esc(t.desc)}</div>` : ''}
-        ${(t.responsable||t.apoyos) && height > 36 ? `<div class="wg-event-people">👤 ${[t.responsable,t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
-      ev.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
-      gridBody.appendChild(ev);
+        <div class="wg-event-time" style="color:${color}">${formatearHora(o.t.desde)}${o.t.hasta ? '–' + formatearHora(o.t.hasta) : ''}</div>
+        <div class="wg-event-name">${esc(o.t.name)}</div>
+        ${o.t.desc && h > 50 ? `<div class="wg-event-desc">${esc(o.t.desc)}</div>` : ''}
+        ${(o.t.responsable || o.t.apoyos) && h > 36 ? `<div class="wg-event-people">👤 ${[o.t.responsable, o.t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
+      ev.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+      col.appendChild(ev);
     });
 
-    dayCol.appendChild(gridBody);
-    daysArea.appendChild(dayCol);
-  }
+    daysArea.appendChild(col);
+  });
 
   container.appendChild(daysArea);
   body.appendChild(container);
 
-  // Scroll to 7am on open
-  setTimeout(() => { container.scrollTop = 7 * HOUR_H; }, 50);
+  setTimeout(() => { container.scrollTop = 0; }, 30);
 }
 
 document.addEventListener('keydown', e => {
