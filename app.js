@@ -1678,6 +1678,13 @@ async function saveToGithub() {
   }
 }
 
+async function autoSaveToGithub() {
+  if (!_githubDirty || !_editorMode) return;
+  if (!getGithubToken()) return; // no token stored → skip silently
+  _githubDirty = false;
+  await saveToGithub();
+}
+
 // ── Status badge ──────────────────────────────────────────────────────────────
 function setSyncStatus(status, detail) {
   const dot   = document.getElementById('sync-dot');
@@ -1902,8 +1909,11 @@ function showBannerEmpty() {
   if (loadBtn) loadBtn.style.display = 'inline-block';
 }
 
+let _githubDirty = false;
+
 function persist() {
   saveSession(); // saves to localStorage cache only
+  if (_editorMode) _githubDirty = true;
 }
 
 // ── EDITOR MODE ───────────────────────────────────────────────────────────────
@@ -1941,6 +1951,9 @@ document.addEventListener('DOMContentLoaded', () => {
       respField.value = materiaResponsables[mat];
     }
   });
+
+  // Auto-save to GitHub every 15 min if there are unsaved changes in editor mode
+  setInterval(autoSaveToGithub, 15 * 60 * 1000);
 });
 
 
@@ -2113,10 +2126,10 @@ function renderWeekGridView(body, mon) {
   const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
 
   const SLOT = 30;            // resolución del eje (minutos por franja)
-  const FULL_H = 22;          // px por franja en zonas densas
+  const FULL_H = 30;          // px por franja en zonas densas
   const COMP_H = 7;           // px por franja en zonas comprimidas (vacías o bloques largos)
   const LONG_THRESHOLD = 180; // min: tareas ≥ esto no obligan a altura completa
-  const MIN_EVENT_H = 20;
+  const MIN_EVENT_H = 28;
   const fmtMin = m => String(Math.floor((m % 1440) / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 
   // ── Reunir tareas y rango horario real ──────────────────────────────────
