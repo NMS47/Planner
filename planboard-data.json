@@ -217,6 +217,14 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
+    },
+    {
+      "id": 799,
+      "name": "TAB-TACA",
+      "days": 6,
+      "baseColor": "#6f73ec",
+      "phases": [],
+      "category": "CBSFBE"
     }
   ],
   "placements": [
@@ -495,9 +503,21 @@
       "endY": 2026,
       "endM": 6,
       "endD": 12
+    },
+    {
+      "id": 800,
+      "cardId": 799,
+      "name": "TAB-TACA",
+      "days": 6,
+      "startY": 2026,
+      "startM": 5,
+      "startD": 22,
+      "endY": 2026,
+      "endM": 5,
+      "endD": 27
     }
   ],
-  "idCounter": 798,
+  "idCounter": 800,
   "dayTasks": {
     "2026-04-06": [
       {
