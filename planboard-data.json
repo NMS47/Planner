@@ -497,7 +497,7 @@
       "endD": 12
     }
   ],
-  "idCounter": 749,
+  "idCounter": 797,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -6358,6 +6358,512 @@
         "duration": "1h",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-25": [
+      {
+        "id": 750,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 751,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 752,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 753,
+        "name": "CA",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Operacion de Campo de prisioneros",
+        "responsable": "Icia",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-06": [
+      {
+        "id": 754,
+        "name": "Combate Anfibio",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "SERE",
+        "responsable": "FFEE",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-07": [
+      {
+        "id": 755,
+        "name": "CA",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "SERE",
+        "responsable": "FFEE",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-08": [
+      {
+        "id": 756,
+        "name": "CA",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "SERE",
+        "responsable": "FFEE",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-10": [
+      {
+        "id": 757,
+        "name": "Logistica",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "Regreso a Santo Tome, carga y descarga de camion, mantenimiento",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-29": [
+      {
+        "id": 758,
+        "name": "Logistica",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Viaje",
+        "responsable": "601",
+        "apoyos": ""
+      },
+      {
+        "id": 759,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 760,
+        "name": "Logistica",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Preparacion de equipo\nArmado de carpa en la playa\nReconocimiento",
+        "responsable": "1400",
+        "apoyos": "1800"
+      }
+    ],
+    "2026-06-30": [
+      {
+        "id": 761,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 762,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 763,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 764,
+        "name": "BYS",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 765,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 766,
+        "name": "BYS",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 767,
+        "name": "AYN",
+        "desde": "1800",
+        "hasta": "2100",
+        "duration": "3h",
+        "desc": "Natacion en el Lago",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 768,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-01": [
+      {
+        "id": 769,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 770,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 771,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 772,
+        "name": "BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Buceo Profundidad +30 contemplativo con busqueda de objetos",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 773,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 774,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
+        "responsable": "SG FERNANDEZ",
+        "apoyos": ""
+      },
+      {
+        "id": 778,
+        "name": "NSF",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "Navegacion, Practica de formaciones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-02": [
+      {
+        "id": 775,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 776,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 777,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 779,
+        "name": "CA-BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Navegacion por escalones",
+        "responsable": "TP Muñoz",
+        "apoyos": ""
+      },
+      {
+        "id": 780,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 781,
+        "name": "CA",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
+        "responsable": "TP Muñoz",
+        "apoyos": ""
+      },
+      {
+        "id": 782,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 783,
+        "name": "CA",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
+        "responsable": "TP Muñoz",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-03": [
+      {
+        "id": 784,
+        "name": "CA",
+        "desde": "0000",
+        "hasta": "1000",
+        "duration": "10h",
+        "desc": "operacion de base, navegacion por escalones, accion al objetivo, repliegue",
+        "responsable": "TP Muñoz",
+        "apoyos": ""
+      },
+      {
+        "id": 785,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 786,
+        "name": "Comunicaciones",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "Ca Com Parac 4",
+        "apoyos": ""
+      },
+      {
+        "id": 787,
+        "name": "Comunicaciones",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Eq Com (Elbis, Harries)",
+        "responsable": "Ca Com Parac 4",
+        "apoyos": ""
+      },
+      {
+        "id": 788,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-04": [
+      {
+        "id": 789,
+        "name": "Ejercicio",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "Ejercicio picante a Casa de de Piedra",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-05": [
+      {
+        "id": 790,
+        "name": "Ejercicio",
+        "desde": "0000",
+        "hasta": "2100",
+        "duration": "21h",
+        "desc": "Ejercicio picante a Casa de de Piedra",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-09": [
+      {
+        "id": 791,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 792,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 793,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 794,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 795,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 796,
+        "name": "Logistica",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Mantenimiento",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 797,
+        "name": "Logistica",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Mantenimiento",
+        "responsable": "",
         "apoyos": ""
       }
     ]
