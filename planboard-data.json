@@ -224,6 +224,7 @@
       "days": 6,
       "baseColor": "#6f73ec",
       "phases": [],
+      "hidden": false,
       "category": "CBSFBE"
     }
   ],
@@ -5940,7 +5941,7 @@
         "desde": "1400",
         "hasta": "2000",
         "duration": "6h",
-        "desc": "Ingreso y despeje de cuartos por pareja.\nIngreso y despeje de cuartos por estaca.",
+        "desc": "Tiro CCR",
         "responsable": "601",
         "apoyos": ""
       },
@@ -6052,7 +6053,7 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "Confeccion de cargas",
+        "desc": "Confeccion de cargas y tiro",
         "responsable": "601",
         "apoyos": ""
       }
