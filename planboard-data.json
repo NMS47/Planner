@@ -518,7 +518,7 @@
       "endD": 27
     }
   ],
-  "idCounter": 803,
+  "idCounter": 808,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -6157,10 +6157,60 @@
         "id": 727,
         "name": "PROA",
         "desde": "0700",
-        "hasta": "1800",
-        "duration": "11h",
+        "hasta": "1300",
+        "duration": "6h",
         "desc": "",
         "responsable": "TT FEREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 804,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 805,
+        "name": "Logistica",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Carga de Camion",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
+      },
+      {
+        "id": 806,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 807,
+        "name": "Logistica",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Carga de camion",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
+      },
+      {
+        "id": 808,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
         "apoyos": ""
       }
     ],
