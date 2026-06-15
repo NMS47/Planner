@@ -5738,8 +5738,8 @@
         "hasta": "1300",
         "duration": "5h",
         "desc": "CONCEPTOS BÁSICOS DEL CCR:\nMarco legal y Doctrina – Ejemplos Históricos – Principio del CCR – Organización y Alistamiento \nEQUIPAMIENTO PARA CCR: Equipamiento, radios, armamento y complementos.",
-        "responsable": "TT VARGAS/SI ALVAREZ    SG MATEO/ SG LUGO",
-        "apoyos": ""
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ    SG MATEO/ SG LUGO"
       },
       {
         "id": 689,
@@ -5747,9 +5747,9 @@
         "desde": "1400",
         "hasta": "2000",
         "duration": "6h",
-        "desc": "Planeamiento para CCR",
-        "responsable": "",
-        "apoyos": "601"
+        "desc": "Destrezas básicas del tirador en técnic1as individuales y de conjunto en CCR/Movimientos externos),",
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LOPEZ REYNOSO/ SG CARDOSO/ SG LUGO/ CI BARRIOS MIQUEAS"
       },
       {
         "id": 695,
@@ -5797,9 +5797,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "EL TIRO EN CCR:\nPosiciones del tirador (Alta Lista, Baja Lista, Lista)- Cambio de cargador – Transición – Camina Dispara.",
-        "responsable": "TT VARGAS/ SI ALVAREZ/ SG LOPEZ REYNOSO/ SG CARDOSO/ SG LUGO/ CI BARRIOS MIQUEAS.",
-        "apoyos": ""
+        "desc": "Destrezas básicas del tirador en técnic1as individuales y de conjunto en CCR/Movimientos externos),",
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LOPEZ REYNOSO/ SG CARDOSO/ SG LUGO/ CI BARRIOS MIQUEAS."
       }
     ],
     "2026-06-16": [
