@@ -518,7 +518,7 @@
       "endD": 27
     }
   ],
-  "idCounter": 800,
+  "idCounter": 803,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -5961,9 +5961,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "Ejercicio practico (Mov Externo, interno, ingreso a cuarto)",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "TECNICAS INDIVIDUALES Y DE CONJUNTO EN CCR: Movimientos externos, internos, ingresos (uso de linternas y visores)",
+        "responsable": "TT VARGAS",
+        "apoyos": "TP CACERES/SI CEPEDA/SG PEREZ/SG MATEO/CI AGUIAR"
       }
     ],
     "2026-06-18": [
@@ -6053,9 +6053,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "Confeccion de cargas y tiro",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "Confeccion de cargas",
+        "responsable": "TT VARGAS",
+        "apoyos": "SG PEREZ/SG CARDOSO/CI TOSI"
       }
     ],
     "2026-06-19": [
@@ -6095,9 +6095,9 @@
         "desde": "0800",
         "hasta": "1300",
         "duration": "5h",
-        "desc": "Guadalupe (Tecnicas en escalera interna y externa)",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "Tecnicas en escalera interna y externa",
+        "responsable": "TT VARGAS",
+        "apoyos": "/SI CEPEDA/SI ALVARES/SG CARDOSO/SG LUGO/SG ARANCIBIA/SG CASTILLO"
       },
       {
         "id": 723,
@@ -6138,7 +6138,17 @@
         "hasta": "1300",
         "duration": "5h",
         "desc": "TPO (torre y BTP)",
-        "responsable": "601",
+        "responsable": "TT FEREZ",
+        "apoyos": "TT VARGAS/SG PEREZ/SG MATEO"
+      },
+      {
+        "id": 801,
+        "name": "Franco",
+        "desde": "1300",
+        "hasta": "2359",
+        "duration": "10h 59m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ],
@@ -6895,6 +6905,28 @@
         "duration": "6h",
         "desc": "Mantenimiento",
         "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-21": [
+      {
+        "id": 802,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2000",
+        "duration": "20h",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 803,
+        "name": "Logistica",
+        "desde": "2000",
+        "hasta": "2300",
+        "duration": "3h",
+        "desc": "Preparacion del equipo individual",
+        "responsable": "Suboficial de Turno",
         "apoyos": ""
       }
     ]
