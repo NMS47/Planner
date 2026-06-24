@@ -518,7 +518,7 @@
       "endD": 27
     }
   ],
-  "idCounter": 831,
+  "idCounter": 832,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -6668,7 +6668,7 @@
         "hasta": "2359",
         "duration": "16h 59m",
         "desc": "Regreso a Santo Tome, carga y descarga de camion, mantenimiento",
-        "responsable": "",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       }
     ],
@@ -7038,7 +7038,17 @@
         "hasta": "2100",
         "duration": "1h",
         "desc": "",
-        "responsable": "SS",
+        "responsable": "CI GUTIERREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 832,
+        "name": "Descanso",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "CI GUTIERREZ",
         "apoyos": ""
       }
     ],
@@ -7050,7 +7060,7 @@
         "hasta": "2359",
         "duration": "16h 59m",
         "desc": "Ejercicio picante a Casa de de Piedra",
-        "responsable": "",
+        "responsable": "TT CHOCOBAR",
         "apoyos": ""
       }
     ],
@@ -7062,7 +7072,7 @@
         "hasta": "2100",
         "duration": "21h",
         "desc": "Ejercicio picante a Casa de de Piedra",
-        "responsable": "",
+        "responsable": "TT CHOCOBAR",
         "apoyos": ""
       }
     ],
@@ -7124,7 +7134,7 @@
         "hasta": "1300",
         "duration": "6h",
         "desc": "Mantenimiento",
-        "responsable": "",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       },
       {
@@ -7134,7 +7144,7 @@
         "hasta": "2000",
         "duration": "6h",
         "desc": "Mantenimiento",
-        "responsable": "",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       }
     ],
