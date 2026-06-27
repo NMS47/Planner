@@ -6816,47 +6816,17 @@
     ],
     "2026-06-30": [
       {
-        "id": 761,
-        "name": "Descanso",
+        "id": 784,
+        "name": "CA",
         "desde": "0000",
-        "hasta": "0600",
-        "duration": "6h",
-        "desc": "",
-        "responsable": "SS",
+        "hasta": "1000",
+        "duration": "10h",
+        "desc": "operacion de base, navegacion por escalones, accion al objetivo, repliegue",
+        "responsable": "TP Muñoz",
         "apoyos": ""
       },
       {
-        "id": 762,
-        "name": "Diana",
-        "desde": "0600",
-        "hasta": "0630",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 763,
-        "name": "Desayuno",
-        "desde": "0630",
-        "hasta": "0700",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 764,
-        "name": "BYS",
-        "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
-        "responsable": "SG FUGAS",
-        "apoyos": ""
-      },
-      {
-        "id": 765,
+        "id": 785,
         "name": "Almuerzo",
         "desde": "1300",
         "hasta": "1400",
@@ -6866,43 +6836,43 @@
         "apoyos": ""
       },
       {
-        "id": 766,
-        "name": "BYS",
+        "id": 786,
+        "name": "Comunicaciones",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "Ca Com Parac 4",
+        "apoyos": ""
+      },
+      {
+        "id": 787,
+        "name": "Comunicaciones",
         "desde": "1400",
         "hasta": "1800",
         "duration": "4h",
-        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
-        "responsable": "SG FUGAS",
+        "desc": "Eq Com (Elbis, Harries)",
+        "responsable": "Ca Com Parac 4",
         "apoyos": ""
       },
       {
-        "id": 767,
-        "name": "AYN",
-        "desde": "1800",
-        "hasta": "2100",
-        "duration": "3h",
-        "desc": "Natacion en el Lago",
-        "responsable": "SI GIORDANO",
-        "apoyos": ""
-      },
-      {
-        "id": 768,
+        "id": 788,
         "name": "Cena",
         "desde": "2000",
         "hasta": "2100",
         "duration": "1h",
         "desc": "",
-        "responsable": "SS",
+        "responsable": "CI GUTIERREZ",
         "apoyos": ""
       },
       {
-        "id": 829,
+        "id": 832,
         "name": "Descanso",
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
         "desc": "",
-        "responsable": "SI BIAGGINI",
+        "responsable": "CI GUTIERREZ",
         "apoyos": ""
       }
     ],
@@ -7081,18 +7051,48 @@
       }
     ],
     "2026-07-03": [
-      {
-        "id": 784,
-        "name": "CA",
+       {
+        "id": 761,
+        "name": "Descanso",
         "desde": "0000",
-        "hasta": "1000",
-        "duration": "10h",
-        "desc": "operacion de base, navegacion por escalones, accion al objetivo, repliegue",
-        "responsable": "TP Muñoz",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       },
       {
-        "id": 785,
+        "id": 762,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 763,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 764,
+        "name": "BYS",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 765,
         "name": "Almuerzo",
         "desde": "1300",
         "hasta": "1400",
@@ -7102,43 +7102,43 @@
         "apoyos": ""
       },
       {
-        "id": 786,
-        "name": "Comunicaciones",
-        "desde": "1000",
-        "hasta": "1300",
-        "duration": "3h",
-        "desc": "",
-        "responsable": "Ca Com Parac 4",
-        "apoyos": ""
-      },
-      {
-        "id": 787,
-        "name": "Comunicaciones",
+        "id": 766,
+        "name": "BYS",
         "desde": "1400",
         "hasta": "1800",
         "duration": "4h",
-        "desc": "Eq Com (Elbis, Harries)",
-        "responsable": "Ca Com Parac 4",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
         "apoyos": ""
       },
       {
-        "id": 788,
+        "id": 767,
+        "name": "AYN",
+        "desde": "1800",
+        "hasta": "2100",
+        "duration": "3h",
+        "desc": "Natacion en el Lago",
+        "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 768,
         "name": "Cena",
         "desde": "2000",
         "hasta": "2100",
         "duration": "1h",
         "desc": "",
-        "responsable": "CI GUTIERREZ",
+        "responsable": "SS",
         "apoyos": ""
       },
       {
-        "id": 832,
+        "id": 829,
         "name": "Descanso",
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
         "desc": "",
-        "responsable": "CI GUTIERREZ",
+        "responsable": "SI BIAGGINI",
         "apoyos": ""
       }
     ],
