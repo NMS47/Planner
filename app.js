@@ -5,6 +5,8 @@ const BASE_COLORS = ['#e8ff47','#ff6b6b','#47c8ff','#b8ff9f','#ffb347','#d1a3ff'
 
 let cards = [], placements = [], idCounter = 0, dragCard = null, tempPhases = [], editingCardId = null;
 let calDrag = { active: false, startY: null, startM: null, startD: null };
+let weekDrag = { active: false, taskId: null, sourceKey: null, moveAll: false };
+let _weekDragArrowTimer = null;
 let dayTasks = {}; // key: "YYYY-MM-DD" → [{id, name, time, duration, desc}]
 let dayModal = { open: false, y: null, m: null, d: null, editMode: false };
 
@@ -1190,6 +1192,112 @@ function onDrop(e,y,m,d){
   renderCalendar(); renderLegend(); persist();
 }
 function removePlacement(id){placements=placements.filter(p=>p.id!==id);renderCalendar();renderLegend();persist();}
+
+// ── WEEK DRAG & DROP ─────────────────────────────────────────────────────────
+
+function showWeekDragArrows() {
+  const prev = document.getElementById('wda-prev');
+  const next = document.getElementById('wda-next');
+  if (prev) prev.style.display = 'flex';
+  if (next) next.style.display = 'flex';
+}
+
+function hideWeekDragArrows() {
+  const prev = document.getElementById('wda-prev');
+  const next = document.getElementById('wda-next');
+  if (prev) prev.style.display = 'none';
+  if (next) next.style.display = 'none';
+  if (_weekDragArrowTimer !== null) {
+    clearTimeout(_weekDragArrowTimer);
+    _weekDragArrowTimer = null;
+  }
+}
+
+function onWeekDragArrowEnter(e, delta) {
+  e.preventDefault();
+  if (_weekDragArrowTimer !== null) return;
+  _weekDragArrowTimer = setTimeout(() => {
+    _weekDragArrowTimer = null;
+    if (weekDrag.active && weekModal.open) shiftWeek(delta);
+  }, 700);
+}
+
+function onWeekDragArrowLeave() {
+  if (_weekDragArrowTimer !== null) {
+    clearTimeout(_weekDragArrowTimer);
+    _weekDragArrowTimer = null;
+  }
+}
+
+function fmtDateFromKey(key) {
+  const [y, m, d] = key.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+}
+
+function openMoveConfirmModal(targetKey) {
+  const titleEl = document.getElementById('mcm-title');
+  const nameEl  = document.getElementById('mcm-name');
+  const srcEl   = document.getElementById('mcm-source-label');
+  const dateIn  = document.getElementById('mcm-target-date');
+
+  if (weekDrag.moveAll) {
+    const tasks = dayTasks[weekDrag.sourceKey] || [];
+    titleEl.textContent = 'Mover día completo';
+    nameEl.textContent  = tasks.length + ' actividad' + (tasks.length !== 1 ? 'es' : '');
+  } else {
+    const tasks = dayTasks[weekDrag.sourceKey] || [];
+    const task  = tasks.find(t => t.id === weekDrag.taskId);
+    titleEl.textContent = 'Mover actividad';
+    nameEl.textContent  = task ? task.name : '';
+  }
+
+  srcEl.textContent = fmtDateFromKey(weekDrag.sourceKey);
+  dateIn.value      = targetKey;
+
+  document.getElementById('move-confirm-overlay').style.display = 'flex';
+}
+
+function closeMoveConfirmModal() {
+  document.getElementById('move-confirm-overlay').style.display = 'none';
+}
+
+function onMoveOverlayClick(e) {
+  if (e.target === document.getElementById('move-confirm-overlay')) closeMoveConfirmModal();
+}
+
+function confirmMoveModal() {
+  const targetKey = document.getElementById('mcm-target-date').value;
+  if (!targetKey) return;
+  if (weekDrag.moveAll) {
+    executeMoveDay(weekDrag.sourceKey, targetKey);
+  } else {
+    executeMoveTask(weekDrag.taskId, weekDrag.sourceKey, targetKey);
+  }
+  closeMoveConfirmModal();
+}
+
+function executeMoveTask(taskId, sourceKey, targetKey) {
+  const src = dayTasks[sourceKey] || [];
+  const idx = src.findIndex(t => t.id === taskId);
+  if (idx === -1) return;
+  const [task] = src.splice(idx, 1);
+  dayTasks[sourceKey] = src;
+  if (!dayTasks[targetKey]) dayTasks[targetKey] = [];
+  dayTasks[targetKey].push(task);
+  persist();
+  if (weekModal.open) renderWeekModal();
+  renderCalendar();
+}
+
+function executeMoveDay(sourceKey, targetKey) {
+  const src = dayTasks[sourceKey] || [];
+  if (!dayTasks[targetKey]) dayTasks[targetKey] = [];
+  dayTasks[targetKey].push(...src);
+  dayTasks[sourceKey] = [];
+  persist();
+  if (weekModal.open) renderWeekModal();
+  renderCalendar();
+}
 
 // ── TOOLTIP ───────────────────────────────────────────────────────────────────
 function showTT(e, fill, allFills){
