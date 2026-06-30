@@ -6626,6 +6626,28 @@
     ],
     "2026-07-06": [
       {
+        "id": 789,
+        "name": "Ejercicio",
+        "desde": "0700",
+        "hasta": "2359",
+        "duration": "16h 59m",
+        "desc": "Ejercicio a Casa de de Piedra",
+        "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-07": [
+      {
+        "id": 833,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "CI RIOS",
+        "apoyos": ""
+      },
+      {
         "id": 754,
         "name": "Combate Anfibio",
         "desde": "0700",
@@ -6636,7 +6658,7 @@
         "apoyos": ""
       }
     ],
-    "2026-07-07": [
+    "2026-07-08": [
       {
         "id": 755,
         "name": "CA",
@@ -6645,28 +6667,6 @@
         "duration": "15h",
         "desc": "SERE",
         "responsable": "FFEE",
-        "apoyos": ""
-      },
-      {
-        "id": 833,
-        "name": "Descanso",
-        "desde": "2200",
-        "hasta": "2359",
-        "duration": "1h 59m",
-        "desc": "",
-        "responsable": "CI RIOS",
-        "apoyos": ""
-      }
-    ],
-    "2026-07-08": [
-      {
-        "id": 756,
-        "name": "Ejercicio",
-        "desde": "0700",
-        "hasta": "2359",
-        "duration": "16h 59m",
-        "desc": "Ejercicio con municion real",
-        "responsable": "TP MUÑOZ",
         "apoyos": ""
       }
     ],
@@ -7163,16 +7163,6 @@
       }
     ],
     "2026-07-04": [
-      {
-        "id": 789,
-        "name": "Ejercicio",
-        "desde": "0700",
-        "hasta": "2359",
-        "duration": "16h 59m",
-        "desc": "Ejercicio a Casa de de Piedra",
-        "responsable": "TT CHOCOBAR",
-        "apoyos": ""
-      },
       {
         "id": 834,
         "name": "Descanso",
