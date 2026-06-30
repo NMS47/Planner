@@ -2165,17 +2165,48 @@ function renderWeekListView(body, mon) {
   matrix.appendChild(Object.assign(document.createElement('div'), { className: 'wl-corner' }));
   days.forEach(d => {
     const isToday = d.dt.getTime() === today.getTime();
+    const listHdrKey = dateKey(d.dt.getFullYear(), d.dt.getMonth(), d.dt.getDate());
     const h = document.createElement('div');
     h.className = 'wl-day-header';
     h.innerHTML = `<div class="week-day-name">${DAY_NAMES[d.dt.getDay()]}</div>
       <div class="week-day-num${isToday ? ' today' : ''}">${d.dt.getDate()}</div>`;
     h.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+    if (_editorMode) {
+      const handle = document.createElement('span');
+      handle.className = 'wg-day-drag-handle';
+      handle.title = 'Mover día completo';
+      handle.textContent = '⠿';
+      handle.draggable = true;
+      handle.addEventListener('dragstart', e => {
+        weekDrag.active    = true;
+        weekDrag.taskId    = null;
+        weekDrag.sourceKey = listHdrKey;
+        weekDrag.moveAll   = true;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', 'day:' + listHdrKey);
+        showWeekDragArrows();
+      });
+      handle.addEventListener('dragend', () => {
+        weekDrag.active = false;
+        hideWeekDragArrows();
+      });
+      h.appendChild(handle);
+      h.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); h.classList.add('wdrag-over'); });
+      h.addEventListener('dragleave', () => h.classList.remove('wdrag-over'));
+      h.addEventListener('drop', e => { e.preventDefault(); h.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(listHdrKey); });
+    }
     matrix.appendChild(h);
   });
 
   const makeCell = (dayObj, predicate) => {
     const cell = document.createElement('div');
     cell.className = 'wl-cell';
+    const cellKey = dateKey(dayObj.dt.getFullYear(), dayObj.dt.getMonth(), dayObj.dt.getDate());
+    if (_editorMode) {
+      cell.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); cell.classList.add('wdrag-over'); });
+      cell.addEventListener('dragleave', () => cell.classList.remove('wdrag-over'));
+      cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(cellKey); });
+    }
     dayObj.tasks.forEach((t, ti) => {
       if (!predicate(t)) return;
       const color = getTaskColor(t, COLORS[ti % COLORS.length]);
@@ -2189,6 +2220,25 @@ function renderWeekListView(body, mon) {
         <div class="week-task-name">${esc(t.name)}</div>
         ${timeTxt ? `<div class="week-task-time">${timeTxt}</div>` : ''}
         ${(t.responsable || t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
+      if (_editorMode) {
+        row.draggable = true;
+        row.addEventListener('dragstart', e => {
+          e.stopPropagation();
+          weekDrag.active    = true;
+          weekDrag.taskId    = t.id;
+          weekDrag.sourceKey = cellKey;
+          weekDrag.moveAll   = false;
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', String(t.id));
+          showWeekDragArrows();
+          setTimeout(() => row.classList.add('dragging'), 0);
+        });
+        row.addEventListener('dragend', () => {
+          row.classList.remove('dragging');
+          weekDrag.active = false;
+          hideWeekDragArrows();
+        });
+      }
       row.addEventListener('click', () => { closeWeekModal(); openDayModal(dayObj.dt); });
       cell.appendChild(row);
     });
