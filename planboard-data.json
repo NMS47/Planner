@@ -6928,16 +6928,6 @@
         "apoyos": ""
       },
       {
-        "id": 772,
-        "name": "BTP",
-        "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
-        "responsable": "SI BIAGGINI",
-        "apoyos": ""
-      },
-      {
         "id": 773,
         "name": "Almuerzo",
         "desde": "1300",
@@ -6945,26 +6935,6 @@
         "duration": "1h",
         "desc": "",
         "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 774,
-        "name": "BTP",
-        "desde": "1400",
-        "hasta": "1800",
-        "duration": "4h",
-        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
-        "responsable": "SI BIAGGINI",
-        "apoyos": ""
-      },
-      {
-        "id": 778,
-        "name": "NSF",
-        "desde": "1800",
-        "hasta": "2000",
-        "duration": "2h",
-        "desc": "Navegacion, Practica de formaciones",
-        "responsable": "CI ROMERO",
         "apoyos": ""
       },
       {
@@ -6985,6 +6955,36 @@
         "duration": "2h 59m",
         "desc": "",
         "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      },
+      {
+        "id": 764,
+        "name": "BYS",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 766,
+        "name": "BYS",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
+        "responsable": "SG FUGAS",
+        "apoyos": ""
+      },
+      {
+        "id": 767,
+        "name": "AYN",
+        "desde": "1800",
+        "hasta": "2100",
+        "duration": "3h",
+        "desc": "Natacion en el Lago",
+        "responsable": "SI GIORDANO",
         "apoyos": ""
       }
     ],
@@ -7068,6 +7068,16 @@
         "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
         "responsable": "TP Muñoz",
         "apoyos": ""
+      },
+      {
+        "id": 778,
+        "name": "NSF",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Navegacion, Practica de formaciones",
+        "responsable": "CI ROMERO",
+        "apoyos": ""
       }
     ],
     "2026-07-03": [
@@ -7102,16 +7112,6 @@
         "apoyos": ""
       },
       {
-        "id": 764,
-        "name": "BYS",
-        "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
-        "responsable": "SG FUGAS",
-        "apoyos": ""
-      },
-      {
         "id": 765,
         "name": "Almuerzo",
         "desde": "1300",
@@ -7119,26 +7119,6 @@
         "duration": "1h",
         "desc": "",
         "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 766,
-        "name": "BYS",
-        "desde": "1400",
-        "hasta": "1800",
-        "duration": "4h",
-        "desc": "Busqueda y Reflotamiento 15 metros, con dos balones",
-        "responsable": "SG FUGAS",
-        "apoyos": ""
-      },
-      {
-        "id": 767,
-        "name": "AYN",
-        "desde": "1800",
-        "hasta": "2100",
-        "duration": "3h",
-        "desc": "Natacion en el Lago",
-        "responsable": "SI GIORDANO",
         "apoyos": ""
       },
       {
@@ -7158,6 +7138,26 @@
         "hasta": "2359",
         "duration": "2h 59m",
         "desc": "",
+        "responsable": "SI BIAGGINI",
+        "apoyos": ""
+      },
+      {
+        "id": 772,
+        "name": "BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
+        "responsable": "SI BIAGGINI",
+        "apoyos": ""
+      },
+      {
+        "id": 774,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
         "responsable": "SI BIAGGINI",
         "apoyos": ""
       }
