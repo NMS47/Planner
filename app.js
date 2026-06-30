@@ -1265,6 +1265,16 @@ function onMoveOverlayClick(e) {
   if (e.target === document.getElementById('move-confirm-overlay')) closeMoveConfirmModal();
 }
 
+function handleWeekDrop(targetKey) {
+  if (!weekDrag.active) return;
+  if (weekDrag.moveAll) {
+    openMoveConfirmModal(targetKey);
+  } else {
+    executeMoveTask(weekDrag.taskId, weekDrag.sourceKey, targetKey);
+    weekDrag.active = false;
+  }
+}
+
 function confirmMoveModal() {
   const targetKey = document.getElementById('mcm-target-date').value;
   if (!targetKey) return;
@@ -2194,7 +2204,7 @@ function renderWeekListView(body, mon) {
       h.appendChild(handle);
       h.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); h.classList.add('wdrag-over'); });
       h.addEventListener('dragleave', () => h.classList.remove('wdrag-over'));
-      h.addEventListener('drop', e => { e.preventDefault(); h.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(listHdrKey); });
+      h.addEventListener('drop', e => { e.preventDefault(); h.classList.remove('wdrag-over'); handleWeekDrop(listHdrKey); });
     }
     matrix.appendChild(h);
   });
@@ -2206,7 +2216,7 @@ function renderWeekListView(body, mon) {
     if (_editorMode) {
       cell.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); cell.classList.add('wdrag-over'); });
       cell.addEventListener('dragleave', () => cell.classList.remove('wdrag-over'));
-      cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(cellKey); });
+      cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); handleWeekDrop(cellKey); });
     }
     dayObj.tasks.forEach((t, ti) => {
       if (!predicate(t)) return;
@@ -2384,7 +2394,7 @@ function renderWeekGridView(body, mon) {
       if (_editorMode) {
         cell.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); cell.classList.add('wdrag-over'); });
         cell.addEventListener('dragleave', () => cell.classList.remove('wdrag-over'));
-        cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(untimedKey); });
+        cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); handleWeekDrop(untimedKey); });
       }
       d.untimed.forEach(({ t, origIdx }) => {
         const color = getTaskColor(t, COLORS[origIdx % COLORS.length]);
@@ -2478,7 +2488,7 @@ function renderWeekGridView(body, mon) {
     if (_editorMode) {
       col.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); col.classList.add('wdrag-over'); });
       col.addEventListener('dragleave', e => { if (!col.contains(e.relatedTarget)) col.classList.remove('wdrag-over'); });
-      col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('wdrag-over'); if (weekDrag.active) openMoveConfirmModal(colKey); });
+      col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('wdrag-over'); handleWeekDrop(colKey); });
     }
 
     const isToday = d.dt.getTime() === today.getTime();
