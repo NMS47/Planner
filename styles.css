@@ -980,7 +980,7 @@ body { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
 .move-confirm-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.85);
   z-index: 5000;
   display: flex;
   align-items: center;
