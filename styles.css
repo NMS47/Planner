@@ -913,3 +913,146 @@ body { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
   .fm-chips { grid-template-columns:repeat(3,1fr); gap:5px; }
   .materia-chip { font-size:10px; padding:7px 4px; }
 }
+
+/* ── DRAG & DROP SEMANAL ────────────────────────────────────────────────── */
+
+.wdrag-source { opacity: 0.45; }
+
+.wdrag-over {
+  background: rgba(212,232,90,0.08) !important;
+  outline: 2px dashed rgba(212,232,90,0.5) !important;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+.wg-day-drag-handle {
+  display: inline-block;
+  cursor: grab;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 2px 4px;
+  border-radius: 3px;
+  line-height: 1;
+  margin-left: 4px;
+  vertical-align: middle;
+  user-select: none;
+}
+.wg-day-drag-handle:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+.wg-day-drag-handle:active { cursor: grabbing; }
+
+.wg-event[draggable="true"],
+.wg-untimed-chip[draggable="true"],
+.wl-task[draggable="true"] { cursor: grab; }
+.wg-event[draggable="true"]:hover,
+.wg-untimed-chip[draggable="true"]:hover,
+.wl-task[draggable="true"]:hover { outline: 1px solid rgba(212,232,90,0.3); }
+.wg-event.dragging,
+.wg-untimed-chip.dragging,
+.wl-task.dragging { opacity: 0.3; }
+
+.week-modal { position: relative; }
+.week-drag-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20,20,28,0.95);
+  border: 1px solid rgba(212,232,90,0.4);
+  color: var(--accent);
+  padding: 14px 6px;
+  border-radius: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  cursor: default;
+  pointer-events: all;
+  transition: background 0.15s;
+}
+.week-drag-arrow:hover { background: rgba(212,232,90,0.12); }
+.week-drag-arrow-prev { left: 4px; }
+.week-drag-arrow-next { right: 4px; }
+
+.move-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.move-confirm-modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  min-width: 300px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mcm-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+.mcm-name {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  padding: 6px 10px;
+  background: rgba(212,232,90,0.08);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+.mcm-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  color: var(--muted);
+}
+.mcm-arrow { color: var(--accent); font-size: 14px; }
+.mcm-date-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 5px 8px;
+  outline: none;
+}
+.mcm-date-input:focus { border-color: var(--accent); }
+.mcm-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.mcm-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+.mcm-btn.confirm {
+  background: rgba(212,232,90,0.12);
+  border-color: rgba(212,232,90,0.4);
+  color: var(--accent);
+}
+.mcm-btn:hover { opacity: 0.8; }
