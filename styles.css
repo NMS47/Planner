@@ -981,7 +981,7 @@ body { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  z-index: 1000;
+  z-index: 5000;
   display: flex;
   align-items: center;
   justify-content: center;

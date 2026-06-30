@@ -2040,6 +2040,7 @@ function toggleEditorMode() {
     showToast('🔒 Modo lectura');
     if (window.innerWidth > 600 && sidebarOpen) toggleSidebar();
   }
+  if (weekModal.open) renderWeekModal();
 }
 
 // Start in read-only mode
