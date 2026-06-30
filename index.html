@@ -216,6 +216,14 @@
         <button class="day-modal-close" onclick="closeWeekModal()">✕</button>
       </div>
     </div>
+    <button class="week-drag-arrow week-drag-arrow-prev" id="wda-prev"
+      ondragenter="onWeekDragArrowEnter(event,-1)" ondragleave="onWeekDragArrowLeave()">
+      ◀ SEM ANT
+    </button>
+    <button class="week-drag-arrow week-drag-arrow-next" id="wda-next"
+      ondragenter="onWeekDragArrowEnter(event,1)" ondragleave="onWeekDragArrowLeave()">
+      SEM SIG ▶
+    </button>
     <div class="week-modal-body" id="wm-body"></div>
   </div>
 </div>
@@ -302,6 +310,24 @@
 
 
 <button id="editor-unlock" onclick="toggleEditorMode()" title=""></button>
+
+<!-- ── MOVE CONFIRM MODAL ──────────────────────────────────────────────── -->
+<div class="move-confirm-overlay" id="move-confirm-overlay" style="display:none" onclick="onMoveOverlayClick(event)">
+  <div class="move-confirm-modal">
+    <div class="mcm-title" id="mcm-title">Mover actividad</div>
+    <div class="mcm-name" id="mcm-name"></div>
+    <div class="mcm-row">
+      <span id="mcm-source-label"></span>
+      <span class="mcm-arrow">→</span>
+      <input type="date" id="mcm-target-date" class="mcm-date-input">
+    </div>
+    <div class="mcm-buttons">
+      <button class="mcm-btn cancel" onclick="closeMoveConfirmModal()">Cancelar</button>
+      <button class="mcm-btn confirm" onclick="confirmMoveModal()">Confirmar →</button>
+    </div>
+  </div>
+</div>
+
 <script src="app.js" defer></script>
 </body>
 </html>
