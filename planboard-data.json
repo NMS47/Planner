@@ -217,6 +217,15 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
+    },
+    {
+      "id": 799,
+      "name": "TAB-TACA",
+      "days": 6,
+      "baseColor": "#6f73ec",
+      "phases": [],
+      "hidden": false,
+      "category": "CBSFBE"
     }
   ],
   "placements": [
@@ -495,9 +504,21 @@
       "endY": 2026,
       "endM": 6,
       "endD": 12
+    },
+    {
+      "id": 800,
+      "cardId": 799,
+      "name": "TAB-TACA",
+      "days": 6,
+      "startY": 2026,
+      "startM": 5,
+      "startD": 22,
+      "endY": 2026,
+      "endM": 5,
+      "endD": 27
     }
   ],
-  "idCounter": 797,
+  "idCounter": 856,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -5717,8 +5738,8 @@
         "hasta": "1300",
         "duration": "5h",
         "desc": "CONCEPTOS BÁSICOS DEL CCR:\nMarco legal y Doctrina – Ejemplos Históricos – Principio del CCR – Organización y Alistamiento \nEQUIPAMIENTO PARA CCR: Equipamiento, radios, armamento y complementos.",
-        "responsable": "601",
-        "apoyos": ""
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ    SG MATEO/ SG LUGO"
       },
       {
         "id": 689,
@@ -5726,9 +5747,9 @@
         "desde": "1400",
         "hasta": "2000",
         "duration": "6h",
-        "desc": "Planeamiento para CCR",
-        "responsable": "",
-        "apoyos": "601"
+        "desc": "Destrezas básicas del tirador en técnic1as individuales y de conjunto en CCR/Movimientos externos),",
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LOPEZ REYNOSO/ SG CARDOSO/ SG LUGO/ CI BARRIOS MIQUEAS"
       },
       {
         "id": 695,
@@ -5776,9 +5797,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "EL TIRO EN CCR:\nPosiciones del tirador (Alta Lista, Baja Lista, Lista)- Cambio de cargador – Transición – Camina Dispara.",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "Destrezas básicas del tirador en técnic1as individuales y de conjunto en CCR/Movimientos externos),",
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LOPEZ REYNOSO/ SG CARDOSO/ SG LUGO/ CI BARRIOS MIQUEAS."
       }
     ],
     "2026-06-16": [
@@ -5799,8 +5820,8 @@
         "hasta": "2000",
         "duration": "6h",
         "desc": "TÉCNICAS DE CCR - MOVIMIENTOS EXTERNOS: Técnicas: Corte de torta-  Israelí – Avanzar ante puertas cerradas, ventana alta ventana baja.",
-        "responsable": "601",
-        "apoyos": ""
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LUGO/ SG LOPEZ REYNOSO/ SG CARDOSO"
       },
       {
         "id": 691,
@@ -5858,9 +5879,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "CCR Nocturno (NVG e IR)",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "MOVIMIENTOS EXTERNOS: Técnicas: Corte de torta- Israelí – Avanzar ante puertas cerradas, ventana alta ventana baja.",
+        "responsable": "TT VARGAS",
+        "apoyos": "SI ALVAREZ/ SG LUGO/ SG LOPEZ REYNOSO/ SG CARDOSO"
       }
     ],
     "2026-06-17": [
@@ -5900,9 +5921,9 @@
         "desde": "0800",
         "hasta": "1300",
         "duration": "5h",
-        "desc": "TÉCNICAS DE CCR - MOVIMIENTOS INTERNOS( Dos Hombres)\nTécnicas en Pasillos – Técnicas para despejar una intersección en “T\". en \"L\" y en Cruz",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "TECNICAS INDIVIDUALES Y DE CONJUNTO EN CCR: Orden de procedimientos, ingresos y despejes de cuarto PRÁCTICA EN CINTA/TIRO (Polígono B Ing 1)",
+        "responsable": "TT VARGAS",
+        "apoyos": "TP CACERES/SI CEPEDA/SG PEREZ/SG MATEO/CI AGUIAR"
       },
       {
         "id": 706,
@@ -5920,9 +5941,9 @@
         "desde": "1400",
         "hasta": "2000",
         "duration": "6h",
-        "desc": "Ingreso y despeje de cuartos por pareja.\nIngreso y despeje de cuartos por estaca.",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "TECNICAS INDIVIDUALES Y DE CONJUNTO EN CCR: Orden de procedimientos, ingresos y despejes de cuarto PRÁCTICA/TIRO (Casa 2do J)",
+        "responsable": "TT VARGAS",
+        "apoyos": "TP CACERES/SI CEPEDA/SG PEREZ/SG MATEO/CI AGUIAR"
       },
       {
         "id": 708,
@@ -5940,9 +5961,9 @@
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "Ejercicio practico (Mov Externo, interno, ingreso a cuarto)",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "TECNICAS INDIVIDUALES Y DE CONJUNTO EN CCR: Movimientos externos, internos, ingresos (uso de linternas y visores)",
+        "responsable": "TT VARGAS",
+        "apoyos": "TP CACERES/SI CEPEDA/SG PEREZ/SG MATEO/CI AGUIAR"
       }
     ],
     "2026-06-18": [
@@ -6033,8 +6054,8 @@
         "hasta": "2359",
         "duration": "2h 59m",
         "desc": "Confeccion de cargas",
-        "responsable": "601",
-        "apoyos": ""
+        "responsable": "TT VARGAS",
+        "apoyos": "SG PEREZ/SG CARDOSO/CI TOSI"
       }
     ],
     "2026-06-19": [
@@ -6074,9 +6095,9 @@
         "desde": "0800",
         "hasta": "1300",
         "duration": "5h",
-        "desc": "Guadalupe (Tecnicas en escalera interna y externa)",
-        "responsable": "601",
-        "apoyos": ""
+        "desc": "Tecnicas en escalera interna y externa",
+        "responsable": "TT VARGAS",
+        "apoyos": "/SI CEPEDA/SI ALVARES/SG CARDOSO/SG LUGO/SG ARANCIBIA/SG CASTILLO"
       },
       {
         "id": 723,
@@ -6117,7 +6138,17 @@
         "hasta": "1300",
         "duration": "5h",
         "desc": "TPO (torre y BTP)",
-        "responsable": "601",
+        "responsable": "TT FEREZ",
+        "apoyos": "TT VARGAS/SG PEREZ/SG MATEO"
+      },
+      {
+        "id": 801,
+        "name": "Franco",
+        "desde": "1300",
+        "hasta": "2359",
+        "duration": "10h 59m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ],
@@ -6126,10 +6157,90 @@
         "id": 727,
         "name": "PROA",
         "desde": "0700",
-        "hasta": "1800",
-        "duration": "11h",
+        "hasta": "1300",
+        "duration": "6h",
         "desc": "",
         "responsable": "TT FEREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 804,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 805,
+        "name": "Logistica",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Carga de Camion",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
+      },
+      {
+        "id": 806,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 807,
+        "name": "Logistica",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Carga de camion",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
+      },
+      {
+        "id": 808,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
+      },
+      {
+        "id": 814,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 815,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 816,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ],
@@ -6138,10 +6249,20 @@
         "id": 728,
         "name": "PROA",
         "desde": "0700",
-        "hasta": "1800",
-        "duration": "11h",
+        "hasta": "1300",
+        "duration": "6h",
         "desc": "",
         "responsable": "TT FEREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 822,
+        "name": "Franco",
+        "desde": "1300",
+        "hasta": "2359",
+        "duration": "10h 59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
         "apoyos": ""
       }
     ],
@@ -6215,6 +6336,26 @@
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
+      },
+      {
+        "id": 810,
+        "name": "BYS",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Preparacion de equipo",
+        "responsable": "Subof Turno",
+        "apoyos": ""
+      },
+      {
+        "id": 811,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
       }
     ],
     "2026-06-23": [
@@ -6286,6 +6427,26 @@
         "duration": "1h",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 812,
+        "name": "Preparacion y mantenimiento de equipo",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "Subof Sem",
+        "apoyos": ""
+      },
+      {
+        "id": 813,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
         "apoyos": ""
       }
     ],
@@ -6359,6 +6520,16 @@
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
+      },
+      {
+        "id": 798,
+        "name": "CA",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Instruccion Campo de Prisioneros",
+        "responsable": "Icia",
+        "apoyos": ""
       }
     ],
     "2026-06-25": [
@@ -6401,6 +6572,56 @@
         "desc": "Operacion de Campo de prisioneros",
         "responsable": "Icia",
         "apoyos": ""
+      },
+      {
+        "id": 817,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 818,
+        "name": "Mantenimiento y preparacion de equipo",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 819,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 820,
+        "name": "Mantenimiento y preparacion de equipo",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "Sub of Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 821,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Suboficial de turno",
+        "apoyos": ""
       }
     ],
     "2026-07-06": [
@@ -6420,22 +6641,32 @@
         "id": 755,
         "name": "CA",
         "desde": "0700",
-        "hasta": "2359",
-        "duration": "16h 59m",
+        "hasta": "2200",
+        "duration": "15h",
         "desc": "SERE",
         "responsable": "FFEE",
+        "apoyos": ""
+      },
+      {
+        "id": 833,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "CI RIOS",
         "apoyos": ""
       }
     ],
     "2026-07-08": [
       {
         "id": 756,
-        "name": "CA",
+        "name": "Ejercicio",
         "desde": "0700",
         "hasta": "2359",
         "duration": "16h 59m",
-        "desc": "SERE",
-        "responsable": "FFEE",
+        "desc": "Ejercicio con municion real",
+        "responsable": "TP MUÑOZ",
         "apoyos": ""
       }
     ],
@@ -6444,10 +6675,90 @@
         "id": 757,
         "name": "Logistica",
         "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Regreso a Santo Tome.",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 839,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 840,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 841,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 842,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 843,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 844,
+        "name": "Logistica",
+        "desde": "1300",
+        "hasta": "2000",
+        "duration": "7h",
+        "desc": "Descarga de camion, mantenimiento",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 845,
+        "name": "Logistica",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Mantenimiento",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 846,
+        "name": "Descanso",
+        "desde": "2300",
         "hasta": "2359",
-        "duration": "16h 59m",
-        "desc": "Regreso a Santo Tome, carga y descarga de camion, mantenimiento",
-        "responsable": "",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ],
@@ -6459,7 +6770,7 @@
         "hasta": "1300",
         "duration": "6h",
         "desc": "Viaje",
-        "responsable": "601",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       },
       {
@@ -6469,7 +6780,7 @@
         "hasta": "1400",
         "duration": "1h",
         "desc": "",
-        "responsable": "SS",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       },
       {
@@ -6479,11 +6790,287 @@
         "hasta": "2000",
         "duration": "6h",
         "desc": "Preparacion de equipo\nArmado de carpa en la playa\nReconocimiento",
-        "responsable": "1400",
-        "apoyos": "1800"
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 827,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 828,
+        "name": "Descanso",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "SG",
+        "apoyos": "FUGAS"
       }
     ],
     "2026-06-30": [
+      {
+        "id": 785,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 786,
+        "name": "Comunicaciones",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "",
+        "responsable": "Ca Com Parac 4",
+        "apoyos": ""
+      },
+      {
+        "id": 787,
+        "name": "Comunicaciones",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Eq Com (Elbis, Harries)",
+        "responsable": "Ca Com Parac 4",
+        "apoyos": ""
+      },
+      {
+        "id": 788,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "CI GUTIERREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 832,
+        "name": "Descanso",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "CI GUTIERREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 854,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 855,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 856,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-01": [
+      {
+        "id": 769,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 770,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 771,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 772,
+        "name": "BTP",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
+        "responsable": "SI BIAGGINI",
+        "apoyos": ""
+      },
+      {
+        "id": 773,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 774,
+        "name": "BTP",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
+        "responsable": "SI BIAGGINI",
+        "apoyos": ""
+      },
+      {
+        "id": 778,
+        "name": "NSF",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Navegacion, Practica de formaciones",
+        "responsable": "CI ROMERO",
+        "apoyos": ""
+      },
+      {
+        "id": 830,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 831,
+        "name": "Descanso",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "",
+        "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-02": [
+      {
+        "id": 775,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 776,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 777,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 779,
+        "name": "TIRO",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Tiro embarcado, contra emboscada, ruptura",
+        "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      },
+      {
+        "id": 780,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 781,
+        "name": "TIRO",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Tiro embarcado, contra emboscada, ruptura",
+        "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      },
+      {
+        "id": 782,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 783,
+        "name": "CA",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
+        "responsable": "TP Muñoz",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-03": [
       {
         "id": 761,
         "name": "Descanso",
@@ -6551,7 +7138,7 @@
         "hasta": "2100",
         "duration": "3h",
         "desc": "Natacion en el Lago",
-        "responsable": "SA DEMO",
+        "responsable": "SI GIORDANO",
         "apoyos": ""
       },
       {
@@ -6563,211 +7150,15 @@
         "desc": "",
         "responsable": "SS",
         "apoyos": ""
-      }
-    ],
-    "2026-07-01": [
+      },
       {
-        "id": 769,
+        "id": 829,
         "name": "Descanso",
-        "desde": "0000",
-        "hasta": "0600",
-        "duration": "6h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 770,
-        "name": "Diana",
-        "desde": "0600",
-        "hasta": "0630",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 771,
-        "name": "Desayuno",
-        "desde": "0630",
-        "hasta": "0700",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 772,
-        "name": "BTP",
-        "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "Buceo Profundidad +30 contemplativo con busqueda de objetos",
-        "responsable": "SG FERNANDEZ",
-        "apoyos": ""
-      },
-      {
-        "id": 773,
-        "name": "Almuerzo",
-        "desde": "1300",
-        "hasta": "1400",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 774,
-        "name": "BTP",
-        "desde": "1400",
-        "hasta": "1800",
-        "duration": "4h",
-        "desc": "Buceo Profundidad +25 contemplativo con busqueda de objetos",
-        "responsable": "SG FERNANDEZ",
-        "apoyos": ""
-      },
-      {
-        "id": 778,
-        "name": "NSF",
-        "desde": "",
-        "hasta": "",
-        "duration": "",
-        "desc": "Navegacion, Practica de formaciones",
-        "responsable": "SG FUGAS",
-        "apoyos": ""
-      }
-    ],
-    "2026-07-02": [
-      {
-        "id": 775,
-        "name": "Descanso",
-        "desde": "0000",
-        "hasta": "0600",
-        "duration": "6h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 776,
-        "name": "Diana",
-        "desde": "0600",
-        "hasta": "0630",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 777,
-        "name": "Desayuno",
-        "desde": "0630",
-        "hasta": "0700",
-        "duration": "30m",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 779,
-        "name": "CA-BTP",
-        "desde": "0700",
-        "hasta": "1300",
-        "duration": "6h",
-        "desc": "Navegacion por escalones",
-        "responsable": "TP Muñoz",
-        "apoyos": ""
-      },
-      {
-        "id": 780,
-        "name": "Almuerzo",
-        "desde": "1300",
-        "hasta": "1400",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 781,
-        "name": "CA",
-        "desde": "1400",
-        "hasta": "2000",
-        "duration": "6h",
-        "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
-        "responsable": "TP Muñoz",
-        "apoyos": ""
-      },
-      {
-        "id": 782,
-        "name": "Cena",
-        "desde": "2000",
-        "hasta": "2100",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 783,
-        "name": "CA",
         "desde": "2100",
         "hasta": "2359",
         "duration": "2h 59m",
-        "desc": "Infiltracion acuatica (botes natacion, libre de playa, operacion base)",
-        "responsable": "TP Muñoz",
-        "apoyos": ""
-      }
-    ],
-    "2026-07-03": [
-      {
-        "id": 784,
-        "name": "CA",
-        "desde": "0000",
-        "hasta": "1000",
-        "duration": "10h",
-        "desc": "operacion de base, navegacion por escalones, accion al objetivo, repliegue",
-        "responsable": "TP Muñoz",
-        "apoyos": ""
-      },
-      {
-        "id": 785,
-        "name": "Almuerzo",
-        "desde": "1300",
-        "hasta": "1400",
-        "duration": "1h",
         "desc": "",
-        "responsable": "SS",
-        "apoyos": ""
-      },
-      {
-        "id": 786,
-        "name": "Comunicaciones",
-        "desde": "1000",
-        "hasta": "1300",
-        "duration": "3h",
-        "desc": "",
-        "responsable": "Ca Com Parac 4",
-        "apoyos": ""
-      },
-      {
-        "id": 787,
-        "name": "Comunicaciones",
-        "desde": "1400",
-        "hasta": "1800",
-        "duration": "4h",
-        "desc": "Eq Com (Elbis, Harries)",
-        "responsable": "Ca Com Parac 4",
-        "apoyos": ""
-      },
-      {
-        "id": 788,
-        "name": "Cena",
-        "desde": "2000",
-        "hasta": "2100",
-        "duration": "1h",
-        "desc": "",
-        "responsable": "SS",
+        "responsable": "SI BIAGGINI",
         "apoyos": ""
       }
     ],
@@ -6778,8 +7169,38 @@
         "desde": "0700",
         "hasta": "2359",
         "duration": "16h 59m",
-        "desc": "Ejercicio picante a Casa de de Piedra",
-        "responsable": "",
+        "desc": "Ejercicio a Casa de de Piedra",
+        "responsable": "TT CHOCOBAR",
+        "apoyos": ""
+      },
+      {
+        "id": 834,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 835,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 836,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ],
@@ -6790,8 +7211,8 @@
         "desde": "0000",
         "hasta": "2100",
         "duration": "21h",
-        "desc": "Ejercicio picante a Casa de de Piedra",
-        "responsable": "",
+        "desc": "Ejercicio a Casa de de Piedra",
+        "responsable": "TT CHOCOBAR",
         "apoyos": ""
       }
     ],
@@ -6853,7 +7274,7 @@
         "hasta": "1300",
         "duration": "6h",
         "desc": "Mantenimiento",
-        "responsable": "",
+        "responsable": "SA CASTILLO",
         "apoyos": ""
       },
       {
@@ -6862,8 +7283,156 @@
         "desde": "1400",
         "hasta": "2000",
         "duration": "6h",
+        "desc": "Carga de camion",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 837,
+        "name": "Logistica",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
         "desc": "Mantenimiento",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 838,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-21": [
+      {
+        "id": 802,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2000",
+        "duration": "20h",
+        "desc": "",
         "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 803,
+        "name": "Logistica",
+        "desde": "2000",
+        "hasta": "2300",
+        "duration": "3h",
+        "desc": "Preparacion del equipo individual",
+        "responsable": "Suboficial de Turno",
+        "apoyos": ""
+      }
+    ],
+    "2026-06-28": [
+      {
+        "id": 824,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2100",
+        "duration": "21h",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      },
+      {
+        "id": 825,
+        "name": "Preparacion y mantenimiento",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 826,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "Subof turno",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-11": [
+      {
+        "id": 847,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 848,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 849,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 850,
+        "name": "Logistica",
+        "desde": "0700",
+        "hasta": "1300",
+        "duration": "6h",
+        "desc": "Mantenimiento",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 851,
+        "name": "Franco",
+        "desde": "1300",
+        "hasta": "2359",
+        "duration": "10h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-12": [
+      {
+        "id": 852,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2000",
+        "duration": "20h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 853,
+        "name": "Preparacion del equipo individual",
+        "desde": "2000",
+        "hasta": "2359",
+        "duration": "3h 59m",
+        "desc": "",
+        "responsable": "SS",
         "apoyos": ""
       }
     ]
