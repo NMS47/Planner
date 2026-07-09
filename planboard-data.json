@@ -23,7 +23,7 @@
     {
       "id": 9,
       "name": "Ejercicio Final",
-      "days": 6,
+      "days": 8,
       "baseColor": "#ffb347",
       "phases": [],
       "hidden": false,
@@ -226,33 +226,17 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
+    },
+    {
+      "id": 917,
+      "name": "BTP",
+      "days": 1,
+      "baseColor": "#4754ff",
+      "phases": [],
+      "category": "CBSFBE"
     }
   ],
   "placements": [
-    {
-      "id": 11,
-      "cardId": 9,
-      "name": "Ejercicio Final",
-      "days": 6,
-      "startY": 2026,
-      "startM": 6,
-      "startD": 13,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 18
-    },
-    {
-      "id": 12,
-      "cardId": 10,
-      "name": "Egreso",
-      "days": 4,
-      "startY": 2026,
-      "startM": 6,
-      "startD": 20,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 23
-    },
     {
       "id": 24,
       "cardId": 23,
@@ -516,9 +500,45 @@
       "endY": 2026,
       "endM": 5,
       "endD": 27
+    },
+    {
+      "id": 915,
+      "cardId": 9,
+      "name": "Ejercicio Final",
+      "days": 8,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 14,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 21
+    },
+    {
+      "id": 916,
+      "cardId": 10,
+      "name": "Egreso",
+      "days": 4,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 21,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 24
+    },
+    {
+      "id": 918,
+      "cardId": 917,
+      "name": "BTP",
+      "days": 1,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 13,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 13
     }
   ],
-  "idCounter": 914,
+  "idCounter": 918,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -7435,7 +7455,7 @@
         "duration": "9h",
         "desc": "Buceo de profundidad (+20m) en el rio sin visibilidad, con recorrido lineal",
         "responsable": "SI SORIA",
-        "apoyos": "VILLAFAN"
+        "apoyos": "DEMO, DUTTEN, VILLAFAN, ZAPANA, FERNANDEZ"
       },
       {
         "id": 858,
