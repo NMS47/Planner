@@ -518,7 +518,7 @@
       "endD": 27
     }
   ],
-  "idCounter": 856,
+  "idCounter": 873,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -7423,6 +7423,180 @@
         "duration": "3h 59m",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-13": [
+      {
+        "id": 857,
+        "name": "BTP",
+        "desde": "0800",
+        "hasta": "1700",
+        "duration": "9h",
+        "desc": "Buceo de profundidad (+20m) en el rio sin visibilidad, con recorrido lineal",
+        "responsable": "SI SORIA",
+        "apoyos": "VILLAFAN"
+      },
+      {
+        "id": 858,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 859,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 860,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 861,
+        "name": "Mantenimiento",
+        "desde": "1700",
+        "hasta": "2000",
+        "duration": "3h",
+        "desc": "Preparacion y mantenimiento de material para el ejercicio final",
+        "responsable": "CI Villafan",
+        "apoyos": ""
+      },
+      {
+        "id": 862,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 863,
+        "name": "Mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "Preparacion y mantenimiento de material para el ejercicio final",
+        "responsable": "CI Villafan",
+        "apoyos": ""
+      },
+      {
+        "id": 864,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-14": [
+      {
+        "id": 865,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 866,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 867,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 868,
+        "name": "Ejercicio Final",
+        "desde": "0730",
+        "hasta": "0830",
+        "duration": "1h",
+        "desc": "Imparticion SI y OO Ej",
+        "responsable": "MY BORRO",
+        "apoyos": "CT SALVADORES"
+      },
+      {
+        "id": 869,
+        "name": "Ejercicio Final",
+        "desde": "0830",
+        "hasta": "1300",
+        "duration": "4h 30m",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 870,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 871,
+        "name": "Ejercicio Final",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 872,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 873,
+        "name": "Ejercicio Final",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Planeamiento",
+        "responsable": "TP MUÑOZ",
         "apoyos": ""
       }
     ]
