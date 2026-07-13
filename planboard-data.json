@@ -23,7 +23,7 @@
     {
       "id": 9,
       "name": "Ejercicio Final",
-      "days": 6,
+      "days": 8,
       "baseColor": "#ffb347",
       "phases": [],
       "hidden": false,
@@ -226,33 +226,17 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
+    },
+    {
+      "id": 917,
+      "name": "BTP",
+      "days": 1,
+      "baseColor": "#4754ff",
+      "phases": [],
+      "category": "CBSFBE"
     }
   ],
   "placements": [
-    {
-      "id": 11,
-      "cardId": 9,
-      "name": "Ejercicio Final",
-      "days": 6,
-      "startY": 2026,
-      "startM": 6,
-      "startD": 13,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 18
-    },
-    {
-      "id": 12,
-      "cardId": 10,
-      "name": "Egreso",
-      "days": 4,
-      "startY": 2026,
-      "startM": 6,
-      "startD": 20,
-      "endY": 2026,
-      "endM": 6,
-      "endD": 23
-    },
     {
       "id": 24,
       "cardId": 23,
@@ -516,9 +500,45 @@
       "endY": 2026,
       "endM": 5,
       "endD": 27
+    },
+    {
+      "id": 915,
+      "cardId": 9,
+      "name": "Ejercicio Final",
+      "days": 8,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 14,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 21
+    },
+    {
+      "id": 916,
+      "cardId": 10,
+      "name": "Egreso",
+      "days": 4,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 21,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 24
+    },
+    {
+      "id": 918,
+      "cardId": 917,
+      "name": "BTP",
+      "days": 1,
+      "startY": 2026,
+      "startM": 6,
+      "startD": 13,
+      "endY": 2026,
+      "endM": 6,
+      "endD": 13
     }
   ],
-  "idCounter": 856,
+  "idCounter": 918,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -7423,6 +7443,610 @@
         "duration": "3h 59m",
         "desc": "",
         "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-13": [
+      {
+        "id": 857,
+        "name": "BTP",
+        "desde": "0800",
+        "hasta": "1700",
+        "duration": "9h",
+        "desc": "Buceo de profundidad (+20m) en el rio sin visibilidad, con recorrido lineal",
+        "responsable": "SI SORIA",
+        "apoyos": "DEMO, DUTTEN, VILLAFAN, ZAPANA, FERNANDEZ"
+      },
+      {
+        "id": 858,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 859,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 860,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 861,
+        "name": "Mantenimiento",
+        "desde": "1700",
+        "hasta": "2000",
+        "duration": "3h",
+        "desc": "Preparacion y mantenimiento de material para el ejercicio final",
+        "responsable": "CI Villafan",
+        "apoyos": ""
+      },
+      {
+        "id": 862,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 863,
+        "name": "Mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "1h",
+        "desc": "Preparacion y mantenimiento de material para el ejercicio final",
+        "responsable": "CI Villafan",
+        "apoyos": ""
+      },
+      {
+        "id": 864,
+        "name": "Descanso",
+        "desde": "2200",
+        "hasta": "2359",
+        "duration": "1h 59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-14": [
+      {
+        "id": 865,
+        "name": "Descanso",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 866,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 867,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 868,
+        "name": "Ejercicio Final",
+        "desde": "0730",
+        "hasta": "0830",
+        "duration": "1h",
+        "desc": "Imparticion SI y OO Ej",
+        "responsable": "MY BORRO",
+        "apoyos": "CT SALVADORES"
+      },
+      {
+        "id": 869,
+        "name": "Ejercicio Final",
+        "desde": "0830",
+        "hasta": "1300",
+        "duration": "4h 30m",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 870,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 871,
+        "name": "Ejercicio Final",
+        "desde": "1400",
+        "hasta": "2000",
+        "duration": "6h",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 872,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 873,
+        "name": "Ejercicio Final",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "Planeamiento",
+        "responsable": "TP MUÑOZ",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-15": [
+      {
+        "id": 874,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "6h",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 875,
+        "name": "Ejercicio Final",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "30m",
+        "desc": "Salida exploracion, Instalacion Eno (Eq A)",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 876,
+        "name": "Ejercicio Final",
+        "desde": "0630",
+        "hasta": "1300",
+        "duration": "6h 30m",
+        "desc": "Planeamiento",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 877,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 878,
+        "name": "Ejercicio Final",
+        "desde": "1400",
+        "hasta": "1600",
+        "duration": "2h",
+        "desc": "Imparticion OO",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 879,
+        "name": "Ejercicio Final",
+        "desde": "1600",
+        "hasta": "1800",
+        "duration": "2h",
+        "desc": "Ensayos",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 880,
+        "name": "Ejercicio Final",
+        "desde": "1800",
+        "hasta": "2359",
+        "duration": "5h 59m",
+        "desc": "Aproximacion en botes",
+        "responsable": "Eq B",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-16": [
+      {
+        "id": 881,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0500",
+        "duration": "5h",
+        "desc": "Aproximacion y emplazamiento Elones para golpe de mano",
+        "responsable": "Eq B y A",
+        "apoyos": ""
+      },
+      {
+        "id": 882,
+        "name": "Ejercicio Final",
+        "desde": "0500",
+        "hasta": "0600",
+        "duration": "1h",
+        "desc": "Accion en el Objetivo",
+        "responsable": "Eq B Y A",
+        "apoyos": ""
+      },
+      {
+        "id": 883,
+        "name": "Ejercicio Final",
+        "desde": "0600",
+        "hasta": "0900",
+        "duration": "3h",
+        "desc": "Exfiltracion, despliegue Eq C al PEx",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 884,
+        "name": "Ejercicio Final",
+        "desde": "0900",
+        "hasta": "1600",
+        "duration": "7h",
+        "desc": "Operacion Base",
+        "responsable": "Eq C",
+        "apoyos": ""
+      },
+      {
+        "id": 885,
+        "name": "Ejercicio Final",
+        "desde": "1600",
+        "hasta": "1900",
+        "duration": "3h",
+        "desc": "Navegacion a remo",
+        "responsable": "Eq C",
+        "apoyos": ""
+      },
+      {
+        "id": 886,
+        "name": "Ejercicio Final",
+        "desde": "1900",
+        "hasta": "2100",
+        "duration": "2h",
+        "desc": "Captura, traslado a Guadalupe",
+        "responsable": "Eq A",
+        "apoyos": ""
+      },
+      {
+        "id": 887,
+        "name": "Ejercicio Final",
+        "desde": "2100",
+        "hasta": "2359",
+        "duration": "2h 59m",
+        "desc": "CPG",
+        "responsable": "Eq A",
+        "apoyos": "Icia"
+      }
+    ],
+    "2026-07-17": [
+      {
+        "id": 888,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0800",
+        "duration": "8h",
+        "desc": "CPG",
+        "responsable": "Eq A",
+        "apoyos": "Icia"
+      },
+      {
+        "id": 889,
+        "name": "Ejercicio Final",
+        "desde": "0800",
+        "hasta": "2000",
+        "duration": "12h",
+        "desc": "CPG",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 890,
+        "name": "Ejercicio Final",
+        "desde": "2000",
+        "hasta": "2359",
+        "duration": "3h 59m",
+        "desc": "CPG",
+        "responsable": "Eq C",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-18": [
+      {
+        "id": 891,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0800",
+        "duration": "8h",
+        "desc": "CPG",
+        "responsable": "Eq C",
+        "apoyos": ""
+      },
+      {
+        "id": 892,
+        "name": "Ejercicio Final",
+        "desde": "0800",
+        "hasta": "2000",
+        "duration": "12h",
+        "desc": "CPG",
+        "responsable": "Eq A",
+        "apoyos": ""
+      },
+      {
+        "id": 893,
+        "name": "Ejercicio Final",
+        "desde": "2000",
+        "hasta": "2359",
+        "duration": "3h 59m",
+        "desc": "CPG",
+        "responsable": "Eq B",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-19": [
+      {
+        "id": 894,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0300",
+        "duration": "3h",
+        "desc": "CPG",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 895,
+        "name": "Ejercicio Final",
+        "desde": "0300",
+        "hasta": "0500",
+        "duration": "2h",
+        "desc": "Rescate y traslado a Comisaria Recreo",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 896,
+        "name": "Ejercicio Final",
+        "desde": "0500",
+        "hasta": "0800",
+        "duration": "3h",
+        "desc": "Operacion Casa segura",
+        "responsable": "Eq B",
+        "apoyos": "Racto"
+      },
+      {
+        "id": 897,
+        "name": "Ejercicio Final",
+        "desde": "0800",
+        "hasta": "2000",
+        "duration": "12h",
+        "desc": "Operacion Casa segura",
+        "responsable": "Eq C",
+        "apoyos": "Racto"
+      },
+      {
+        "id": 899,
+        "name": "Ejercicio Final",
+        "desde": "2000",
+        "hasta": "2359",
+        "duration": "3h 59m",
+        "desc": "Operacion Casa segura",
+        "responsable": "Eq A",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-20": [
+      {
+        "id": 898,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0500",
+        "duration": "5h",
+        "desc": "Operacion Casa segura",
+        "responsable": "Eq A",
+        "apoyos": ""
+      },
+      {
+        "id": 900,
+        "name": "Ejercicio Final",
+        "desde": "0500",
+        "hasta": "0900",
+        "duration": "4h",
+        "desc": "Evasion a pie hasta P Conex Bicicletas",
+        "responsable": "Eq A",
+        "apoyos": ""
+      },
+      {
+        "id": 901,
+        "name": "Ejercicio Final",
+        "desde": "0900",
+        "hasta": "1200",
+        "duration": "3h",
+        "desc": "Evasion bicicletas",
+        "responsable": "TP Borges",
+        "apoyos": "Rivero, Toledo"
+      },
+      {
+        "id": 902,
+        "name": "Ejercicio Final",
+        "desde": "1200",
+        "hasta": "2359",
+        "duration": "11h 59m",
+        "desc": "Operacion Base",
+        "responsable": "Eq C",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-21": [
+      {
+        "id": 903,
+        "name": "Ejercicio Final",
+        "desde": "0000",
+        "hasta": "0700",
+        "duration": "7h",
+        "desc": "Natacion de Combate hasta Batallon",
+        "responsable": "Eq B",
+        "apoyos": ""
+      },
+      {
+        "id": 904,
+        "name": "Ejercicio Final",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "30m",
+        "desc": "Fin de ejercicio y recibimiento de cursantes",
+        "responsable": "Eq A y C",
+        "apoyos": "Todos los buzos"
+      },
+      {
+        "id": 905,
+        "name": "Logistica",
+        "desde": "0730",
+        "hasta": "1300",
+        "duration": "5h 30m",
+        "desc": "Mantenimiento de equipo",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 906,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 907,
+        "name": "Descanso",
+        "desde": "1400",
+        "hasta": "1630",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 908,
+        "name": "Logistica",
+        "desde": "1630",
+        "hasta": "2000",
+        "duration": "3h 30m",
+        "desc": "Mantebimeinto de Equipo",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 909,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 910,
+        "name": "Logistica",
+        "desde": "2100",
+        "hasta": "2300",
+        "duration": "2h",
+        "desc": "Mantenimiento",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 911,
+        "name": "Descanso",
+        "desde": "2300",
+        "hasta": "2359",
+        "duration": "59m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-24": [
+      {
+        "id": 912,
+        "name": "Formacion de egreso",
+        "desde": "1100",
+        "hasta": "1200",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-22": [
+      {
+        "id": 913,
+        "name": "Acts de cierre de curso",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "",
+        "responsable": "",
+        "apoyos": ""
+      }
+    ],
+    "2026-07-23": [
+      {
+        "id": 914,
+        "name": "Acts de cierre de curso",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "",
+        "responsable": "",
         "apoyos": ""
       }
     ]
