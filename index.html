@@ -29,6 +29,10 @@
     <span id="sync-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block"></span>
     <span id="sync-text">Cargando...</span>
   </div>
+  <div id="personal-mode-indicator" style="display:none;font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--accent);align-items:center;gap:8px">
+    <span>Nosotros</span>
+    <a href="#" onclick="exitPersonalMode();return false;" style="color:var(--muted);text-decoration:underline">← Volver a trabajo</a>
+  </div>
   <div class="hdr-right">
     <div class="year-nav">
       <button class="year-arrow" onclick="changeYear(-1)">◀</button>
@@ -52,7 +56,7 @@
         <div class="hm-divider"></div>
         <button class="hm-item hm-gcal" onclick="exportICS();closeHamburger()">📅 Google Calendar (.ics)</button>
         <div class="hm-divider"></div>
-        <button class="hm-item" onclick="openFilterModal();closeHamburger()">🔍 Filtrar por materia</button>
+        <button class="hm-item" id="hm-filter-materia" onclick="openFilterModal();closeHamburger()">🔍 Filtrar por materia</button>
         <div class="hm-divider" data-edit></div>
         <div class="hm-section-label" data-edit>Sesión</div>
         <button class="hm-item hm-gh-save" data-edit onclick="saveToGithub();closeHamburger()">☁ Guardar en GitHub</button>
