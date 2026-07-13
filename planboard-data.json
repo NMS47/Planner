@@ -8050,5 +8050,53 @@
         "apoyos": ""
       }
     ]
+  },
+  "personal": {
+    "cards": [
+      {
+        "id": 1,
+        "name": "Vacaciones",
+        "days": 16,
+        "baseColor": "#e8ff47",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 3,
+        "name": "Curso Molo",
+        "days": 26,
+        "baseColor": "#ff6b6b",
+        "phases": [],
+        "category": ""
+      }
+    ],
+    "placements": [
+      {
+        "id": 2,
+        "cardId": 1,
+        "name": "Vacaciones",
+        "days": 16,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 8,
+        "endY": 2026,
+        "endM": 7,
+        "endD": 23
+      },
+      {
+        "id": 4,
+        "cardId": 3,
+        "name": "Curso Molo",
+        "days": 26,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 31,
+        "endY": 2026,
+        "endM": 8,
+        "endD": 25
+      }
+    ],
+    "idCounter": 4,
+    "dayTasks": {}
   }
 }
