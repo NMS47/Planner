@@ -36,6 +36,43 @@ function exitPersonalMode() {
   location.href = location.pathname;
 }
 
+function extractProjectBucket(fullData, project) {
+  const data = (fullData && typeof fullData === 'object') ? fullData : {};
+  if (project === 'personal') {
+    const p = (data.personal && typeof data.personal === 'object') ? data.personal : {};
+    return {
+      cards: p.cards || [],
+      placements: p.placements || [],
+      idCounter: p.idCounter || 0,
+      dayTasks: p.dayTasks || {}
+    };
+  }
+  return {
+    cards: data.cards || [],
+    placements: data.placements || [],
+    idCounter: data.idCounter || 0,
+    dayTasks: data.dayTasks || {}
+  };
+}
+
+function mergeProjectBucket(fullData, project, bucket) {
+  const data = (fullData && typeof fullData === 'object') ? { ...fullData } : {};
+  if (project === 'personal') {
+    data.personal = {
+      cards: bucket.cards,
+      placements: bucket.placements,
+      idCounter: bucket.idCounter,
+      dayTasks: bucket.dayTasks
+    };
+  } else {
+    data.cards = bucket.cards;
+    data.placements = bucket.placements;
+    data.idCounter = bucket.idCounter;
+    data.dayTasks = bucket.dayTasks;
+  }
+  return data;
+}
+
 // ── MATERIAS / FILTER ────────────────────────────────────────────────────────
 const DEFAULT_MATERIAS = ['AYN','AFM','CA','FIBU','BTP','CH','FIPA','GMA','Demol','NSF','Planto','MEB'];
 let materias = [...DEFAULT_MATERIAS];
