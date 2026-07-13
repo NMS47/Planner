@@ -2165,7 +2165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // data from GitHub JSON or fall back to localStorage cache.
 renderCards();
 renderCalendar();
-let weekModal = { open: false, monday: null };
+let weekModal = { open: false, monday: null, expandedGaps: new Set(), restoreScroll: null };
 let weekViewMode = 'list'; // 'list' | 'grid'
 
 function toggleWeekView() {
@@ -2186,6 +2186,7 @@ function getMondayOfDate(date) {
 function openWeekModal(mondayDate) {
   weekModal.monday = getMondayOfDate(mondayDate);
   weekModal.open = true;
+  weekModal.expandedGaps.clear();
   renderWeekModal();
   document.getElementById('week-modal-backdrop').classList.add('open');
 }
@@ -2201,6 +2202,7 @@ function onWeekBackdropClick(e) {
 
 function shiftWeek(delta) {
   weekModal.monday = new Date(weekModal.monday.getTime() + delta * 7 * 86400000);
+  weekModal.expandedGaps.clear();
   renderWeekModal();
 }
 
@@ -2227,45 +2229,47 @@ function renderWeekModal() {
   }
 }
 
-// Vista lista como MATRIZ: filas = horarios de inicio que existen esa semana,
-// columnas = días. El mismo horario queda en la misma fila → alineado entre días.
+// Vista lista: una columna por día, cada una con su propia lista vertical de
+// tareas ordenadas por hora. Las columnas crecen independientes (sin alinear
+// horarios entre días); en mobile se navega con scroll horizontal + snap.
 function renderWeekListView(body, mon) {
   const today = new Date(); today.setHours(0,0,0,0);
   body.className = 'week-modal-body list-view';
   const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
 
-  // Reunir tareas por día
-  const days = [];
+  // Auto-scroll horizontal al arrastrar cerca de los bordes (listener único:
+  // #wm-body persiste entre renders, no re-agregar en cada render)
+  if (!body._wlAutoScroll) {
+    body._wlAutoScroll = true;
+    body.addEventListener('dragover', e => {
+      if (!weekDrag.active) return;
+      const r = body.getBoundingClientRect();
+      if (e.clientX - r.left < 48) body.scrollLeft -= 14;
+      else if (r.right - e.clientX < 48) body.scrollLeft += 14;
+    });
+  }
+
   for (let i = 0; i < 7; i++) {
     const dt = new Date(mon.getTime() + i * 86400000);
     const k = dateKey(dt.getFullYear(), dt.getMonth(), dt.getDate());
-    days.push({ dt, tasks: (dayTasks[k] || []).slice() });
-  }
+    // Sin hora al final ('9999' ordena después de cualquier horario)
+    const tasks = (dayTasks[k] || []).slice()
+      .sort((a, b) => (a.desde || '9999').localeCompare(b.desde || '9999'));
+    const isToday = dt.getTime() === today.getTime();
 
-  // Conjunto ordenado de horarios de inicio distintos (en minutos)
-  const slotSet = new Map(); // minutos -> string 'desde' representativo
-  let hasUntimed = false;
-  days.forEach(d => d.tasks.forEach(t => {
-    const m = militaryToMinutes(t.desde);
-    if (m == null) hasUntimed = true;
-    else if (!slotSet.has(m)) slotSet.set(m, t.desde);
-  }));
-  const slots = [...slotSet.keys()].sort((a, b) => a - b);
+    const col = document.createElement('div');
+    col.className = 'wl-day-col' + (isToday ? ' today' : '');
+    if (_editorMode) {
+      col.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); col.classList.add('wdrag-over'); });
+      col.addEventListener('dragleave', e => { if (!col.contains(e.relatedTarget)) col.classList.remove('wdrag-over'); });
+      col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('wdrag-over'); handleWeekDrop(k); });
+    }
 
-  const matrix = document.createElement('div');
-  matrix.className = 'week-list-matrix';
-  matrix.style.gridTemplateColumns = '56px repeat(7, minmax(0,1fr))';
-
-  // Fila de encabezados (días)
-  matrix.appendChild(Object.assign(document.createElement('div'), { className: 'wl-corner' }));
-  days.forEach(d => {
-    const isToday = d.dt.getTime() === today.getTime();
-    const listHdrKey = dateKey(d.dt.getFullYear(), d.dt.getMonth(), d.dt.getDate());
     const h = document.createElement('div');
     h.className = 'wl-day-header';
-    h.innerHTML = `<div class="week-day-name">${DAY_NAMES[d.dt.getDay()]}</div>
-      <div class="week-day-num${isToday ? ' today' : ''}">${d.dt.getDate()}</div>`;
-    h.addEventListener('click', () => { closeWeekModal(); openDayModal(d.dt); });
+    h.innerHTML = `<div class="week-day-name">${DAY_NAMES[dt.getDay()]}</div>
+      <div class="week-day-num${isToday ? ' today' : ''}">${dt.getDate()}</div>`;
+    h.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
     if (_editorMode) {
       const handle = document.createElement('span');
       handle.className = 'wg-day-drag-handle';
@@ -2275,10 +2279,10 @@ function renderWeekListView(body, mon) {
       handle.addEventListener('dragstart', e => {
         weekDrag.active    = true;
         weekDrag.taskId    = null;
-        weekDrag.sourceKey = listHdrKey;
+        weekDrag.sourceKey = k;
         weekDrag.moveAll   = true;
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', 'day:' + listHdrKey);
+        e.dataTransfer.setData('text/plain', 'day:' + k);
         showWeekDragArrows();
       });
       handle.addEventListener('dragend', () => {
@@ -2286,34 +2290,29 @@ function renderWeekListView(body, mon) {
         hideWeekDragArrows();
       });
       h.appendChild(handle);
-      h.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); h.classList.add('wdrag-over'); });
-      h.addEventListener('dragleave', () => h.classList.remove('wdrag-over'));
-      h.addEventListener('drop', e => { e.preventDefault(); h.classList.remove('wdrag-over'); handleWeekDrop(listHdrKey); });
     }
-    matrix.appendChild(h);
-  });
+    col.appendChild(h);
 
-  const makeCell = (dayObj, predicate) => {
-    const cell = document.createElement('div');
-    cell.className = 'wl-cell';
-    const cellKey = dateKey(dayObj.dt.getFullYear(), dayObj.dt.getMonth(), dayObj.dt.getDate());
-    if (_editorMode) {
-      cell.addEventListener('dragover', e => { if (!weekDrag.active) return; e.preventDefault(); cell.classList.add('wdrag-over'); });
-      cell.addEventListener('dragleave', () => cell.classList.remove('wdrag-over'));
-      cell.addEventListener('drop', e => { e.preventDefault(); cell.classList.remove('wdrag-over'); handleWeekDrop(cellKey); });
+    const list = document.createElement('div');
+    list.className = 'wl-day-tasks';
+    if (!tasks.length) {
+      const empty = document.createElement('div');
+      empty.className = 'week-day-empty';
+      empty.textContent = 'Sin tareas';
+      list.appendChild(empty);
     }
-    dayObj.tasks.forEach((t, ti) => {
-      if (!predicate(t)) return;
+    tasks.forEach((t, ti) => {
       const color = getTaskColor(t, COLORS[ti % COLORS.length]);
       const row = document.createElement('div');
       row.className = 'wl-task' + (taskMatchesFilter(t) ? ' task-filtered' : '');
       row.style.borderLeft = `3px solid ${color}`;
       row.style.background = color + '0f';
       const timeTxt = t.hasta ? `${formatearHora(t.desde)}–${formatearHora(t.hasta)}`
-                              : (t.desde ? formatearHora(t.desde) : '');
+                              : (t.desde ? formatearHora(t.desde) : 'Sin hora');
       row.innerHTML = `
+        <div class="week-task-time">${timeTxt}</div>
         <div class="week-task-name">${esc(t.name)}</div>
-        ${timeTxt ? `<div class="week-task-time">${timeTxt}</div>` : ''}
+        ${t.desc ? `<div class="week-task-desc">${esc(t.desc)}</div>` : ''}
         ${(t.responsable || t.apoyos) ? `<div class="week-task-people">${[t.responsable, t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
       if (_editorMode) {
         row.draggable = true;
@@ -2321,7 +2320,7 @@ function renderWeekListView(body, mon) {
           e.stopPropagation();
           weekDrag.active    = true;
           weekDrag.taskId    = t.id;
-          weekDrag.sourceKey = cellKey;
+          weekDrag.sourceKey = k;
           weekDrag.moveAll   = false;
           e.dataTransfer.effectAllowed = 'move';
           e.dataTransfer.setData('text/plain', String(t.id));
@@ -2334,55 +2333,29 @@ function renderWeekListView(body, mon) {
           hideWeekDragArrows();
         });
       }
-      row.addEventListener('click', () => { closeWeekModal(); openDayModal(dayObj.dt); });
-      cell.appendChild(row);
+      row.addEventListener('click', () => { closeWeekModal(); openDayModal(dt); });
+      list.appendChild(row);
     });
-    return cell;
-  };
-
-  // Filas por horario
-  slots.forEach(m => {
-    const lbl = document.createElement('div');
-    lbl.className = 'wl-time-label';
-    lbl.textContent = formatearHora(slotSet.get(m));
-    matrix.appendChild(lbl);
-    days.forEach(d => matrix.appendChild(makeCell(d, t => militaryToMinutes(t.desde) === m)));
-  });
-
-  // Fila para tareas sin hora
-  if (hasUntimed) {
-    const lbl = document.createElement('div');
-    lbl.className = 'wl-time-label';
-    lbl.textContent = 'Sin hora';
-    matrix.appendChild(lbl);
-    days.forEach(d => matrix.appendChild(makeCell(d, t => militaryToMinutes(t.desde) == null)));
+    col.appendChild(list);
+    body.appendChild(col);
   }
-
-  if (!slots.length && !hasUntimed) {
-    const empty = document.createElement('div');
-    empty.className = 'week-day-empty';
-    empty.style.gridColumn = '1 / -1';
-    empty.textContent = 'Sin tareas esta semana';
-    matrix.appendChild(empty);
-  }
-
-  body.appendChild(matrix);
 }
 
-// Vista grilla con EJE DE TIEMPO COMPRIMIDO (compartido por los 7 días, así sigue
-// alineado). Recorta el rango al horario realmente usado, colapsa las franjas
-// vacías y achica los bloques largos/recurrentes (ej. Descanso) que no aportan
-// detalle, eliminando los espacios en blanco.
+// Vista grilla con EJE DE TIEMPO LINEAL: la escala es fiel (1 h = PX_PER_HOUR px)
+// para que la altura de cada bloque refleje su duración real. El rango se recorta
+// al horario usado en la semana, y los huecos sin actividad en NINGÚN día
+// (≥ GAP_MIN) se colapsan a una banda etiquetada, clickeable para expandir.
 function renderWeekGridView(body, mon) {
   const today = new Date(); today.setHours(0,0,0,0);
   body.className = 'week-modal-body grid-view';
   const COLORS = ['#e8ff47','#47c8ff','#ffb347','#b8ff9f','#d1a3ff','#ff9dc6','#4dffd2','#ffd147'];
 
-  const SLOT = 30;            // resolución del eje (minutos por franja)
-  const FULL_H = 30;          // px por franja en zonas densas
-  const COMP_H = 7;           // px por franja en zonas comprimidas (vacías o bloques largos)
-  const LONG_THRESHOLD = 180; // min: tareas ≥ esto no obligan a altura completa
-  const MIN_EVENT_H = 28;
+  const SLOT = 30;                        // resolución del eje (minutos por franja)
+  const PX_PER_HOUR = 80;                 // escala lineal: 1 hora = 80 px
+  const SLOT_H = PX_PER_HOUR * SLOT / 60; // px por franja a escala real
+  const GAP_MIN = 120;                    // huecos ≥ 2 h (toda la semana vacía) se colapsan
+  const BAND_H = 30;                      // alto de la banda de hueco colapsado
+  const MIN_EVENT_H = 30;
   const fmtMin = m => String(Math.floor((m % 1440) / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 
   // ── Reunir tareas y rango horario real ──────────────────────────────────
@@ -2408,17 +2381,37 @@ function renderWeekGridView(body, mon) {
   tMax = Math.ceil(tMax / 60) * 60;
   if (tMax - tMin < 60) tMax = tMin + 60;
 
-  // ── Mapa de densidad y eje no-lineal compartido ─────────────────────────
+  // ── Eje lineal compartido + huecos colapsables ──────────────────────────
   const N = Math.ceil((tMax - tMin) / SLOT);
-  const dense = new Array(N).fill(false);   // hay alguna tarea corta en la franja
   const anyTask = new Array(N).fill(false); // hay alguna tarea en la franja
   days.forEach(d => d.timed.forEach(o => {
     const i0 = Math.max(0, Math.floor((o.s - tMin) / SLOT));
     const i1 = Math.min(N, Math.ceil((o.e - tMin) / SLOT));
-    for (let i = i0; i < i1; i++) { anyTask[i] = true; if (o.dur < LONG_THRESHOLD) dense[i] = true; }
+    for (let i = i0; i < i1; i++) anyTask[i] = true;
   }));
+
+  // Corridas de franjas vacías en toda la semana ≥ GAP_MIN → colapsables
+  const gaps = []; // { i0, i1, startMin, endMin, collapsed }
+  for (let i = 0; i < N;) {
+    if (anyTask[i]) { i++; continue; }
+    let j = i; while (j < N && !anyTask[j]) j++;
+    if ((j - i) * SLOT >= GAP_MIN) {
+      const startMin = tMin + i * SLOT;
+      gaps.push({ i0: i, i1: j, startMin, endMin: tMin + j * SLOT,
+        collapsed: !weekModal.expandedGaps.has(startMin) });
+    }
+    i = j;
+  }
+  const inCollapsedGap = (min) =>
+    gaps.some(g => g.collapsed && min > g.startMin && min < g.endMin);
+
   const TOP_PAD = 10; // respiro arriba/abajo para que no se corten las etiquetas
-  const heights = dense.map(d => d ? FULL_H : COMP_H);
+  const heights = new Array(N).fill(SLOT_H);
+  gaps.forEach(g => {
+    if (!g.collapsed) return;
+    const each = BAND_H / (g.i1 - g.i0);
+    for (let i = g.i0; i < g.i1; i++) heights[i] = each;
+  });
   const cumY = new Array(N + 1); cumY[0] = 0;
   for (let i = 0; i < N; i++) cumY[i + 1] = cumY[i] + heights[i];
   const totalH = cumY[N] + TOP_PAD * 2;
@@ -2522,8 +2515,9 @@ function renderWeekGridView(body, mon) {
   hoursCol.style.height = totalH + 'px';
   let lastLabelY = -999;
   for (let min = tMin; min <= tMax; min += 60) {
+    if (inCollapsedGap(min)) continue;
     const y = timeToY(min);
-    if (y - lastLabelY < 13) continue; // evita superposición en zonas comprimidas
+    if (y - lastLabelY < 14) continue; // evita superposición en los bordes de bandas
     lastLabelY = y;
     const lbl = document.createElement('div');
     lbl.className = 'wg-hour-label';
@@ -2542,26 +2536,35 @@ function renderWeekGridView(body, mon) {
   const overlay = document.createElement('div');
   overlay.className = 'wg-lines';
   for (let min = tMin; min <= tMax; min += 60) {
+    if (inCollapsedGap(min)) continue;
     const line = document.createElement('div');
     line.className = 'wg-hour-line';
     line.style.top = timeToY(min) + 'px';
     overlay.appendChild(line);
   }
-  for (let i = 0; i < N;) {
-    if (anyTask[i]) { i++; continue; }
-    let j = i; while (j < N && !anyTask[j]) j++;
-    const yTop = timeToY(tMin + i * SLOT), yBot = timeToY(tMin + j * SLOT);
-    if (yBot - yTop >= 6) {
-      const band = document.createElement('div');
-      band.className = 'wg-skip-band';
-      band.style.top = yTop + 'px';
-      band.style.height = (yBot - yTop) + 'px';
-      band.innerHTML = `<span>${fmtMin(tMin + i * SLOT)}–${fmtMin(tMin + j * SLOT)} · sin actividad</span>`;
-      overlay.appendChild(band);
-    }
-    i = j;
-  }
   daysArea.appendChild(overlay);
+
+  // Capa de bandas de huecos (por encima de las columnas para recibir el click;
+  // no tapa eventos porque por definición el hueco no tiene tareas)
+  const bandsLayer = document.createElement('div');
+  bandsLayer.className = 'wg-bands';
+  gaps.forEach(g => {
+    const yTop = timeToY(g.startMin), yBot = timeToY(g.endMin);
+    const band = document.createElement('div');
+    band.className = 'wg-skip-band' + (g.collapsed ? '' : ' expanded');
+    band.style.top = yTop + 'px';
+    band.style.height = (yBot - yTop) + 'px';
+    band.innerHTML = `<span>${g.collapsed ? '▾' : '▴'} ${fmtMin(g.startMin)}–${fmtMin(g.endMin)} · ${g.collapsed ? 'sin actividad' : 'contraer'}</span>`;
+    band.title = g.collapsed ? 'Expandir a escala real' : 'Contraer';
+    band.addEventListener('click', e => {
+      e.stopPropagation();
+      if (weekModal.expandedGaps.has(g.startMin)) weekModal.expandedGaps.delete(g.startMin);
+      else weekModal.expandedGaps.add(g.startMin);
+      weekModal.restoreScroll = container.scrollTop;
+      renderWeekModal();
+    });
+    bandsLayer.appendChild(band);
+  });
 
   // Columnas por día
   days.forEach(d => {
@@ -2593,11 +2596,12 @@ function renderWeekGridView(body, mon) {
       const ev = document.createElement('div');
       ev.className = 'wg-event' + (taskMatchesFilter(o.t) ? ' task-filtered' : '');
       ev.style.cssText = `top:${top}px;height:${h}px;background:${color}18;border-color:${color};color:var(--text)`;
+      // Contenido escalonado según el alto real del bloque: nunca superponer
       ev.innerHTML = `
-        <div class="wg-event-time" style="color:${color}">${formatearHora(o.t.desde)}${o.t.hasta ? '–' + formatearHora(o.t.hasta) : ''}</div>
         <div class="wg-event-name">${esc(o.t.name)}</div>
-        ${o.t.desc && h > 50 ? `<div class="wg-event-desc">${esc(o.t.desc)}</div>` : ''}
-        ${(o.t.responsable || o.t.apoyos) && h > 36 ? `<div class="wg-event-people">👤 ${[o.t.responsable, o.t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}`;
+        ${h >= 44 ? `<div class="wg-event-time" style="color:${color}">${formatearHora(o.t.desde)}${o.t.hasta ? '–' + formatearHora(o.t.hasta) : ''}</div>` : ''}
+        ${(o.t.responsable || o.t.apoyos) && h >= 70 ? `<div class="wg-event-people">👤 ${[o.t.responsable, o.t.apoyos].filter(Boolean).join(' · ')}</div>` : ''}
+        ${o.t.desc && h >= 92 ? `<div class="wg-event-desc">${esc(o.t.desc)}</div>` : ''}`;
       if (_editorMode) {
         ev.draggable = true;
         ev.addEventListener('dragstart', e => {
@@ -2623,11 +2627,23 @@ function renderWeekGridView(body, mon) {
 
     daysArea.appendChild(col);
   });
+  daysArea.appendChild(bandsLayer);
 
   container.appendChild(daysArea);
   body.appendChild(container);
 
-  setTimeout(() => { container.scrollTop = 0; }, 30);
+  const restore = weekModal.restoreScroll;
+  weekModal.restoreScroll = null;
+  setTimeout(() => {
+    if (restore != null) { container.scrollTop = restore; return; }
+    // Arranque: centrar la línea de "ahora" si es la semana actual
+    const nowDay = new Date(); nowDay.setHours(0,0,0,0);
+    if (nowDay >= mon && nowDay.getTime() < mon.getTime() + 7 * 86400000) {
+      const nm = new Date().getHours() * 60 + new Date().getMinutes();
+      if (nm > tMin && nm < tMax) { container.scrollTop = Math.max(0, timeToY(nm) - 80); return; }
+    }
+    container.scrollTop = 0;
+  }, 30);
 }
 
 document.addEventListener('keydown', e => {
