@@ -1826,9 +1826,21 @@ async function saveToGithub() {
     const getResp = await fetch(GITHUB_API_URL, {
       headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
     });
-    const sha = getResp.ok ? (await getResp.json()).sha : null;
 
-    const json    = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
+    let sha = null;
+    let remoteData = {};
+    if (getResp.ok) {
+      const getJson = await getResp.json();
+      sha = getJson.sha;
+      try {
+        remoteData = JSON.parse(decodeURIComponent(escape(atob(getJson.content.replace(/\n/g, '')))));
+      } catch(parseErr) {
+        throw new Error('No se pudo leer el archivo remoto — guardado cancelado para no perder datos');
+      }
+    }
+
+    const merged  = mergeProjectBucket(remoteData, activeProject, { cards, placements, idCounter, dayTasks });
+    const json    = JSON.stringify(merged, null, 2);
     const content = btoa(unescape(encodeURIComponent(json)));
 
     const body = { message: 'planboard: auto-save', content, branch: GITHUB_BRANCH };
