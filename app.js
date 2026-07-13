@@ -1907,7 +1907,7 @@ function applyData(data) {
     }));
   });
 
-  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
+  try { localStorage.setItem(getCacheKey(), JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
   renderCards(); renderCalendar(); renderLegend();
   if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
   if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
@@ -1916,8 +1916,8 @@ function applyData(data) {
 // ── Load from localStorage cache ──────────────────────────────────────────────
 function loadLocalCache() {
   try {
-    const raw = localStorage.getItem('planboard_cache')
-             || localStorage.getItem('planboard_session'); // legacy key
+    const raw = localStorage.getItem(getCacheKey())
+             || (activeProject === 'work' ? localStorage.getItem('planboard_session') : null); // legacy key, solo trabajo
     if (!raw) return false;
     const data = JSON.parse(raw);
     applyData(data);
@@ -1935,7 +1935,7 @@ function loadLocalCache() {
       const resp = await fetch(GITHUB_JSON_URL + '?_=' + Date.now(), { cache: 'no-cache' });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const data = await resp.json();
-      applyData(data);
+      applyData(extractProjectBucket(data, activeProject));
       setSyncStatus('github');
       return;
     } catch(err) {
@@ -1961,8 +1961,8 @@ function loadLocalCache() {
 });
 
 function saveSession() {
-  // Saves to localStorage as working cache
-  try { localStorage.setItem('planboard_cache', JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
+  // Saves to localStorage as working cache (clave separada por proyecto activo)
+  try { localStorage.setItem(getCacheKey(), JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
 }
 
 function loadSession() {
@@ -1970,14 +1970,15 @@ function loadSession() {
 }
 
 function exportSession() {
-  const data = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
+  const data     = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
+  const blob     = new Blob([data], { type: 'application/json' });
+  const filename = activeProject === 'personal' ? 'planboard-data-nosotros.json' : 'planboard-data.json';
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'planboard-data.json';
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(a.href);
-  showToast('✓ planboard-data.json descargado — subilo a GitHub para publicar los cambios');
+  showToast('✓ ' + filename + ' descargado — subilo a GitHub para publicar los cambios');
 }
 
 function sanitizeCard(c) {
