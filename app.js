@@ -10,6 +10,32 @@ let _weekDragArrowTimer = null;
 let dayTasks = {}; // key: "YYYY-MM-DD" → [{id, name, time, duration, desc}]
 let dayModal = { open: false, y: null, m: null, d: null, editMode: false };
 
+// ── PROYECTO ACTIVO (work / personal) ──────────────────────────────────────────
+// El calendario personal ("nosotros") es un segundo bucket de datos, oculto de
+// toda navegación normal. Solo se activa con ?p=nosotros en la URL, o si ya
+// estaba activo en esta misma pestaña (sessionStorage). Una pestaña nueva sin
+// el parámetro siempre vuelve a 'work'.
+function resolveActiveProject(search, storedProject) {
+  const params = new URLSearchParams(search);
+  if (params.get('p') === 'nosotros') return 'personal';
+  if (storedProject === 'personal') return 'personal';
+  return 'work';
+}
+
+let activeProject = resolveActiveProject(location.search, sessionStorage.getItem('planboard_active_project'));
+if (activeProject === 'personal') {
+  try { sessionStorage.setItem('planboard_active_project', 'personal'); } catch(e) {}
+}
+
+function getCacheKey() {
+  return activeProject === 'personal' ? 'planboard_cache_personal' : 'planboard_cache';
+}
+
+function exitPersonalMode() {
+  try { sessionStorage.removeItem('planboard_active_project'); } catch(e) {}
+  location.href = location.pathname;
+}
+
 // ── MATERIAS / FILTER ────────────────────────────────────────────────────────
 const DEFAULT_MATERIAS = ['AYN','AFM','CA','FIBU','BTP','CH','FIPA','GMA','Demol','NSF','Planto','MEB'];
 let materias = [...DEFAULT_MATERIAS];
@@ -2060,6 +2086,14 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMaterias();
   loadMateriaResponsables();
   renderQuickChips();
+
+  if (activeProject === 'personal') {
+    document.title = 'Nosotros';
+    const hm = document.getElementById('hm-filter-materia');
+    if (hm) hm.style.display = 'none';
+    const ind = document.getElementById('personal-mode-indicator');
+    if (ind) ind.style.display = 'flex';
+  }
 
   // Auto-fill responsable when task name matches a known materia
   document.getElementById('tf-name').addEventListener('input', () => {
