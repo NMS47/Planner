@@ -8054,35 +8054,52 @@
   "personal": {
     "cards": [
       {
-        "id": 1,
-        "name": "Vacaciones",
-        "days": 16,
-        "baseColor": "#e8ff47",
-        "phases": [],
-        "category": ""
-      },
-      {
         "id": 3,
         "name": "Curso Molo",
         "days": 26,
         "baseColor": "#ff6b6b",
         "phases": [],
+        "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 6,
+        "name": "San Luis",
+        "days": 3,
+        "baseColor": "#e8ff47",
+        "phases": [],
+        "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 8,
+        "name": "Mendoza Capital",
+        "days": 3,
+        "baseColor": "#47c8ff",
+        "phases": [],
+        "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 11,
+        "name": "Las vegas",
+        "days": 4,
+        "baseColor": "#b8ff9f",
+        "phases": [],
+        "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 14,
+        "name": "Uspallata",
+        "days": 4,
+        "baseColor": "#ffb347",
+        "phases": [],
+        "hidden": false,
         "category": ""
       }
     ],
     "placements": [
-      {
-        "id": 2,
-        "cardId": 1,
-        "name": "Vacaciones",
-        "days": 16,
-        "startY": 2026,
-        "startM": 7,
-        "startD": 8,
-        "endY": 2026,
-        "endM": 7,
-        "endD": 23
-      },
       {
         "id": 4,
         "cardId": 3,
@@ -8094,9 +8111,70 @@
         "endY": 2026,
         "endM": 8,
         "endD": 25
+      },
+      {
+        "id": 7,
+        "cardId": 6,
+        "name": "San Luis",
+        "days": 3,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 8,
+        "endY": 2026,
+        "endM": 7,
+        "endD": 10
+      },
+      {
+        "id": 10,
+        "cardId": 8,
+        "name": "Mendoza Capital",
+        "days": 3,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 10,
+        "endY": 2026,
+        "endM": 7,
+        "endD": 12
+      },
+      {
+        "id": 13,
+        "cardId": 11,
+        "name": "Las vegas",
+        "days": 4,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 12,
+        "endY": 2026,
+        "endM": 7,
+        "endD": 15
+      },
+      {
+        "id": 15,
+        "cardId": 14,
+        "name": "Uspallata",
+        "days": 4,
+        "startY": 2026,
+        "startM": 7,
+        "startD": 16,
+        "endY": 2026,
+        "endM": 7,
+        "endD": 19
       }
     ],
-    "idCounter": 4,
-    "dayTasks": {}
+    "idCounter": 15,
+    "dayTasks": {
+      "2026-08-08": [
+        {
+          "id": 5,
+          "name": "Viaje a Merlo, San Luis.",
+          "desde": "",
+          "hasta": "",
+          "duration": "",
+          "desc": "Noche en glamping. Picada.",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ]
+    }
   }
 }
