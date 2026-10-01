@@ -539,7 +539,7 @@
       "endD": 23
     }
   ],
-  "idCounter": 929,
+  "idCounter": 964,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -8129,9 +8129,9 @@
       {
         "id": 927,
         "name": "Prueba Natacion Rio",
-        "desde": "0016",
+        "desde": "1600",
         "hasta": "1800",
-        "duration": "17h 44m",
+        "duration": "2h",
         "desc": "6000 metros en 70 minutos",
         "responsable": "SA DEMO",
         "apoyos": ""
@@ -8156,6 +8156,346 @@
         "duration": "1h",
         "desc": "",
         "responsable": "SI GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 930,
+        "name": "Material y equipo de Buceo",
+        "desde": "1100",
+        "hasta": "1300",
+        "duration": "2h",
+        "desc": "Equipo seg y Control(Chalecos,reloj, manometros, linternas, cabo de union, tamizador, ordenadores.)",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 931,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 932,
+        "name": "Material y Equipo de Buceo",
+        "desde": "1500",
+        "hasta": "1700",
+        "duration": "2h",
+        "desc": "Equipo seg y Control (Frog y Lar) armado, desarmado, llenado de cal soda, manto. Trasvasadoras Cargas de oxigeno.",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 933,
+        "name": "Fisica de Buceo",
+        "desde": "1700",
+        "hasta": "1800",
+        "duration": "1h",
+        "desc": "Repaso y funcionamiento Cal Soda",
+        "responsable": "CT SALVADORES",
+        "apoyos": ""
+      },
+      {
+        "id": 934,
+        "name": "Combate Anfibio",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Empleo de los EBE (Misión, función, capacidades, operaciones) Orientado al CC",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 935,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-07": [
+      {
+        "id": 936,
+        "name": "AFM",
+        "desde": "0730",
+        "hasta": "0900",
+        "duration": "1h 30m",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 937,
+        "name": "Fisiopatologia",
+        "desde": "0900",
+        "hasta": "1000",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "TP PONTI",
+        "apoyos": ""
+      },
+      {
+        "id": 938,
+        "name": "Buceo Teorico Practico",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "Tecnicas con Eq CC (Preparación y equipamiento, lavaje,ingresos al agua, respiracion en el borde pileta, ejercicios de movilidad y destreza.",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 939,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 940,
+        "name": "Buceo Teorico Practico",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Tecnicas con Eq CC (Preparación y equipamiento, lavaje,ingresos al agua, respiracion sumergido, ejercicios de movilidad y destreza.",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 941,
+        "name": "Material y Equipo de Buceo",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Mantenimiento eq, cambio cal soda, trasbase oxigeno",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 942,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-08": [
+      {
+        "id": 943,
+        "name": "AFM",
+        "desde": "0730",
+        "hasta": "1000",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 944,
+        "name": "Buceo Teorica Practico",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "Tecnicas con Eq CC (desplazamiento individual).",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 945,
+        "name": "Buceo Teorica Practico",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Tecnicas con Eq CC (Desplazamiento por parejas, elon)",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 946,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 947,
+        "name": "Material y Equipo de buceo",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Mantenimiento eq, cambio cal soda, trasbase oxigeno",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 948,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      },
+      {
+        "id": 951,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-09": [
+      {
+        "id": 952,
+        "name": "AFM",
+        "desde": "0730",
+        "hasta": "1000",
+        "duration": "2h 30m",
+        "desc": "",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 953,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 954,
+        "name": "Buceo Teorica Practico",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "3h",
+        "desc": "Tecnicas con Eq CC (desplazamiento individual con equipo y armamento).",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 955,
+        "name": "Almuerzo",
+        "desde": "1300",
+        "hasta": "1400",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 956,
+        "name": "Buceo Teorica Practico",
+        "desde": "1400",
+        "hasta": "1800",
+        "duration": "4h",
+        "desc": "Tecnicas con Eq CC (Desplazamiento por parejas, elon con equipo y armamento)",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 957,
+        "name": "Material y Equipo de buceo",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "2h",
+        "desc": "Mantenimiento eq, cambio cal soda, trasbase oxigeno",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 958,
+        "name": "Cena",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "1h",
+        "desc": "",
+        "responsable": "SS",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-10": [
+      {
+        "id": 959,
+        "name": "Buceo Teorico Practico",
+        "desde": "0730",
+        "hasta": "1200",
+        "duration": "4h 30m",
+        "desc": "CUBA:Tecnicas con Eq CC (Regulacion de flotacion, busqueda de profundidad, Escalones, tecnica de Look Out)",
+        "responsable": "Instr 601",
+        "apoyos": ""
+      },
+      {
+        "id": 960,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 961,
+        "name": "Material y Equipo de Buceo",
+        "desde": "1200",
+        "hasta": "1400",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "CI ANDINO",
+        "apoyos": ""
+      },
+      {
+        "id": 962,
+        "name": "Almuerzo",
+        "desde": "1400",
+        "hasta": "1430",
+        "duration": "30m",
+        "desc": "",
+        "responsable": "Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 963,
+        "name": "Franco",
+        "desde": "1430",
+        "hasta": "2359",
+        "duration": "9h 29m",
+        "desc": "",
+        "responsable": "Enc Cso",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-11": [
+      {
+        "id": 964,
+        "name": "Franco",
+        "desde": "0000",
+        "hasta": "2359",
+        "duration": "23h 59m",
+        "desc": "",
+        "responsable": "Enc Cso",
         "apoyos": ""
       }
     ]
