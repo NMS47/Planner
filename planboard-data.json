@@ -539,7 +539,7 @@
       "endD": 13
     }
   ],
-  "idCounter": 1064,
+  "idCounter": 1211,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -9452,6 +9452,1510 @@
         "responsable": "J Cur",
         "apoyos": ""
       }
+    ],
+    "2026-10-28": [
+      {
+        "id": 1065,
+        "name": "Presentación al J B Ing Anf 121- Director de Curso",
+        "desde": "0730",
+        "hasta": "0745",
+        "duration": "",
+        "desc": "Lugar: J B Ing Anf 121",
+        "responsable": "J Cso/Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 1066,
+        "name": "Cambio de uniforme y reunión de documentación a presentar",
+        "desde": "0745",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "J Cso/Enc Cso",
+        "apoyos": ""
+      },
+      {
+        "id": 1067,
+        "name": "Entrega de estudios médicos y orientación",
+        "desde": "0800",
+        "hasta": "0900",
+        "duration": "",
+        "desc": "Según Directiva del Curso · Lugar: Sec San – B Ing Anf 121",
+        "responsable": "TP GUTIERREZ",
+        "apoyos": ""
+      },
+      {
+        "id": 1068,
+        "name": "COE",
+        "desde": "0900",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "Lic LAUTO",
+        "apoyos": ""
+      },
+      {
+        "id": 1069,
+        "name": "Examen natación",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Según Directiva del Curso · Lugar: Pileta",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 1070,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1330",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1071,
+        "name": "Descanso",
+        "desde": "1330",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1072,
+        "name": "Examen Intelectual",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Según Directiva del Curso · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "SI MATIAS GIORDANO",
+        "apoyos": ""
+      },
+      {
+        "id": 1073,
+        "name": "Conclave",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1074,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1075,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1076,
+        "name": "Retreta/ Sueño",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-29": [
+      {
+        "id": 1077,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1078,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1079,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1080,
+        "name": "Preparación",
+        "desde": "0700",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1081,
+        "name": "Reconocimiento",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Reconocimientos · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "TT NEGRETTI",
+        "apoyos": ""
+      },
+      {
+        "id": 1082,
+        "name": "Acuatización y natación",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Técnicas sin accesorios en pileta · Lugar: Pileta",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 1083,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1084,
+        "name": "Orientación anfibia",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Cartografía · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 1085,
+        "name": "Baño y mantenimiento",
+        "desde": "1900",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1086,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1087,
+        "name": "Mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1088,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-30": [
+      {
+        "id": 1089,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1090,
+        "name": "Desayuno",
+        "desde": "0630",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1091,
+        "name": "Preparación",
+        "desde": "0700",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1092,
+        "name": "Reconocimiento",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Reconocimientos · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "TT NEGRETTI",
+        "apoyos": ""
+      },
+      {
+        "id": 1093,
+        "name": "Acuatización y natación",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Técnicas sin accesorios en pileta · Lugar: Pileta",
+        "responsable": "SA DEMO",
+        "apoyos": ""
+      },
+      {
+        "id": 1094,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1095,
+        "name": "Orientación anfibia",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Cartografía · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "SA CASTILLO",
+        "apoyos": ""
+      },
+      {
+        "id": 1096,
+        "name": "Baño y mantenimiento",
+        "desde": "1900",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1097,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1098,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1099,
+        "name": "Retreta/ Sueño",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-10-31": [
+      {
+        "id": 1100,
+        "name": "Franco",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-01": [
+      {
+        "id": 1101,
+        "name": "Franco",
+        "desde": "0600",
+        "hasta": "0630",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-02": [
+      {
+        "id": 1102,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1103,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1104,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1105,
+        "name": "Material y Equipos Anfibios",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Equipo individual, accesorios · Lugar: Ca Bzo OOEE",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1106,
+        "name": "Adaptación acuática",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Técnicas con y sin accesorios en pileta · Lugar: Pileta",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1107,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1330",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1108,
+        "name": "Descanso",
+        "desde": "1330",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1109,
+        "name": "Planto Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Reconocimiento y Exploración · Lugar: Aula- Div Ec Capac Anf",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1110,
+        "name": "Descanso",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1111,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1112,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1113,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-03": [
+      {
+        "id": 1114,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1115,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1116,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1117,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1118,
+        "name": "Adaptación Acuática",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Técnicas sin accesorios en pileta · Lugar: Pileta · UD 1",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1119,
+        "name": "Reconocimiento Anf",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Reconocimiento, Exploración · Lugar: Aula- Div Ec Capac Anf · UD 1-2",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1120,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1121,
+        "name": "Técnicas anfibias",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Reglamentación y señales · Lugar: Aula · UD 2",
+        "responsable": "SG Fugaz",
+        "apoyos": ""
+      },
+      {
+        "id": 1122,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1123,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1124,
+        "name": "Mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1125,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-04": [
+      {
+        "id": 1126,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1127,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1128,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1129,
+        "name": "Técnicas Anfibias",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Botes y motores · Lugar: Bajada de ACL · UD 1-3",
+        "responsable": "SG Fugaz",
+        "apoyos": ""
+      },
+      {
+        "id": 1130,
+        "name": "Técnicas Anfibias",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Navegación · Lugar: Bajada de ACL · UD 1",
+        "responsable": "SG Fugaz",
+        "apoyos": ""
+      },
+      {
+        "id": 1131,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1132,
+        "name": "Planeamiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Rec Anf y Expl Anf · Lugar: Aula- Div Ec Capac Anf · UD 2",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1133,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1134,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1135,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1136,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-05": [
+      {
+        "id": 1137,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1138,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1139,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1140,
+        "name": "Adaptación Acuática",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Técnicas con aletas en pileta · Lugar: Pileta · UD 2",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1141,
+        "name": "Planto Anfibio",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Exploración · Lugar: Aula",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1142,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1143,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Desplazamientos(Buceo) · Lugar: Pileta · UD 2",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1144,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1145,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1146,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1147,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-06": [
+      {
+        "id": 1148,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1149,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1150,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1151,
+        "name": "Adaptación Acuática",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Técnicas con aletas en Río · Lugar: Río · UD 2",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1152,
+        "name": "Orientación Anfibia",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Navegación Acuática · Lugar: Aula · UD 3",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1153,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1154,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Desplazamientos(Buceo) · Lugar: Pileta · UD 2",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1155,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1156,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1157,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1158,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-07": [
+      {
+        "id": 1159,
+        "name": "Franco",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-08": [
+      {
+        "id": 1160,
+        "name": "Franco",
+        "desde": "",
+        "hasta": "",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-09": [
+      {
+        "id": 1161,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1162,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1163,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1164,
+        "name": "Reconocimiento Anfibio",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Exploración · Lugar: Aula",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1165,
+        "name": "Adaptación acuática",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Técnicas con accesorios en Río · Lugar: Río",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1166,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1330",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1167,
+        "name": "Descanso",
+        "desde": "1330",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1168,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Desplazamientos(Buceo) · Lugar: Pileta · UD 2",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1169,
+        "name": "Descanso",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1170,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1171,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1172,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-10": [
+      {
+        "id": 1173,
+        "name": "Sueño",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1174,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1175,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1176,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1177,
+        "name": "Adaptación Acuática",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Técnicas sin accesorios en pileta · Lugar: Pileta · UD 1",
+        "responsable": "SA Demo",
+        "apoyos": ""
+      },
+      {
+        "id": 1178,
+        "name": "Orientación Anfibia",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Navegación Acuática · Lugar: Aula · UD 3",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1179,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1180,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Exploración · Lugar: Aula",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1181,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1182,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1183,
+        "name": "Mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1184,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-11": [
+      {
+        "id": 1185,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1186,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1187,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1188,
+        "name": "Reconocimiento Anfibio",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1189,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1190,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Isla",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1191,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1192,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1193,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Isla",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1194,
+        "name": "Reconocimiento Anfibio",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1195,
+        "name": "Reconocimiento Anfibio",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-12": [
+      {
+        "id": 1196,
+        "name": "Reconocimiento Anfibio",
+        "desde": "0000",
+        "hasta": "0600",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1197,
+        "name": "Reconocimiento Anfibio",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1198,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Isla",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1199,
+        "name": "Reconocimiento Anfibio",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1200,
+        "name": "Reconocimiento Anfibio",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Exploración · Lugar: Isla",
+        "responsable": "SG Acevedo",
+        "apoyos": ""
+      },
+      {
+        "id": 1201,
+        "name": "Racionamiento",
+        "desde": "1300",
+        "hasta": "1500",
+        "duration": "",
+        "desc": "Lugar: Isla",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1202,
+        "name": "Mantenimiento",
+        "desde": "1500",
+        "hasta": "1800",
+        "duration": "",
+        "desc": "Lugar: Parque de Botes",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      },
+      {
+        "id": 1203,
+        "name": "Baño y mantenimiento",
+        "desde": "1800",
+        "hasta": "2000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1204,
+        "name": "Racionamiento",
+        "desde": "2000",
+        "hasta": "2100",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1205,
+        "name": "Baño y mantenimiento",
+        "desde": "2100",
+        "hasta": "2200",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1206,
+        "name": "Retreta/ Sueño/Franco",
+        "desde": "2200",
+        "hasta": "0000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      }
+    ],
+    "2026-11-13": [
+      {
+        "id": 1207,
+        "name": "Diana",
+        "desde": "0600",
+        "hasta": "0700",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1208,
+        "name": "Desayuno",
+        "desde": "0700",
+        "hasta": "0730",
+        "duration": "",
+        "desc": "Lugar: Rancho",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1209,
+        "name": "Preparación",
+        "desde": "0730",
+        "hasta": "0800",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1210,
+        "name": "Preparación",
+        "desde": "0800",
+        "hasta": "1000",
+        "duration": "",
+        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
+        "responsable": "Of Tur/Subof Tur",
+        "apoyos": ""
+      },
+      {
+        "id": 1211,
+        "name": "Egreso",
+        "desde": "1000",
+        "hasta": "1300",
+        "duration": "",
+        "desc": "Lugar: Aula",
+        "responsable": "SA Castillo",
+        "apoyos": ""
+      }
     ]
   },
   "personal": {
@@ -9579,5 +11083,6 @@
         }
       ]
     }
-  }
+  },
+  "_rev": 1793116597044
 }
