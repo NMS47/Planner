@@ -1726,6 +1726,45 @@ function exportWeekPES() {
   showToast('✓ PES-' + weekTitle + '.json descargado');
 }
 
+// Importa uno o varios PES-*.json y agrega sus tareas al calendario.
+// No borra lo existente; saltea tareas idénticas (mismo nombre y horario) en el mismo día.
+function importWeekPES() {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = '.json'; input.multiple = true;
+  input.onchange = async e => {
+    const files = [...e.target.files];
+    if (!files.length) return;
+    let added = 0, skipped = 0;
+    for (const file of files) {
+      try {
+        const data = JSON.parse(await file.text());
+        const pes = data && data.dayTasks;
+        if (!pes || typeof pes !== 'object') throw new Error('no tiene dayTasks');
+        Object.keys(pes).forEach(k => {
+          const list = Array.isArray(pes[k]) ? pes[k] : Object.values(pes[k] || {});
+          if (!dayTasks[k]) dayTasks[k] = [];
+          list.forEach(t => {
+            const dup = dayTasks[k].some(x => x.name === (t.name || '') && x.desde === (t.desde || '') && x.hasta === (t.hasta || ''));
+            if (dup) { skipped++; return; }
+            dayTasks[k].push({ id: ++idCounter, name: t.name || '', desde: t.desde || '',
+              hasta: t.hasta || '', duration: t.duration || '', desc: t.desc || '',
+              responsable: t.responsable || '', apoyos: t.apoyos || '' });
+            added++;
+          });
+        });
+      } catch(err) {
+        alert('No se pudo cargar ' + file.name + ': ' + err.message);
+      }
+    }
+    persist();
+    renderCalendar();
+    if (weekModal.open) renderWeekModal();
+    if (dayModal.open) renderDayModal();
+    showToast(`✓ PES importado — ${added} tarea${added!==1?'s':''}` + (skipped ? `, ${skipped} repetida${skipped!==1?'s':''} omitida${skipped!==1?'s':''}` : ''));
+  };
+  input.click();
+}
+
 // ── GOOGLE CALENDAR / ICS EXPORT ─────────────────────────────────────────────
 function exportICS() {
   if (!placements.length) { showToast('⚠ No hay proyectos en el calendario'); return; }
