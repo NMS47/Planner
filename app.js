@@ -31,6 +31,14 @@ function getCacheKey() {
   return activeProject === 'personal' ? 'planboard_cache_personal' : 'planboard_cache';
 }
 
+// _rev del bucket que está cargado en memoria. Se escribe en la caché local para
+// poder comparar su antigüedad contra lo que devuelva GitHub en el próximo boot.
+let _dataRev = 0;
+
+function projectLabel(project) {
+  return project === 'personal' ? 'Nosotros' : 'Trabajo';
+}
+
 function exitPersonalMode() {
   try { sessionStorage.removeItem('planboard_active_project'); } catch(e) {}
   location.href = location.pathname;
@@ -44,33 +52,54 @@ function extractProjectBucket(fullData, project) {
       cards: p.cards || [],
       placements: p.placements || [],
       idCounter: p.idCounter || 0,
-      dayTasks: p.dayTasks || {}
+      dayTasks: p.dayTasks || {},
+      _rev: parseInt(p._rev) || 0
     };
   }
   return {
     cards: data.cards || [],
     placements: data.placements || [],
     idCounter: data.idCounter || 0,
-    dayTasks: data.dayTasks || {}
+    dayTasks: data.dayTasks || {},
+    _rev: parseInt(data._rev) || 0
   };
 }
 
-function mergeProjectBucket(fullData, project, bucket) {
+function mergeProjectBucket(fullData, project, bucket, rev) {
   const data = (fullData && typeof fullData === 'object') ? { ...fullData } : {};
+  const _rev = parseInt(rev) || Date.now();
   if (project === 'personal') {
     data.personal = {
       cards: bucket.cards,
       placements: bucket.placements,
       idCounter: bucket.idCounter,
-      dayTasks: bucket.dayTasks
+      dayTasks: bucket.dayTasks,
+      _rev
     };
   } else {
     data.cards = bucket.cards;
     data.placements = bucket.placements;
     data.idCounter = bucket.idCounter;
     data.dayTasks = bucket.dayTasks;
+    data._rev = _rev;
   }
   return data;
+}
+
+// Una caché de GitHub puede devolver un payload anterior al último guardado.
+// Si la caché local es estrictamente más nueva, gana ella: así un payload viejo
+// nunca se escribe sobre cambios recientes ni envenena el localStorage.
+function isRemoteStale(remoteRev, localRev) {
+  return (parseInt(localRev) || 0) > (parseInt(remoteRev) || 0);
+}
+
+// _rev del bucket activo guardado en la caché local, sin aplicarla al estado.
+function readLocalCacheRev() {
+  try {
+    const raw = localStorage.getItem(getCacheKey());
+    if (!raw) return 0;
+    return parseInt(JSON.parse(raw)._rev) || 0;
+  } catch(e) { return 0; }
 }
 
 // ── MATERIAS / FILTER ────────────────────────────────────────────────────────
@@ -1852,6 +1881,27 @@ function getGithubToken() {
   return localStorage.getItem('planboard_gh_token') || '';
 }
 
+// raw.githubusercontent.com cachea 5 min e IGNORA el query string, así que el viejo
+// cache-buster '?_=' + Date.now() no servía de nada: al recargar justo después de
+// guardar se seguía viendo la data vieja. La API de contents responde max-age=60 y no
+// tiene ese edge cache, así que la pedimos primero y dejamos raw como red de seguridad
+// (sin token la API permite 60 requests por hora por IP; con token, 5000).
+async function fetchRemoteData() {
+  const token = getGithubToken();
+  try {
+    const headers = { 'Accept': 'application/vnd.github.raw' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    const resp = await fetch(GITHUB_API_URL + '?ref=' + GITHUB_BRANCH, { headers, cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    return await resp.json();
+  } catch(apiErr) {
+    console.warn('API de GitHub no disponible (' + apiErr.message + ') — uso raw, puede estar hasta 5 min atrasado');
+    const resp = await fetch(GITHUB_JSON_URL, { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    return await resp.json();
+  }
+}
+
 async function saveToGithub() {
   let token = getGithubToken();
   if (!token) {
@@ -1878,7 +1928,8 @@ async function saveToGithub() {
       }
     }
 
-    const merged  = mergeProjectBucket(remoteData, activeProject, { cards, placements, idCounter, dayTasks });
+    const rev     = Date.now();
+    const merged  = mergeProjectBucket(remoteData, activeProject, { cards, placements, idCounter, dayTasks }, rev);
     const json    = JSON.stringify(merged, null, 2);
     const content = btoa(unescape(encodeURIComponent(json)));
 
@@ -1900,6 +1951,11 @@ async function saveToGithub() {
       if (putResp.status === 401) localStorage.removeItem('planboard_gh_token');
       throw new Error(err.message || 'HTTP ' + putResp.status);
     }
+
+    // Refrescar la caché local con el _rev recién guardado: si recargamos dentro de
+    // los 5 min y GitHub devuelve el payload anterior, isRemoteStale() lo descarta.
+    _dataRev = rev;
+    saveSession();
 
     setSyncStatus('github');
     showToast('✓ Guardado en GitHub');
@@ -1958,7 +2014,8 @@ function applyData(data) {
     }));
   });
 
-  try { localStorage.setItem(getCacheKey(), JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
+  _dataRev = parseInt(data._rev) || 0;
+  saveSession();
   renderCards(); renderCalendar(); renderLegend();
   if (typeof dayModal  !== 'undefined' && dayModal  && dayModal.open)  renderDayModal();
   if (typeof weekModal !== 'undefined' && weekModal && weekModal.open) renderWeekModal();
@@ -1983,10 +2040,20 @@ function loadLocalCache() {
 
   if (!isPlaceholder) {
     try {
-      const resp = await fetch(GITHUB_JSON_URL + '?_=' + Date.now(), { cache: 'no-cache' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const data = await resp.json();
-      applyData(extractProjectBucket(data, activeProject));
+      const data   = await fetchRemoteData();
+      const bucket = extractProjectBucket(data, activeProject);
+
+      // Si lo que vino es anterior a lo que tenemos guardado localmente, es una
+      // respuesta cacheada: no la aplicamos (aplicarla también envenenaría el
+      // localStorage, y editar sobre esa vista vieja sí pierde datos al guardar).
+      if (isRemoteStale(bucket._rev, readLocalCacheRev())) {
+        loadLocalCache();
+        setSyncStatus('local');
+        showToast('⚠ GitHub devolvió una versión más vieja que tus cambios — muestro los locales');
+        return;
+      }
+
+      applyData(bucket);
       setSyncStatus('github');
       return;
     } catch(err) {
@@ -2013,7 +2080,7 @@ function loadLocalCache() {
 
 function saveSession() {
   // Saves to localStorage as working cache (clave separada por proyecto activo)
-  try { localStorage.setItem(getCacheKey(), JSON.stringify({ cards, placements, idCounter, dayTasks, _ts: Date.now() })); } catch(e) {}
+  try { localStorage.setItem(getCacheKey(), JSON.stringify({ cards, placements, idCounter, dayTasks, _rev: _dataRev, _ts: Date.now() })); } catch(e) {}
 }
 
 function loadSession() {
@@ -2021,7 +2088,9 @@ function loadSession() {
 }
 
 function exportSession() {
-  const data     = JSON.stringify({ cards, placements, idCounter, dayTasks }, null, 2);
+  // _project marca a qué calendario pertenece el archivo, para que importSession()
+  // no lo cargue sobre el otro bucket y lo pise.
+  const data     = JSON.stringify({ _project: activeProject, cards, placements, idCounter, dayTasks }, null, 2);
   const blob     = new Blob([data], { type: 'application/json' });
   const filename = activeProject === 'personal' ? 'planboard-data-nosotros.json' : 'planboard-data.json';
   const a = document.createElement('a');
@@ -2059,6 +2128,12 @@ function sanitizeCard(c) {
   };
 }
 
+// 'work' | 'personal', o null si el archivo no trae marca (exports viejos).
+function detectImportProject(data) {
+  const p = data && data._project;
+  return (p === 'work' || p === 'personal') ? p : null;
+}
+
 function importSession() {
   const input = document.createElement('input');
   input.type = 'file'; input.accept = '.json';
@@ -2075,6 +2150,21 @@ function importSession() {
         if (!raw) throw new Error('El archivo está vacío');
         const data = JSON.parse(raw);
         if (!data || typeof data !== 'object') throw new Error('Formato inválido');
+
+        // Importar reemplaza el bucket activo entero. Cargar el archivo del otro
+        // calendario pisaba todo sin avisar, así que el que no coincide se rechaza
+        // y el que no trae marca pide confirmación explícita.
+        const fileProject = detectImportProject(data);
+        if (fileProject && fileProject !== activeProject) {
+          throw new Error('es del calendario "' + projectLabel(fileProject) + '" y estás en "'
+            + projectLabel(activeProject) + '". Abrí el calendario correcto antes de importar.');
+        }
+        if (!fileProject) {
+          const ok = confirm('El archivo no indica a qué calendario pertenece.\n\n'
+            + 'Se va a REEMPLAZAR todo el contenido de "' + projectLabel(activeProject) + '" '
+            + '(' + cards.length + ' tarjeta' + (cards.length !== 1 ? 's' : '') + ' ahora).\n\n¿Continuar?');
+          if (!ok) { showToast('Import cancelado'); return; }
+        }
 
         // Support both array and Firebase object-of-arrays for cards
         const rawCards = Array.isArray(data.cards)
@@ -2145,8 +2235,11 @@ function showBannerEmpty() {
 let _githubDirty = false;
 
 function persist() {
+  // Sólo en modo editor la caché local pasa a ser "más nueva" que GitHub: así una
+  // edición sin pushear sobrevive a un reload, y un lector sigue viendo GitHub
+  // en vez de quedar clavado para siempre en su propia caché.
+  if (_editorMode) { _dataRev = Date.now(); _githubDirty = true; }
   saveSession(); // saves to localStorage cache only
-  if (_editorMode) _githubDirty = true;
 }
 
 // ── EDITOR MODE ───────────────────────────────────────────────────────────────

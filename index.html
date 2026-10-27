@@ -16,7 +16,9 @@
   }
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<!-- GitHub Pages sirve los assets con max-age=600, así que sin ?v= un deploy puede
+     quedar servido viejo. Subir el número en cada deploy que toque styles.css o app.js. -->
+<link rel="stylesheet" href="styles.css?v=2">
 
 </head>
 <body>
@@ -333,6 +335,6 @@
   </div>
 </div>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=2" defer></script>
 </body>
 </html>
