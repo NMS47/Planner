@@ -18,7 +18,7 @@
 
 <!-- GitHub Pages sirve los assets con max-age=600, así que sin ?v= un deploy puede
      quedar servido viejo. Subir el número en cada deploy que toque styles.css o app.js. -->
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 
 </head>
 <body>
@@ -31,9 +31,12 @@
     <span id="sync-dot" style="width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block"></span>
     <span id="sync-text">Cargando...</span>
   </div>
-  <div id="personal-mode-indicator" style="display:none;font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--accent);align-items:center;gap:8px">
-    <span>Nosotros</span>
-    <a href="#" onclick="exitPersonalMode();return false;" style="color:var(--muted);text-decoration:underline">← Volver a trabajo</a>
+  <!-- Indicador del calendario activo. Siempre visible: antes sólo aparecía en modo
+       Nosotros, así que en trabajo no había nada que dijera en qué calendario estabas
+       y se podían cargar cosas de Nosotros en el calendario de trabajo sin notarlo. -->
+  <div id="project-indicator" style="display:flex;font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);align-items:center;gap:8px">
+    <span id="pi-label">Trabajo</span>
+    <a id="pi-exit" href="#" onclick="exitPersonalMode();return false;" style="display:none;color:var(--muted);text-decoration:underline">← Volver a trabajo</a>
   </div>
   <div class="hdr-right">
     <div class="year-nav">
@@ -335,6 +338,6 @@
   </div>
 </div>
 
-<script src="app.js?v=2" defer></script>
+<script src="app.js?v=3" defer></script>
 </body>
 </html>

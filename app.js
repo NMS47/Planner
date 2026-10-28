@@ -2269,12 +2269,18 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMateriaResponsables();
   renderQuickChips();
 
+  // El indicador ya está visible por defecto diciendo "Trabajo"; en modo Nosotros
+  // cambia de texto y de color, y recién ahí aparece el link para volver.
+  const piLabel = document.getElementById('pi-label');
+  const piExit  = document.getElementById('pi-exit');
+  const piBox   = document.getElementById('project-indicator');
+  if (piLabel) piLabel.textContent = projectLabel(activeProject);
   if (activeProject === 'personal') {
     document.title = 'Nosotros';
     const hm = document.getElementById('hm-filter-materia');
     if (hm) hm.style.display = 'none';
-    const ind = document.getElementById('personal-mode-indicator');
-    if (ind) ind.style.display = 'flex';
+    if (piBox) { piBox.style.color = 'var(--accent)'; piBox.style.borderColor = 'var(--accent)'; }
+    if (piExit) piExit.style.display = 'inline';
   }
 
   // Auto-fill responsable when task name matches a known materia

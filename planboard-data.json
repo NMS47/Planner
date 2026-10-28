@@ -235,62 +235,6 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
-    },
-    {
-      "id": 1212,
-      "name": "Viaje",
-      "days": 3,
-      "baseColor": "#ff9dc6",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1214,
-      "name": "Viaje santa fe",
-      "days": 1,
-      "baseColor": "#ff9dc6",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1217,
-      "name": "Viaje ida",
-      "days": 3,
-      "baseColor": "#ff9dc6",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1219,
-      "name": "Circuto Azara",
-      "days": 5,
-      "baseColor": "#ffd147",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1222,
-      "name": "Viaje chalten",
-      "days": 1,
-      "baseColor": "#ff9dc6",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1224,
-      "name": "Mojon rojo",
-      "days": 3,
-      "baseColor": "#ff4747",
-      "phases": [],
-      "category": ""
-    },
-    {
-      "id": 1226,
-      "name": "Cerro eletrico",
-      "days": 3,
-      "baseColor": "#e6df1e",
-      "phases": [],
-      "category": ""
     }
   ],
   "placements": [
@@ -593,90 +537,6 @@
       "endY": 2026,
       "endM": 10,
       "endD": 13
-    },
-    {
-      "id": 1215,
-      "cardId": 1214,
-      "name": "Viaje santa fe",
-      "days": 1,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 24,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 24
-    },
-    {
-      "id": 1216,
-      "cardId": 1212,
-      "name": "Viaje",
-      "days": 3,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 21,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 23
-    },
-    {
-      "id": 1225,
-      "cardId": 1224,
-      "name": "Mojon rojo",
-      "days": 3,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 15,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 17
-    },
-    {
-      "id": 1227,
-      "cardId": 1226,
-      "name": "Cerro eletrico",
-      "days": 3,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 18,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 20
-    },
-    {
-      "id": 1232,
-      "cardId": 1217,
-      "name": "Viaje ida",
-      "days": 3,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 1,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 3
-    },
-    {
-      "id": 1233,
-      "cardId": 1219,
-      "name": "Circuto Azara",
-      "days": 5,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 4,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 8
-    },
-    {
-      "id": 1234,
-      "cardId": 1222,
-      "name": "Viaje chalten",
-      "days": 1,
-      "startY": 2027,
-      "startM": 0,
-      "startD": 9,
-      "endY": 2027,
-      "endM": 0,
-      "endD": 9
     }
   ],
   "idCounter": 1234,
@@ -11096,18 +10956,6 @@
         "responsable": "SA Castillo",
         "apoyos": ""
       }
-    ],
-    "2027-01-14": [
-      {
-        "id": 1221,
-        "name": "Viaje chalten",
-        "desde": "",
-        "hasta": "",
-        "duration": "",
-        "desc": "",
-        "responsable": "",
-        "apoyos": ""
-      }
     ]
   },
   "personal": {
@@ -11155,6 +11003,62 @@
         "baseColor": "#ffb347",
         "phases": [],
         "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 1212,
+        "name": "Viaje",
+        "days": 3,
+        "baseColor": "#ff9dc6",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1214,
+        "name": "Viaje santa fe",
+        "days": 1,
+        "baseColor": "#ff9dc6",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1217,
+        "name": "Viaje ida",
+        "days": 3,
+        "baseColor": "#ff9dc6",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1219,
+        "name": "Circuto Azara",
+        "days": 5,
+        "baseColor": "#ffd147",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1222,
+        "name": "Viaje chalten",
+        "days": 1,
+        "baseColor": "#ff9dc6",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1224,
+        "name": "Mojon rojo",
+        "days": 3,
+        "baseColor": "#ff4747",
+        "phases": [],
+        "category": ""
+      },
+      {
+        "id": 1226,
+        "name": "Cerro eletrico",
+        "days": 3,
+        "baseColor": "#e6df1e",
+        "phases": [],
         "category": ""
       }
     ],
@@ -11218,9 +11122,93 @@
         "endY": 2026,
         "endM": 7,
         "endD": 19
+      },
+      {
+        "id": 1215,
+        "cardId": 1214,
+        "name": "Viaje santa fe",
+        "days": 1,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 24,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 24
+      },
+      {
+        "id": 1216,
+        "cardId": 1212,
+        "name": "Viaje",
+        "days": 3,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 21,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 23
+      },
+      {
+        "id": 1225,
+        "cardId": 1224,
+        "name": "Mojon rojo",
+        "days": 3,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 15,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 17
+      },
+      {
+        "id": 1227,
+        "cardId": 1226,
+        "name": "Cerro eletrico",
+        "days": 3,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 18,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 20
+      },
+      {
+        "id": 1232,
+        "cardId": 1217,
+        "name": "Viaje ida",
+        "days": 3,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 1,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 3
+      },
+      {
+        "id": 1233,
+        "cardId": 1219,
+        "name": "Circuto Azara",
+        "days": 5,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 4,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 8
+      },
+      {
+        "id": 1234,
+        "cardId": 1222,
+        "name": "Viaje chalten",
+        "days": 1,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 9,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 9
       }
     ],
-    "idCounter": 15,
+    "idCounter": 1234,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11233,8 +11221,21 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-14": [
+        {
+          "id": 1221,
+          "name": "Viaje chalten",
+          "desde": "",
+          "hasta": "",
+          "duration": "",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
-    }
+    },
+    "_rev": 1793194629396
   },
-  "_rev": 1793132482014
+  "_rev": 1793194629396
 }
