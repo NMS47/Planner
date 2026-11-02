@@ -11006,27 +11006,12 @@
         "category": ""
       },
       {
-        "id": 1212,
-        "name": "Viaje",
-        "days": 3,
-        "baseColor": "#ff9dc6",
-        "phases": [],
-        "category": ""
-      },
-      {
         "id": 1214,
         "name": "Viaje santa fe",
         "days": 1,
         "baseColor": "#ff9dc6",
         "phases": [],
-        "category": ""
-      },
-      {
-        "id": 1217,
-        "name": "Viaje ida",
-        "days": 3,
-        "baseColor": "#ff9dc6",
-        "phases": [],
+        "hidden": false,
         "category": ""
       },
       {
@@ -11035,14 +11020,7 @@
         "days": 5,
         "baseColor": "#ffd147",
         "phases": [],
-        "category": ""
-      },
-      {
-        "id": 1222,
-        "name": "Viaje chalten",
-        "days": 1,
-        "baseColor": "#ff9dc6",
-        "phases": [],
+        "hidden": false,
         "category": ""
       },
       {
@@ -11051,6 +11029,7 @@
         "days": 3,
         "baseColor": "#ff4747",
         "phases": [],
+        "hidden": false,
         "category": ""
       },
       {
@@ -11058,6 +11037,15 @@
         "name": "Cerro eletrico",
         "days": 3,
         "baseColor": "#e6df1e",
+        "phases": [],
+        "hidden": false,
+        "category": ""
+      },
+      {
+        "id": 1236,
+        "name": "Viaje Ida",
+        "days": 1,
+        "baseColor": "#d1a3ff",
         "phases": [],
         "category": ""
       }
@@ -11136,18 +11124,6 @@
         "endD": 24
       },
       {
-        "id": 1216,
-        "cardId": 1212,
-        "name": "Viaje",
-        "days": 3,
-        "startY": 2027,
-        "startM": 0,
-        "startD": 21,
-        "endY": 2027,
-        "endM": 0,
-        "endD": 23
-      },
-      {
         "id": 1225,
         "cardId": 1224,
         "name": "Mojon rojo",
@@ -11172,43 +11148,31 @@
         "endD": 20
       },
       {
-        "id": 1232,
-        "cardId": 1217,
-        "name": "Viaje ida",
-        "days": 3,
-        "startY": 2027,
-        "startM": 0,
-        "startD": 1,
-        "endY": 2027,
-        "endM": 0,
-        "endD": 3
-      },
-      {
-        "id": 1233,
+        "id": 1235,
         "cardId": 1219,
         "name": "Circuto Azara",
         "days": 5,
         "startY": 2027,
         "startM": 0,
-        "startD": 4,
+        "startD": 8,
         "endY": 2027,
         "endM": 0,
-        "endD": 8
+        "endD": 12
       },
       {
-        "id": 1234,
-        "cardId": 1222,
-        "name": "Viaje chalten",
+        "id": 1237,
+        "cardId": 1236,
+        "name": "Viaje Ida",
         "days": 1,
         "startY": 2027,
         "startM": 0,
-        "startD": 9,
+        "startD": 7,
         "endY": 2027,
         "endM": 0,
-        "endD": 9
+        "endD": 7
       }
     ],
-    "idCounter": 1234,
+    "idCounter": 1238,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11233,9 +11197,21 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-07": [
+        {
+          "id": 1238,
+          "name": "Vuelo EZE-Calafate",
+          "desde": "0410",
+          "hasta": "0730",
+          "duration": "3h 20m",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1793194629396
+    "_rev": 1793633173132
   },
   "_rev": 1793194629396
 }
