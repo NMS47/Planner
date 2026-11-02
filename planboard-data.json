@@ -11007,7 +11007,7 @@
       },
       {
         "id": 1214,
-        "name": "Viaje santa fe",
+        "name": "Viaje Vuelta",
         "days": 1,
         "baseColor": "#ff9dc6",
         "phases": [],
@@ -11114,7 +11114,7 @@
       {
         "id": 1215,
         "cardId": 1214,
-        "name": "Viaje santa fe",
+        "name": "Viaje Vuelta",
         "days": 1,
         "startY": 2027,
         "startM": 0,
@@ -11211,7 +11211,7 @@
         }
       ]
     },
-    "_rev": 1793633173132
+    "_rev": 1793634073246
   },
   "_rev": 1793194629396
 }
