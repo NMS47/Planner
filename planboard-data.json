@@ -11148,18 +11148,6 @@
         "endD": 20
       },
       {
-        "id": 1235,
-        "cardId": 1219,
-        "name": "Circuto Azara",
-        "days": 5,
-        "startY": 2027,
-        "startM": 0,
-        "startD": 8,
-        "endY": 2027,
-        "endM": 0,
-        "endD": 12
-      },
-      {
         "id": 1237,
         "cardId": 1236,
         "name": "Viaje Ida",
@@ -11170,9 +11158,21 @@
         "endY": 2027,
         "endM": 0,
         "endD": 7
+      },
+      {
+        "id": 1240,
+        "cardId": 1219,
+        "name": "Circuto Azara",
+        "days": 5,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 8,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 12
       }
     ],
-    "idCounter": 1238,
+    "idCounter": 1240,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11209,9 +11209,21 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-24": [
+        {
+          "id": 1239,
+          "name": "Vuelo Calafate-Bs As",
+          "desde": "2000",
+          "hasta": "2300",
+          "duration": "3h",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1793634073246
+    "_rev": 1793635872898
   },
   "_rev": 1793194629396
 }
