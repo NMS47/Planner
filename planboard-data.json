@@ -9998,22 +9998,12 @@
       },
       {
         "id": 1118,
-        "name": "Adaptación Acuática",
+        "name": "Mat y Eq Expl",
         "desde": "0800",
-        "hasta": "1000",
-        "duration": "",
-        "desc": "Técnicas sin accesorios en pileta · Lugar: Pileta · UD 1",
-        "responsable": "SA Demo",
-        "apoyos": ""
-      },
-      {
-        "id": 1119,
-        "name": "Reconocimiento Anf",
-        "desde": "1000",
         "hasta": "1300",
-        "duration": "",
-        "desc": "Reconocimiento, Exploración · Lugar: Aula- Div Ec Capac Anf · UD 1-2",
-        "responsable": "SG Acevedo",
+        "duration": "5h",
+        "desc": "",
+        "responsable": "Icia",
         "apoyos": ""
       },
       {
@@ -10038,12 +10028,12 @@
       },
       {
         "id": 1122,
-        "name": "Baño y mantenimiento",
+        "name": "Mat y Eq Expl",
         "desde": "1800",
         "hasta": "2000",
-        "duration": "",
-        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
-        "responsable": "Of Tur/Subof Tur",
+        "duration": "2h",
+        "desc": "",
+        "responsable": "Icia",
         "apoyos": ""
       },
       {
@@ -10232,12 +10222,12 @@
       },
       {
         "id": 1141,
-        "name": "Planto Anfibio",
+        "name": "Mat y Eq Anf",
         "desde": "1000",
         "hasta": "1300",
-        "duration": "",
-        "desc": "Exploración · Lugar: Aula",
-        "responsable": "SG Acevedo",
+        "duration": "3h",
+        "desc": "Reconocimiento Anf\nReconocimiento, Exploración · Lugar: Aula- Div Ec Capac Anf · UD 1-2Reconocimiento Anf\nReconocimiento, Exploración · Lugar: Aula- Div Ec Capac Anf · UD 1-2",
+        "responsable": "Ca BEOOEE 601",
         "apoyos": ""
       },
       {
@@ -11225,5 +11215,5 @@
     },
     "_rev": 1793635872898
   },
-  "_rev": 1793194629396
+  "_rev": 1793648053763
 }
