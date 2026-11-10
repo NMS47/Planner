@@ -539,7 +539,7 @@
       "endD": 13
     }
   ],
-  "idCounter": 1234,
+  "idCounter": 1235,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -10734,12 +10734,12 @@
       },
       {
         "id": 1191,
-        "name": "Reconocimiento Anfibio",
+        "name": "Planeamiento",
         "desde": "1500",
         "hasta": "1800",
-        "duration": "",
+        "duration": "3h",
         "desc": "Exploración · Lugar: Isla",
-        "responsable": "SG Acevedo",
+        "responsable": "CT SALVADORES",
         "apoyos": ""
       },
       {
@@ -10785,113 +10785,13 @@
     ],
     "2026-11-12": [
       {
-        "id": 1196,
-        "name": "Reconocimiento Anfibio",
-        "desde": "0000",
-        "hasta": "0600",
-        "duration": "",
-        "desc": "Exploración · Lugar: Isla",
-        "responsable": "SG Acevedo",
-        "apoyos": ""
-      },
-      {
-        "id": 1197,
-        "name": "Reconocimiento Anfibio",
-        "desde": "0600",
-        "hasta": "0700",
-        "duration": "",
-        "desc": "Exploración · Lugar: Isla",
-        "responsable": "SG Acevedo",
-        "apoyos": ""
-      },
-      {
-        "id": 1198,
-        "name": "Desayuno",
-        "desde": "0700",
-        "hasta": "0730",
-        "duration": "",
-        "desc": "Lugar: Isla",
-        "responsable": "Of Tur/Subof Tur",
-        "apoyos": ""
-      },
-      {
-        "id": 1199,
-        "name": "Reconocimiento Anfibio",
-        "desde": "0800",
-        "hasta": "1000",
-        "duration": "",
-        "desc": "Exploración · Lugar: Isla",
-        "responsable": "SG Acevedo",
-        "apoyos": ""
-      },
-      {
-        "id": 1200,
-        "name": "Reconocimiento Anfibio",
-        "desde": "1000",
-        "hasta": "1300",
-        "duration": "",
-        "desc": "Exploración · Lugar: Isla",
-        "responsable": "SG Acevedo",
-        "apoyos": ""
-      },
-      {
-        "id": 1201,
-        "name": "Racionamiento",
-        "desde": "1300",
-        "hasta": "1500",
-        "duration": "",
-        "desc": "Lugar: Isla",
-        "responsable": "Of Tur/Subof Tur",
-        "apoyos": ""
-      },
-      {
-        "id": 1202,
-        "name": "Mantenimiento",
-        "desde": "1500",
-        "hasta": "1800",
-        "duration": "",
-        "desc": "Lugar: Parque de Botes",
-        "responsable": "SA Castillo",
-        "apoyos": ""
-      },
-      {
-        "id": 1203,
-        "name": "Baño y mantenimiento",
-        "desde": "1800",
-        "hasta": "2000",
-        "duration": "",
-        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
-        "responsable": "Of Tur/Subof Tur",
-        "apoyos": ""
-      },
-      {
-        "id": 1204,
-        "name": "Racionamiento",
-        "desde": "2000",
-        "hasta": "2100",
-        "duration": "",
-        "desc": "Lugar: Rancho",
-        "responsable": "Of Tur/Subof Tur",
-        "apoyos": ""
-      },
-      {
-        "id": 1205,
-        "name": "Baño y mantenimiento",
-        "desde": "2100",
-        "hasta": "2200",
-        "duration": "",
-        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
-        "responsable": "Of Tur/Subof Tur",
-        "apoyos": ""
-      },
-      {
-        "id": 1206,
-        "name": "Retreta/ Sueño/Franco",
-        "desde": "2200",
-        "hasta": "0000",
-        "duration": "",
-        "desc": "Lugar: Alojamiento- Div Ec Capac Anf",
-        "responsable": "Of Tur/Subof Tur",
+        "id": 1235,
+        "name": "Ejercicio",
+        "desde": "0730",
+        "hasta": "2359",
+        "duration": "16h 29m",
+        "desc": "",
+        "responsable": "CT SALVADORES",
         "apoyos": ""
       }
     ],
@@ -11215,5 +11115,5 @@
     },
     "_rev": 1793635872898
   },
-  "_rev": 1793648954239
+  "_rev": 1794317039435
 }
