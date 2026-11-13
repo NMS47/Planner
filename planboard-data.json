@@ -194,7 +194,7 @@
     {
       "id": 193,
       "name": "1ra Habilitacion",
-      "days": 2,
+      "days": 3,
       "baseColor": "#ffd147",
       "phases": [],
       "hidden": false,
@@ -422,13 +422,13 @@
       "id": 194,
       "cardId": 193,
       "name": "1ra Habilitacion",
-      "days": 2,
+      "days": 3,
       "startY": 2026,
       "startM": 10,
       "startD": 18,
       "endY": 2026,
       "endM": 10,
-      "endD": 19
+      "endD": 20
     },
     {
       "id": 256,
@@ -11115,5 +11115,5 @@
     },
     "_rev": 1793635872898
   },
-  "_rev": 1794577738399
+  "_rev": 1794581347976
 }
