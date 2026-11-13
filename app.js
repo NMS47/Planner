@@ -1101,7 +1101,12 @@ function renderCalendar() {
         cell.addEventListener('mousemove',  e => moveTT(e));
         cell.addEventListener('mouseleave', hideTT);
         // Click opens day modal
-        cell.addEventListener('click', () => { hideTT(); openDayModal(new Date(YEAR,m,d)); });
+        cell.addEventListener('click', () => {
+          if (Date.now() < suppressCalClickUntil) return; // venía de un arrastre
+          hideTT(); openDayModal(new Date(YEAR,m,d));
+        });
+        // Click largo (mantener) → arrastrar la ficha por el calendario
+        cell.addEventListener('pointerdown', e => startPlacementHold(e, fills, YEAR, m, d));
       }
 
       cell.addEventListener('dragover',e=>{e.preventDefault();if(!cell.classList.contains('empty'))cell.classList.add('drag-over');});
@@ -1131,6 +1136,7 @@ function renderCalendar() {
       // Click on the day number opens the day modal
       cell.querySelector('.day-num').addEventListener('click', e => {
         e.stopPropagation();
+        if (Date.now() < suppressCalClickUntil) return;
         openDayModal(new Date(YEAR, m, d));
       });
       dg.appendChild(cell);
@@ -1283,6 +1289,101 @@ function onDrop(e,y,m,d){
     startY:y,startM:m,startD:d,endY:end.getFullYear(),endM:end.getMonth(),endD:end.getDate()});
   renderCalendar(); renderLegend(); persist();
 }
+// ── PLACEMENT HOLD & DRAG (click largo sobre una ficha del calendario) ───────
+let suppressCalClickUntil = 0;
+const HOLD_MS = 350, HOLD_MOVE_TOL = 8;
+
+function startPlacementHold(e, fills, y, m, d) {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  // Si hay varias fichas superpuestas, elegir según la franja vertical tocada
+  let entry = fills[0];
+  if (fills.length > 1) {
+    const r = e.currentTarget.getBoundingClientRect();
+    const idx = Math.min(fills.length - 1, Math.max(0, Math.floor((e.clientY - r.top) / r.height * fills.length)));
+    entry = fills[idx];
+  }
+  const p = entry.placement, card = entry.card;
+  const clickedDate = new Date(y, m, d);
+  const offset = Math.round((clickedDate - new Date(p.startY, p.startM, p.startD)) / 86400000);
+  const sx = e.clientX, sy = e.clientY;
+  let dragging = false, targetCell = null, ghost = null, timer = null;
+
+  const clearPreview = () => document.querySelectorAll('.day-cell.drag-over').forEach(c => c.classList.remove('drag-over'));
+  const cellAt = (x, yy) => {
+    const el = document.elementFromPoint(x, yy);
+    const c = el && el.closest ? el.closest('.day-cell') : null;
+    return c && !c.classList.contains('empty') && c.dataset.cd ? c : null;
+  };
+  const targetStart = c => addDays(+c.dataset.cy, +c.dataset.cm, +c.dataset.cd, -offset);
+  const showPreview = c => {
+    clearPreview();
+    if (!c) return;
+    const s = targetStart(c);
+    for (let i = 0; i < p.days; i++) {
+      const dt = new Date(s); dt.setDate(dt.getDate() + i);
+      const t = document.querySelector(`.day-cell[data-cy="${dt.getFullYear()}"][data-cm="${dt.getMonth()}"][data-cd="${dt.getDate()}"]`);
+      if (t) t.classList.add('drag-over');
+    }
+  };
+  const moveGhost = (x, yy) => { if (ghost) { ghost.style.left = (x + 12) + 'px'; ghost.style.top = (yy + 12) + 'px'; } };
+
+  const cleanup = () => {
+    clearTimeout(timer);
+    document.removeEventListener('pointermove', onMove);
+    document.removeEventListener('pointerup', onUp);
+    document.removeEventListener('pointercancel', onCancel);
+    document.removeEventListener('touchmove', onTouchMove);
+    document.removeEventListener('keydown', onKey);
+    document.body.classList.remove('placement-dragging');
+    if (ghost) ghost.remove();
+    clearPreview();
+  };
+  const begin = () => {
+    dragging = true;
+    hideTT();
+    document.body.classList.add('placement-dragging');
+    ghost = document.createElement('div');
+    ghost.className = 'placement-drag-ghost';
+    ghost.textContent = `${card.name} · ${p.days}d`;
+    ghost.style.background = card.baseColor;
+    document.body.appendChild(ghost);
+    moveGhost(sx, sy);
+    if (navigator.vibrate) try { navigator.vibrate(15); } catch (_) {}
+  };
+  function onMove(ev) {
+    if (!dragging) {
+      if (Math.hypot(ev.clientX - sx, ev.clientY - sy) > HOLD_MOVE_TOL) cleanup(); // fue un scroll/gesto, no un hold
+      return;
+    }
+    moveGhost(ev.clientX, ev.clientY);
+    targetCell = cellAt(ev.clientX, ev.clientY);
+    showPreview(targetCell);
+  }
+  function onTouchMove(ev) { if (dragging) ev.preventDefault(); }
+  function onUp(ev) {
+    if (!dragging) { cleanup(); return; } // click corto → lo maneja el click normal
+    suppressCalClickUntil = Date.now() + 400;
+    const c = cellAt(ev.clientX, ev.clientY);
+    cleanup();
+    if (!c) return;
+    const s = targetStart(c);
+    const end = addDays(s.getFullYear(), s.getMonth(), s.getDate(), p.days - 1);
+    if (s.getFullYear() === p.startY && s.getMonth() === p.startM && s.getDate() === p.startD) return;
+    p.startY = s.getFullYear(); p.startM = s.getMonth(); p.startD = s.getDate();
+    p.endY = end.getFullYear(); p.endM = end.getMonth(); p.endD = end.getDate();
+    renderCalendar(); renderLegend(); persist();
+  }
+  function onCancel() { if (dragging) suppressCalClickUntil = Date.now() + 400; cleanup(); }
+  function onKey(ev) { if (ev.key === 'Escape') { if (dragging) suppressCalClickUntil = Date.now() + 400; cleanup(); } }
+
+  document.addEventListener('pointermove', onMove);
+  document.addEventListener('pointerup', onUp);
+  document.addEventListener('pointercancel', onCancel);
+  document.addEventListener('touchmove', onTouchMove, { passive: false });
+  document.addEventListener('keydown', onKey);
+  timer = setTimeout(begin, HOLD_MS);
+}
+
 function removePlacement(id){placements=placements.filter(p=>p.id!==id);renderCalendar();renderLegend();persist();}
 
 // ── WEEK DRAG & DROP ─────────────────────────────────────────────────────────

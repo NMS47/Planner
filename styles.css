@@ -1060,3 +1060,8 @@ body { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
   color: var(--accent);
 }
 .mcm-btn:hover { opacity: 0.8; }
+
+/* Arrastre de fichas por el calendario (click largo) */
+.placement-drag-ghost { position:fixed; z-index:10000; pointer-events:none; padding:4px 10px; border-radius:8px; font-size:12px; font-weight:600; color:rgba(0,0,0,.8); box-shadow:0 6px 18px rgba(0,0,0,.45); opacity:.92; white-space:nowrap; }
+body.placement-dragging, body.placement-dragging * { cursor:grabbing !important; user-select:none !important; -webkit-user-select:none !important; }
+.day-cell.filled { -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }
