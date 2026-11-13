@@ -833,6 +833,7 @@ function toggleHideCard(id) {
 
 // ── RENDER CARDS (grouped by category) ───────────────────────────────────────
 let collapsedGroups = new Set(); // persists across re-renders
+let seenGroups = new Set();      // categorías ya vistas (las nuevas arrancan minimizadas)
 
 function buildCardEl(card) {
   const ph = card.phases;
@@ -920,6 +921,8 @@ function renderCards() {
     const groupCards = groups[key];
     const isNoCat = key === NO_CAT;
     const label = isNoCat ? 'Sin categoría' : key;
+    // Categorías nuevas arrancan minimizadas; después se respeta lo que el usuario abra/cierre
+    if (!seenGroups.has(key)) { seenGroups.add(key); collapsedGroups.add(key); }
 
     if (sortedKeys.length === 1 && isNoCat) {
       // Only uncategorized cards and no named groups — render flat (legacy look)
@@ -1349,6 +1352,11 @@ function startPlacementHold(e, fills, y, m, d) {
     document.body.appendChild(ghost);
     moveGhost(sx, sy);
     if (navigator.vibrate) try { navigator.vibrate(15); } catch (_) {}
+    // Al agarrar la ficha, queda seleccionada para editar (y su categoría se despliega)
+    startEdit(card.id);
+    const catKey = card.category && card.category.trim() ? card.category.trim() : ' ';
+    collapsedGroups.delete(catKey);
+    renderCards();
   };
   function onMove(ev) {
     if (!dragging) {
