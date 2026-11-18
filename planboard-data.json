@@ -10937,6 +10937,7 @@
         "days": 1,
         "baseColor": "#d1a3ff",
         "phases": [],
+        "hidden": false,
         "category": ""
       }
     ],
@@ -11062,7 +11063,7 @@
         "endD": 12
       }
     ],
-    "idCounter": 1240,
+    "idCounter": 1245,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11098,6 +11099,46 @@
           "desc": "",
           "responsable": "",
           "apoyos": ""
+        },
+        {
+          "id": 1241,
+          "name": "Compra de logistica calafate",
+          "desde": "0730",
+          "hasta": "0800",
+          "duration": "30m",
+          "desc": "Retirar auto",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1242,
+          "name": "Compra logistica",
+          "desde": "0800",
+          "hasta": "0930",
+          "duration": "1h 30m",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1243,
+          "name": "Viaje a PN Perito Moreno",
+          "desde": "0930",
+          "hasta": "1730",
+          "duration": "8h",
+          "desc": "preveer comida y mate, nafta",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1244,
+          "name": "Caminata a Rene Negro",
+          "desde": "1730",
+          "hasta": "1930",
+          "duration": "2h",
+          "desc": "(4km km aprox) Dormir en DOMO",
+          "responsable": "",
+          "apoyos": ""
         }
       ],
       "2027-01-24": [
@@ -11111,9 +11152,21 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-08": [
+        {
+          "id": 1245,
+          "name": "Trekkina a Tucuquere",
+          "desde": "1000",
+          "hasta": "1800",
+          "duration": "8h",
+          "desc": "(16km aprox) Dormir en Carpa",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1793635872898
+    "_rev": 1795039528477
   },
   "_rev": 1794581347976
 }
