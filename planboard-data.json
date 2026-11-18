@@ -11063,7 +11063,7 @@
         "endD": 12
       }
     ],
-    "idCounter": 1245,
+    "idCounter": 1251,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11136,7 +11136,7 @@
           "desde": "1730",
           "hasta": "1930",
           "duration": "2h",
-          "desc": "(4km km aprox) Dormir en DOMO",
+          "desc": "(4km km aprox) Dormir en Carpa",
           "responsable": "",
           "apoyos": ""
         }
@@ -11156,17 +11156,85 @@
       "2027-01-08": [
         {
           "id": 1245,
-          "name": "Trekkina a Tucuquere",
+          "name": "Trekkina a El Arroyo",
           "desde": "1000",
           "hasta": "1800",
           "duration": "8h",
-          "desc": "(16km aprox) Dormir en Carpa",
+          "desc": "(16km aprox) Dormir en Carpa, pasar de largo tucuquere",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-09": [
+        {
+          "id": 1246,
+          "name": "Trekking a Azara",
+          "desde": "1000",
+          "hasta": "1800",
+          "duration": "8h",
+          "desc": "Por el norte, pasar de largo ref angostura, hacemos 2 dias en 1. (16km) Reservamos carpa",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-10": [
+        {
+          "id": 1247,
+          "name": "Trekking a Tucuquere",
+          "desde": "1000",
+          "hasta": "1800",
+          "duration": "8h",
+          "desc": "(12km) Dormir en DOMO",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-11": [
+        {
+          "id": 1248,
+          "name": "Trekking a estacionamiento",
+          "desde": "1000",
+          "hasta": "1300",
+          "duration": "3h",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1249,
+          "name": "Moverse a Rio Lacteo en auto",
+          "desde": "1300",
+          "hasta": "1400",
+          "duration": "1h",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1250,
+          "name": "Trekking a Gilberto",
+          "desde": "1400",
+          "hasta": "1700",
+          "duration": "3h",
+          "desc": "2 km aprox, dormir en carpa",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-12": [
+        {
+          "id": 1251,
+          "name": "Trekking a Laguna de los tempanos",
+          "desde": "0900",
+          "hasta": "1800",
+          "duration": "9h",
+          "desc": "Dejar las cosas en Kris a Doug(12km) ir livianos a la laguna(10km) ida y vuelta (22km total). Reservar DOMO",
           "responsable": "",
           "apoyos": ""
         }
       ]
     },
-    "_rev": 1795039528477
+    "_rev": 1795043127748
   },
   "_rev": 1794581347976
 }
