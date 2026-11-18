@@ -11063,7 +11063,7 @@
         "endD": 12
       }
     ],
-    "idCounter": 1251,
+    "idCounter": 1254,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11087,6 +11087,16 @@
           "desc": "",
           "responsable": "",
           "apoyos": ""
+        },
+        {
+          "id": 1254,
+          "name": "Devolver el auto en el calafate",
+          "desde": "",
+          "hasta": "",
+          "duration": "",
+          "desc": "",
+          "responsable": "",
+          "apoyos": ""
         }
       ],
       "2027-01-07": [
@@ -11102,11 +11112,11 @@
         },
         {
           "id": 1241,
-          "name": "Compra de logistica calafate",
+          "name": "Retirar auto",
           "desde": "0730",
           "hasta": "0800",
           "duration": "30m",
-          "desc": "Retirar auto",
+          "desc": "",
           "responsable": "",
           "apoyos": ""
         },
@@ -11232,9 +11242,31 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-13": [
+        {
+          "id": 1252,
+          "name": "Trekking al Auto",
+          "desde": "0700",
+          "hasta": "1000",
+          "duration": "3h",
+          "desc": "12 km aprox",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1253,
+          "name": "Viaje al chalten",
+          "desde": "1000",
+          "hasta": "1900",
+          "duration": "9h",
+          "desc": "Reservar alojamiento",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1795043127748
+    "_rev": 1795044027478
   },
   "_rev": 1794581347976
 }
