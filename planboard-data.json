@@ -10907,7 +10907,7 @@
       {
         "id": 1219,
         "name": "Circuto Azara",
-        "days": 5,
+        "days": 7,
         "baseColor": "#ffd147",
         "phases": [],
         "hidden": false,
@@ -11054,13 +11054,13 @@
         "id": 1240,
         "cardId": 1219,
         "name": "Circuto Azara",
-        "days": 5,
+        "days": 7,
         "startY": 2027,
         "startM": 0,
         "startD": 8,
         "endY": 2027,
         "endM": 0,
-        "endD": 12
+        "endD": 14
       }
     ],
     "idCounter": 1254,
@@ -11266,7 +11266,7 @@
         }
       ]
     },
-    "_rev": 1795044027478
+    "_rev": 1795274091450
   },
   "_rev": 1794581347976
 }
