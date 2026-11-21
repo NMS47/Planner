@@ -10906,10 +10906,21 @@
       },
       {
         "id": 1219,
-        "name": "Circuto Azara",
+        "name": "PN Perito Moreno",
         "days": 7,
         "baseColor": "#ffd147",
-        "phases": [],
+        "phases": [
+          {
+            "name": "Circuito Azara",
+            "days": 4,
+            "color": "rgb(128,96,0)"
+          },
+          {
+            "name": "Circuito Rio Lacteo",
+            "days": 3,
+            "color": "rgb(244,237,190)"
+          }
+        ],
         "hidden": false,
         "category": ""
       },
@@ -11053,17 +11064,17 @@
       {
         "id": 1240,
         "cardId": 1219,
-        "name": "Circuto Azara",
+        "name": "PN Perito Moreno",
         "days": 7,
         "startY": 2027,
         "startM": 0,
-        "startD": 8,
+        "startD": 7,
         "endY": 2027,
         "endM": 0,
-        "endD": 14
+        "endD": 13
       }
     ],
-    "idCounter": 1254,
+    "idCounter": 1257,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11079,22 +11090,32 @@
       ],
       "2027-01-14": [
         {
-          "id": 1221,
-          "name": "Viaje chalten",
-          "desde": "",
-          "hasta": "",
-          "duration": "",
+          "id": 1254,
+          "name": "Devolver el auto en el calafate",
+          "desde": "0700",
+          "hasta": "0900",
+          "duration": "2h",
           "desc": "",
           "responsable": "",
           "apoyos": ""
         },
         {
-          "id": 1254,
-          "name": "Devolver el auto en el calafate",
-          "desde": "",
-          "hasta": "",
-          "duration": "",
-          "desc": "",
+          "id": 1255,
+          "name": "Volver al chalten",
+          "desde": "0900",
+          "hasta": "1200",
+          "duration": "3h",
+          "desc": "Dani se queda chalten, nico se vuelve como puede, ver grupos de fb",
+          "responsable": "",
+          "apoyos": ""
+        },
+        {
+          "id": 1256,
+          "name": "Escalada",
+          "desde": "1200",
+          "hasta": "1800",
+          "duration": "6h",
+          "desc": "Pared baños",
           "responsable": "",
           "apoyos": ""
         }
@@ -11264,9 +11285,21 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-15": [
+        {
+          "id": 1257,
+          "name": "Aproximacion a las vivak las cuevas",
+          "desde": "1000",
+          "hasta": "1800",
+          "duration": "8h",
+          "desc": "11-12 km desde el chalten, 10 km desde Rio electrico. ver cual conviene $$$",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1795274991748
+    "_rev": 1795299290982
   },
   "_rev": 1794581347976
 }
