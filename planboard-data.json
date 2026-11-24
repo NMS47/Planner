@@ -235,6 +235,30 @@
       "phases": [],
       "hidden": false,
       "category": "CBSFBE"
+    },
+    {
+      "id": 1236,
+      "name": "Nadador de Combate",
+      "days": 19,
+      "baseColor": "#d1a3ff",
+      "phases": [],
+      "category": ""
+    },
+    {
+      "id": 1238,
+      "name": "CERA",
+      "days": 19,
+      "baseColor": "#ff9dc6",
+      "phases": [],
+      "category": ""
+    },
+    {
+      "id": 1240,
+      "name": "CBSFBE",
+      "days": 68,
+      "baseColor": "#4dffd2",
+      "phases": [],
+      "category": ""
     }
   ],
   "placements": [
@@ -537,9 +561,45 @@
       "endY": 2026,
       "endM": 10,
       "endD": 13
+    },
+    {
+      "id": 1237,
+      "cardId": 1236,
+      "name": "Nadador de Combate",
+      "days": 19,
+      "startY": 2027,
+      "startM": 2,
+      "startD": 8,
+      "endY": 2027,
+      "endM": 2,
+      "endD": 26
+    },
+    {
+      "id": 1239,
+      "cardId": 1238,
+      "name": "CERA",
+      "days": 19,
+      "startY": 2027,
+      "startM": 2,
+      "startD": 29,
+      "endY": 2027,
+      "endM": 3,
+      "endD": 16
+    },
+    {
+      "id": 1241,
+      "cardId": 1240,
+      "name": "CBSFBE",
+      "days": 68,
+      "startY": 2027,
+      "startM": 3,
+      "startD": 19,
+      "endY": 2027,
+      "endM": 5,
+      "endD": 25
     }
   ],
-  "idCounter": 1235,
+  "idCounter": 1241,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -11301,5 +11361,5 @@
     },
     "_rev": 1795299290982
   },
-  "_rev": 1794581347976
+  "_rev": 1795534331849
 }
