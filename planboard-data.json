@@ -242,6 +242,7 @@
       "days": 19,
       "baseColor": "#d1a3ff",
       "phases": [],
+      "hidden": false,
       "category": ""
     },
     {
@@ -250,6 +251,7 @@
       "days": 19,
       "baseColor": "#ff9dc6",
       "phases": [],
+      "hidden": false,
       "category": ""
     },
     {
@@ -257,6 +259,15 @@
       "name": "CBSFBE",
       "days": 68,
       "baseColor": "#4dffd2",
+      "phases": [],
+      "hidden": false,
+      "category": ""
+    },
+    {
+      "id": 1242,
+      "name": "Ed a distancia",
+      "days": 5,
+      "baseColor": "#ffd147",
       "phases": [],
       "category": ""
     }
@@ -597,9 +608,21 @@
       "endY": 2027,
       "endM": 5,
       "endD": 25
+    },
+    {
+      "id": 1243,
+      "cardId": 1242,
+      "name": "Ed a distancia",
+      "days": 5,
+      "startY": 2027,
+      "startM": 2,
+      "startD": 1,
+      "endY": 2027,
+      "endM": 2,
+      "endD": 5
     }
   ],
-  "idCounter": 1241,
+  "idCounter": 1243,
   "dayTasks": {
     "2026-04-06": [
       {
@@ -11361,5 +11384,5 @@
     },
     "_rev": 1795299290982
   },
-  "_rev": 1795534331849
+  "_rev": 1795615723902
 }
