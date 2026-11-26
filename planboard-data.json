@@ -11177,7 +11177,7 @@
         "endD": 15
       }
     ],
-    "idCounter": 1261,
+    "idCounter": 1264,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11424,9 +11424,45 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-18": [
+        {
+          "id": 1262,
+          "name": "Piedra del Fraile",
+          "desde": "1000",
+          "hasta": "1300",
+          "duration": "3h",
+          "desc": "Descansar. 12km",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-19": [
+        {
+          "id": 1263,
+          "name": "Piedra Negra",
+          "desde": "0900",
+          "hasta": "1600",
+          "duration": "7h",
+          "desc": "3km~ mucho ascenso vertical. Fijarse si dormimos en ahi o mas arriba",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-20": [
+        {
+          "id": 1264,
+          "name": "Cumbre Cerro Electrico/Piedra del Fraile",
+          "desde": "0600",
+          "hasta": "1800",
+          "duration": "12h",
+          "desc": "Dormimos en refugio 10km~",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1795720671376
+    "_rev": 1795721571264
   },
   "_rev": 1795615723902
 }
