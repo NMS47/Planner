@@ -11033,6 +11033,14 @@
         "phases": [],
         "hidden": false,
         "category": ""
+      },
+      {
+        "id": 1258,
+        "name": "Escalada",
+        "days": 2,
+        "baseColor": "#4dffd2",
+        "phases": [],
+        "category": ""
       }
     ],
     "placements": [
@@ -11115,10 +11123,10 @@
         "days": 3,
         "startY": 2027,
         "startM": 0,
-        "startD": 15,
+        "startD": 16,
         "endY": 2027,
         "endM": 0,
-        "endD": 17
+        "endD": 18
       },
       {
         "id": 1227,
@@ -11127,10 +11135,10 @@
         "days": 3,
         "startY": 2027,
         "startM": 0,
-        "startD": 18,
+        "startD": 19,
         "endY": 2027,
         "endM": 0,
-        "endD": 20
+        "endD": 21
       },
       {
         "id": 1237,
@@ -11155,9 +11163,21 @@
         "endY": 2027,
         "endM": 0,
         "endD": 13
+      },
+      {
+        "id": 1259,
+        "cardId": 1258,
+        "name": "Escalada",
+        "days": 2,
+        "startY": 2027,
+        "startM": 0,
+        "startD": 14,
+        "endY": 2027,
+        "endM": 0,
+        "endD": 15
       }
     ],
-    "idCounter": 1257,
+    "idCounter": 1261,
     "dayTasks": {
       "2026-08-08": [
         {
@@ -11380,9 +11400,33 @@
           "responsable": "",
           "apoyos": ""
         }
+      ],
+      "2027-01-16": [
+        {
+          "id": 1260,
+          "name": "Trek a La Cueva",
+          "desde": "0800",
+          "hasta": "1300",
+          "duration": "5h",
+          "desc": "14 km, 4h30'",
+          "responsable": "",
+          "apoyos": ""
+        }
+      ],
+      "2027-01-17": [
+        {
+          "id": 1261,
+          "name": "Cumbre Mojon Rojo/ Poicenot",
+          "desde": "0600",
+          "hasta": "1800",
+          "duration": "12h",
+          "desc": "cumbre y despues noche en poicenot 8km 12h aprox",
+          "responsable": "",
+          "apoyos": ""
+        }
       ]
     },
-    "_rev": 1795299290982
+    "_rev": 1795720671376
   },
   "_rev": 1795615723902
 }
